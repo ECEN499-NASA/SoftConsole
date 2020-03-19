@@ -24,6 +24,7 @@ drivers/CoreTimer \
 drivers/CoreUARTapb \
 hal \
 i2c_test_files \
+lcd_test_files \
 . \
 riscv_hal \
 spi_test_files \
