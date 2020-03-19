@@ -100,6 +100,8 @@
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/spi_test_files}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/user_handler_files}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;/${ProjName}/lcd_test_files&quot;"/>
                                     								
                                 </option>
                                 								
@@ -130,6 +132,8 @@
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/spi_test_files}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/user_handler_files}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/lcd_test_files}&quot;"/>
                                     								
                                 </option>
                                 								
@@ -246,6 +250,8 @@
                                 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/spi_test_files}&quot;"/>
                                 								
                                 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/user_handler_files}&quot;"/>
+                                								
+                                <listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/lcd_test_files}&quot;"/>
                                 							
                             </option>
                             							
@@ -378,6 +384,8 @@
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/spi_test_files}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/user_handler_files}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;/${ProjName}/lcd_test_files&quot;"/>
                                     								
                                 </option>
                                 								
@@ -398,6 +406,8 @@
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/spi_test_files}&quot;"/>
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/user_handler_files}&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;/${ProjName}/lcd_test_files&quot;"/>
                                     								
                                 </option>
                                 								

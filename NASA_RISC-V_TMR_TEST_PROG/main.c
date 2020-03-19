@@ -6,6 +6,7 @@
 #include "i2c_test_routine.h"
 #include "spi_test_prog.h"
 #include "user_handler.h"
+#include "lcd_test.h"
 
 
 
@@ -198,7 +199,7 @@ void testProgramManager(void)
 					displayTestUnavailable();
 					break;
 				case LCD_SCREEN_TEST:
-					displayTestUnavailable();
+					lcd_test();
 					break;
 				case CPU_TEST:
 					displayTestUnavailable();
