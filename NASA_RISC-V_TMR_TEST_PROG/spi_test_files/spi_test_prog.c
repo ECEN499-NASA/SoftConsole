@@ -1,13 +1,18 @@
-/*
- * spi_test_prog.c
- *
- *  Created on: Mar 16, 2020
- *      Author: zac carico
+/**
+ * @file 	spi_test_prog.c
+ * @date 	Mar 16, 2020
+ * @author	zac carico
+ * 
+ * @brief	Function definitions of spi_test_prog.h
  */
 
 
 #include "spi_test_prog.h"
 
+/**
+ * @note	Global variables that couldn't be initialized 
+ * 			in the header file
+ */
 spi_dev fram_dev = {
 		.spi = &riscv_spi,
 		.spi_sel = SPI_SLAVE_0
@@ -38,6 +43,12 @@ spi_dev accelerometer_dev = {
 		.spi_sel = SPI_SLAVE_5
 };
 
+/**
+ * @brief	Initializes the SPI test. First function called 
+ * 			in the test's main function.
+ * 
+ * @details Used to initialize the SPI, setting it as "master mode"
+ */
 void spi_test_init(void)
 {
 	quit_spi_test = 0;
@@ -49,6 +60,35 @@ void spi_test_init(void)
 	SPI_configure_master_mode(&riscv_spi);
 }
 
+/**
+ * @brief	Reads x bytes specified by the data_size param.
+ * 
+ * @details	The function will send a read command to the specified 
+ * 			device, then fill up the data param with the information 
+ * 			comming in
+ * 
+ * @code	
+ * 	#define DATA_SIZE 10
+ * 
+ *  uint8_t data_size = DATA_SIZE;
+ * 	uint8_t data_read[DATA_SIZE];
+ * 	uint8_t read_command = 0x10; // Can be any byte-sized read command
+ * 	spi_dev device = {
+ *  	.spi = &riscv_spi, 		// Any "spi_instance_t" type
+ * 		.spi_sel = SPI_SLAVE_0 	// Any "spi_slave_t" type
+ *  };
+ * 
+ * 	spi_test_read(&device, &command, &data_read, &data_size);
+ * 	
+ * 	for(uint8_t i = 0; i < DATA_SIZE; i++) { // <Print_data_here> }
+ * @endcode
+ * 
+ * @param device  	Pointer to device to read data from. There are 
+ * 					currently 6 different device that can be read from
+ * @param command	Pointer to read command to send to the device
+ * @param data		Pointer to the array to be filled with incomming data
+ * @param data_size Size of the data array
+ */
 void spi_test_read(spi_dev *device, uint8_t *command, uint8_t *data, uint8_t data_size)
 {
 	SPI_set_slave_select(device->spi, device->spi_sel);
@@ -56,6 +96,9 @@ void spi_test_read(spi_dev *device, uint8_t *command, uint8_t *data, uint8_t dat
 	SPI_clear_slave_select(device->spi, device->spi_sel);
 }
 
+/**
+ * 
+ */
 void spi_test_write(spi_dev *device, uint8_t *data, uint8_t data_size, uint8_t *resp_data)
 {
 	SPI_set_slave_select(device->spi, device->spi_sel);

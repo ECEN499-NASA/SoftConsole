@@ -8,50 +8,11 @@
 #include "user_handler.h"
 #include "lcd_test.h"
 
-
-
-#if 0
-
-#define BUFFER_A_SIZE   512
-
-/* Manufacture and device IDs for Micron MT25QL01GBBB SPI Flash. */
-#define FLASH_MANUFACTURER_ID   (uint8_t)0x20
-#define FLASH_DEVICE_ID         (uint8_t)0xBB
-
-/*
- * Static global variables
+/**
+ * @brief	Used to list the different kinds of tests a user can use. 
+ * 			Also used to help clarify the switch statement to the 
+ * 			programmer.
  */
-static uint8_t g_flash_wr_buf[BUFFER_A_SIZE];
-static uint8_t g_flash_rd_buf[BUFFER_A_SIZE];
-
-/* Local Function. */
-static uint8_t verify_write(uint8_t* write_buff, uint8_t* read_buff, uint16_t size);
-
-/***************************************************************************//**
- * Read the date from SPI FLASH and compare the same with write buffer.
- */
-static uint8_t verify_write(uint8_t* write_buff, uint8_t* read_buff, uint16_t size)
-{
-    uint8_t error = 0;
-    uint16_t index = 0;
-
-    while(size != 0)
-    {
-        if(write_buff[index] != read_buff[index])
-        {
-            error = 1;
-            break;
-        }
-        index++;
-        size--;
-    }
-
-    return error;
-}
-
-#endif
-
-
 typedef enum{
 	GPIO_TEST,
 	I2C_TEST,
@@ -69,14 +30,6 @@ typedef enum{
  * Delay loop down counter load value.
  */
 #define DELAY_LOAD_VALUE     0x00080000
-
-
-/******************************************************************************
- * Instruction message. This message will be transmitted over the UART to
- * HyperTerminal when the program starts.
- *****************************************************************************/
-
-uint8_t testmsg[] = {"\r\n\r\nDid this work?\0"};
 
 /*-----------------------------------------------------------------------------
  * UART instance data.
@@ -149,6 +102,9 @@ int main()
     return 0;
 }
 
+/**
+ * @brief	Manages what test to enter depending on the user's input.
+ */
 void testProgramManager(void)
 {
 	uint8_t invalidCommand = 1;
@@ -215,11 +171,17 @@ void testProgramManager(void)
 	}
 }
 
+/**
+ * @brief	Used when user enters an invalid command
+ */
 void displayIncorrectCommand(void)
 {
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"ERROR! Invalid Command!\n\r");
 }
 
+/**
+ * @brief	Used to display the list and command of different tests a user to perform
+ */
 void displayTestList(void)
 {
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\tTEST IDs:\n\r");
@@ -235,12 +197,18 @@ void displayTestList(void)
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\t-(9) UNIT_TEST\n\r");
 }
 
+/**
+ * @brief	Used to tell the user that the selected test hasn't been programed yet
+ */
 void displayTestUnavailable(void)
 {
 	UART_polled_tx_string(&g_uart,
 			(const uint8_t *)"ERROR! Test Not programmed at this time...\n\r");
 }
 
+/**
+ * @brief	Displays list of commands a user can perform
+ */
 void displayCommandsList(void)
 {
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\tCOMMANDS:\n\r");
