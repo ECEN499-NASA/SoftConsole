@@ -1,0 +1,238 @@
+\hypertarget{spi__test__prog_8h}{}\doxysection{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/spi\+\_\+test\+\_\+files/spi\+\_\+test\+\_\+prog.h File Reference}
+\label{spi__test__prog_8h}\index{/home/zac/git/projects/PolarFire\_RISC-\/V\_TMR\_SoftConsole/NASA\_RISC-\/V\_TMR\_TEST\_PROG/spi\_test\_files/spi\_test\_prog.h@{/home/zac/git/projects/PolarFire\_RISC-\/V\_TMR\_SoftConsole/NASA\_RISC-\/V\_TMR\_TEST\_PROG/spi\_test\_files/spi\_test\_prog.h}}
+
+
+Header file containing all the prototypes and declarations for the S\+PI test.  
+
+
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}hw\+\_\+platform.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}core\+\_\+uart\+\_\+apb.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}core\+\_\+spi.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}user\+\_\+handler.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structspi__dev}{spi\+\_\+dev}}
+\begin{DoxyCompactList}\small\item\em Structure used to create a S\+PI \char`\"{}object\char`\"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a87f243d506ce62a8a002b5976d3a4844}\label{spi__test__prog_8h_a87f243d506ce62a8a002b5976d3a4844}} 
+enum \mbox{\hyperlink{spi__test__prog_8h_a87f243d506ce62a8a002b5976d3a4844}{S\+P\+I\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+ID}} \{ \newline
+{\bfseries F\+R\+AM}, 
+{\bfseries E\+X\+T\+E\+R\+N\+A\+L\+\_\+\+S\+P\+I\+\_\+0}, 
+{\bfseries E\+X\+T\+E\+R\+N\+A\+L\+\_\+\+S\+P\+I\+\_\+1}, 
+{\bfseries A\+DC}, 
+\newline
+{\bfseries L\+C\+D\+\_\+\+S\+C\+R\+E\+EN}, 
+{\bfseries A\+C\+C\+E\+L\+E\+R\+O\+M\+E\+T\+ER}
+ \}
+\begin{DoxyCompactList}\small\item\em List of available S\+P\+Is of the microcontroller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{spi__test__prog_8h_ad2469a4b04e341d27cfc8c1f6b718c79}\label{spi__test__prog_8h_ad2469a4b04e341d27cfc8c1f6b718c79}} 
+enum \mbox{\hyperlink{spi__test__prog_8h_ad2469a4b04e341d27cfc8c1f6b718c79}{S\+P\+I\+\_\+\+T\+E\+S\+T\+\_\+\+S\+EL}} \{ {\bfseries S\+E\+N\+D\+\_\+\+W\+R\+I\+T\+E\+\_\+\+C\+O\+MM}, 
+{\bfseries S\+E\+N\+D\+\_\+\+R\+E\+A\+D\+\_\+\+C\+O\+MM}
+ \}
+\begin{DoxyCompactList}\small\item\em List of different commands the user can perform. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{spi__test__prog_8h_a4aa3a2916650e7131e463bf9739a90e4}{spi\+\_\+test\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initializes the S\+PI test. First function called in the test\textquotesingle{}s main function. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a85669ebdb38be966535e38cbee6da5e4}\label{spi__test__prog_8h_a85669ebdb38be966535e38cbee6da5e4}} 
+void {\bfseries spi\+\_\+test\+\_\+read} (\mbox{\hyperlink{structspi__dev}{spi\+\_\+dev}} $\ast$device, uint8\+\_\+t $\ast$command, uint8\+\_\+t $\ast$data, uint8\+\_\+t data\+\_\+size)
+\item 
+\mbox{\Hypertarget{spi__test__prog_8h_add5d35f1a21bf4f02db32e46c7a75828}\label{spi__test__prog_8h_add5d35f1a21bf4f02db32e46c7a75828}} 
+void {\bfseries spi\+\_\+test\+\_\+write} (\mbox{\hyperlink{structspi__dev}{spi\+\_\+dev}} $\ast$device, uint8\+\_\+t $\ast$data, uint8\+\_\+t data\+\_\+size, uint8\+\_\+t $\ast$resp\+\_\+data)
+\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a3753e083a99f55a45620bfdfb9a01321}\label{spi__test__prog_8h_a3753e083a99f55a45620bfdfb9a01321}} 
+void \mbox{\hyperlink{spi__test__prog_8h_a3753e083a99f55a45620bfdfb9a01321}{spi\+\_\+test\+\_\+handler}} (void)
+\begin{DoxyCompactList}\small\item\em The main function of the \char`\"{}\+S\+P\+I\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G\char`\"{}. Lets user change settings and test different aspects of the S\+DI. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{spi__test__prog_8h_aa03991b42e71182694f4c300cd9d13a4}{spi\+\_\+test\+\_\+send\+\_\+write\+\_\+command}} (void)
+\begin{DoxyCompactList}\small\item\em Handler for used to test sending data of various sizes to the selected device. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{spi__test__prog_8h_a846cd22404be760a5672a1296b0fe015}{spi\+\_\+test\+\_\+send\+\_\+read\+\_\+command}} (void)
+\begin{DoxyCompactList}\small\item\em Handler for used to test reading data of various sizes from the selected device. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{spi__test__prog_8h_ac23eef55b6f2e2814b632e12e0391ed3}\label{spi__test__prog_8h_ac23eef55b6f2e2814b632e12e0391ed3}} 
+void \mbox{\hyperlink{spi__test__prog_8h_ac23eef55b6f2e2814b632e12e0391ed3}{spi\+\_\+test\+\_\+display\+\_\+write\+\_\+command\+\_\+instructions}} (void)
+\begin{DoxyCompactList}\small\item\em Displays the user commands for the program. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{spi__test__prog_8h_ad176bd9962e81c229f93bd5cc7413815}\label{spi__test__prog_8h_ad176bd9962e81c229f93bd5cc7413815}} 
+void \mbox{\hyperlink{spi__test__prog_8h_ad176bd9962e81c229f93bd5cc7413815}{spi\+\_\+test\+\_\+write\+\_\+single\+\_\+byte}} (void)
+\begin{DoxyCompactList}\small\item\em Tests just sending one byte of data determined by the user\textquotesingle{}s input. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a6700ca2b131d3f21079949d966ac4a13}\label{spi__test__prog_8h_a6700ca2b131d3f21079949d966ac4a13}} 
+void \mbox{\hyperlink{spi__test__prog_8h_a6700ca2b131d3f21079949d966ac4a13}{spi\+\_\+test\+\_\+write\+\_\+quad\+\_\+byte}} (void)
+\begin{DoxyCompactList}\small\item\em Tests sending four bytes of data determined by the user\textquotesingle{}s input. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{spi__test__prog_8h_ad167029c4b60cb972f21723128bca4f9}{spi\+\_\+test\+\_\+write\+\_\+custom\+\_\+byte}} (void)
+\begin{DoxyCompactList}\small\item\em Sends a number of bytes (determined by the user) to the selected S\+PI device. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a4df05b3818122bb87731fa7a090bb9b1}\label{spi__test__prog_8h_a4df05b3818122bb87731fa7a090bb9b1}} 
+void \mbox{\hyperlink{spi__test__prog_8h_a4df05b3818122bb87731fa7a090bb9b1}{spi\+\_\+test\+\_\+display\+\_\+read\+\_\+command\+\_\+instructions}} (void)
+\begin{DoxyCompactList}\small\item\em Displays the commands that a user can select to test reading from the selected S\+PI device. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a48f1a7e0236a6a1cc890471821905d28}\label{spi__test__prog_8h_a48f1a7e0236a6a1cc890471821905d28}} 
+void \mbox{\hyperlink{spi__test__prog_8h_a48f1a7e0236a6a1cc890471821905d28}{spi\+\_\+test\+\_\+read\+\_\+single\+\_\+byte}} (void)
+\begin{DoxyCompactList}\small\item\em Tests reading a single byte from the selected S\+PI device. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a648b08a88f807c3dac6447a7bb57274f}\label{spi__test__prog_8h_a648b08a88f807c3dac6447a7bb57274f}} 
+void \mbox{\hyperlink{spi__test__prog_8h_a648b08a88f807c3dac6447a7bb57274f}{spi\+\_\+test\+\_\+read\+\_\+quad\+\_\+byte}} (void)
+\begin{DoxyCompactList}\small\item\em Tests reading four bytes from the selected S\+PI device. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{spi__test__prog_8h_af4c48d4cc470d5844ede6426ed43a5e0}{spi\+\_\+test\+\_\+read\+\_\+custom\+\_\+byte}} (void)
+\begin{DoxyCompactList}\small\item\em Reads a number of bytes (determined by the user) from the selected S\+PI device. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{spi__test__prog_8h_ab54fd668cdde6ffa7a15834575d72d7c}\label{spi__test__prog_8h_ab54fd668cdde6ffa7a15834575d72d7c}} 
+void \mbox{\hyperlink{spi__test__prog_8h_ab54fd668cdde6ffa7a15834575d72d7c}{spi\+\_\+test\+\_\+display\+\_\+commands}} (void)
+\begin{DoxyCompactList}\small\item\em Displays the S\+P\+I\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+OG top-\/level commands. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a91d0dbf99b5d8fd68965f66788e58da0}\label{spi__test__prog_8h_a91d0dbf99b5d8fd68965f66788e58da0}} 
+void \mbox{\hyperlink{spi__test__prog_8h_a91d0dbf99b5d8fd68965f66788e58da0}{spi\+\_\+test\+\_\+display\+\_\+devices}} (void)
+\begin{DoxyCompactList}\small\item\em Displays available S\+PI devices that the user can select. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{spi__test__prog_8h_ad799be8216be4017e5a770110a45741f}\label{spi__test__prog_8h_ad799be8216be4017e5a770110a45741f}} 
+void \mbox{\hyperlink{spi__test__prog_8h_ad799be8216be4017e5a770110a45741f}{spi\+\_\+test\+\_\+display\+\_\+selected\+\_\+device}} (void)
+\begin{DoxyCompactList}\small\item\em Displays the currently slected device to the user. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a75ee3c2ffd172efb123cb50496ee639d}\label{spi__test__prog_8h_a75ee3c2ffd172efb123cb50496ee639d}} 
+void \mbox{\hyperlink{spi__test__prog_8h_a75ee3c2ffd172efb123cb50496ee639d}{spi\+\_\+test\+\_\+change\+\_\+selected\+\_\+device}} (void)
+\begin{DoxyCompactList}\small\item\em Lets user change the selected S\+PI device. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a82e391b12230212dcdf85056c5975c36}\label{spi__test__prog_8h_a82e391b12230212dcdf85056c5975c36}} 
+void \mbox{\hyperlink{spi__test__prog_8h_a82e391b12230212dcdf85056c5975c36}{spi\+\_\+test\+\_\+display\+\_\+incorrect\+\_\+command}} (void)
+\begin{DoxyCompactList}\small\item\em Used when the user enters an invalid command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+spi\+\_\+instance\+\_\+t \mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\+\_\+spi}}
+\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a2e074965d77b7cc2854b2b89748b666a}\label{spi__test__prog_8h_a2e074965d77b7cc2854b2b89748b666a}} 
+\mbox{\hyperlink{structspi__dev}{spi\+\_\+dev}} $\ast$ {\bfseries selected\+\_\+dev}
+\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a29a1d98fbd9a5932b4e319345046e3b3}\label{spi__test__prog_8h_a29a1d98fbd9a5932b4e319345046e3b3}} 
+\mbox{\hyperlink{spi__test__prog_8h_a87f243d506ce62a8a002b5976d3a4844}{S\+P\+I\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+ID}} {\bfseries selected\+\_\+dev\+\_\+id}
+\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a686e9ce5422577f0ea11f28b4c33fc52}\label{spi__test__prog_8h_a686e9ce5422577f0ea11f28b4c33fc52}} 
+uint8\+\_\+t {\bfseries quit\+\_\+spi\+\_\+test}
+\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}\label{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}} 
+uint8\+\_\+t {\bfseries spi\+\_\+command\+\_\+byte}
+\item 
+U\+A\+R\+T\+\_\+instance\+\_\+t \mbox{\hyperlink{spi__test__prog_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\+\_\+uart}}
+\item 
+\mbox{\hyperlink{structspi__dev}{spi\+\_\+dev}} \mbox{\hyperlink{spi__test__prog_8h_a02bd3a1d8e294a8f64c769178ec07eea}{fram\+\_\+dev}}
+\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a277eb22a369721f017cd65d93034d8b7}\label{spi__test__prog_8h_a277eb22a369721f017cd65d93034d8b7}} 
+\mbox{\hyperlink{structspi__dev}{spi\+\_\+dev}} {\bfseries external\+\_\+spi\+\_\+0}
+\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a623ebc73879144145e467950be650deb}\label{spi__test__prog_8h_a623ebc73879144145e467950be650deb}} 
+\mbox{\hyperlink{structspi__dev}{spi\+\_\+dev}} {\bfseries external\+\_\+spi\+\_\+1}
+\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a467bd423905e83ac180fe7dbf81291bf}\label{spi__test__prog_8h_a467bd423905e83ac180fe7dbf81291bf}} 
+\mbox{\hyperlink{structspi__dev}{spi\+\_\+dev}} {\bfseries adc\+\_\+dev}
+\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a91f5baec8594e14ef1799a74e537dfaa}\label{spi__test__prog_8h_a91f5baec8594e14ef1799a74e537dfaa}} 
+\mbox{\hyperlink{structspi__dev}{spi\+\_\+dev}} {\bfseries lcd\+\_\+screen\+\_\+dev}
+\item 
+\mbox{\Hypertarget{spi__test__prog_8h_a5779eee5a7019ec0d0b15312d53bcdd9}\label{spi__test__prog_8h_a5779eee5a7019ec0d0b15312d53bcdd9}} 
+\mbox{\hyperlink{structspi__dev}{spi\+\_\+dev}} {\bfseries accelerometer\+\_\+dev}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file containing all the prototypes and declarations for the S\+PI test. 
+
+\begin{DoxyAuthor}{Author}
+Zac Carico 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+Mar 16 2020 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{spi__test__prog_8h_a4aa3a2916650e7131e463bf9739a90e4}\label{spi__test__prog_8h_a4aa3a2916650e7131e463bf9739a90e4}} 
+\index{spi\_test\_prog.h@{spi\_test\_prog.h}!spi\_test\_init@{spi\_test\_init}}
+\index{spi\_test\_init@{spi\_test\_init}!spi\_test\_prog.h@{spi\_test\_prog.h}}
+\doxysubsubsection{\texorpdfstring{spi\_test\_init()}{spi\_test\_init()}}
+{\footnotesize\ttfamily void spi\+\_\+test\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initializes the S\+PI test. First function called in the test\textquotesingle{}s main function. 
+
+\begin{DoxyNote}{Note}
+Function prototypes
+\end{DoxyNote}
+Used to initialize the S\+PI, setting it as \char`\"{}master mode\char`\"{} \mbox{\Hypertarget{spi__test__prog_8h_af4c48d4cc470d5844ede6426ed43a5e0}\label{spi__test__prog_8h_af4c48d4cc470d5844ede6426ed43a5e0}} 
+\index{spi\_test\_prog.h@{spi\_test\_prog.h}!spi\_test\_read\_custom\_byte@{spi\_test\_read\_custom\_byte}}
+\index{spi\_test\_read\_custom\_byte@{spi\_test\_read\_custom\_byte}!spi\_test\_prog.h@{spi\_test\_prog.h}}
+\doxysubsubsection{\texorpdfstring{spi\_test\_read\_custom\_byte()}{spi\_test\_read\_custom\_byte()}}
+{\footnotesize\ttfamily void spi\+\_\+test\+\_\+read\+\_\+custom\+\_\+byte (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Reads a number of bytes (determined by the user) from the selected S\+PI device. 
+
+Gets the number of bytes bytes to read from the user, gets the read command, then reads the data.
+
+\begin{DoxyWarning}{Warning}
+This function was breaking at some point, but due to the inability to fully test the feature at this time, it may not have been fixed 
+\end{DoxyWarning}
+\mbox{\Hypertarget{spi__test__prog_8h_a846cd22404be760a5672a1296b0fe015}\label{spi__test__prog_8h_a846cd22404be760a5672a1296b0fe015}} 
+\index{spi\_test\_prog.h@{spi\_test\_prog.h}!spi\_test\_send\_read\_command@{spi\_test\_send\_read\_command}}
+\index{spi\_test\_send\_read\_command@{spi\_test\_send\_read\_command}!spi\_test\_prog.h@{spi\_test\_prog.h}}
+\doxysubsubsection{\texorpdfstring{spi\_test\_send\_read\_command()}{spi\_test\_send\_read\_command()}}
+{\footnotesize\ttfamily void spi\+\_\+test\+\_\+send\+\_\+read\+\_\+command (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Handler for used to test reading data of various sizes from the selected device. 
+
+User can choose to read data of 1byte, 4bytes, or an amount specified by the user. \mbox{\Hypertarget{spi__test__prog_8h_aa03991b42e71182694f4c300cd9d13a4}\label{spi__test__prog_8h_aa03991b42e71182694f4c300cd9d13a4}} 
+\index{spi\_test\_prog.h@{spi\_test\_prog.h}!spi\_test\_send\_write\_command@{spi\_test\_send\_write\_command}}
+\index{spi\_test\_send\_write\_command@{spi\_test\_send\_write\_command}!spi\_test\_prog.h@{spi\_test\_prog.h}}
+\doxysubsubsection{\texorpdfstring{spi\_test\_send\_write\_command()}{spi\_test\_send\_write\_command()}}
+{\footnotesize\ttfamily void spi\+\_\+test\+\_\+send\+\_\+write\+\_\+command (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Handler for used to test sending data of various sizes to the selected device. 
+
+User can choose to send data of 1byte, 4bytes, or an amount specified by the user. \mbox{\Hypertarget{spi__test__prog_8h_ad167029c4b60cb972f21723128bca4f9}\label{spi__test__prog_8h_ad167029c4b60cb972f21723128bca4f9}} 
+\index{spi\_test\_prog.h@{spi\_test\_prog.h}!spi\_test\_write\_custom\_byte@{spi\_test\_write\_custom\_byte}}
+\index{spi\_test\_write\_custom\_byte@{spi\_test\_write\_custom\_byte}!spi\_test\_prog.h@{spi\_test\_prog.h}}
+\doxysubsubsection{\texorpdfstring{spi\_test\_write\_custom\_byte()}{spi\_test\_write\_custom\_byte()}}
+{\footnotesize\ttfamily void spi\+\_\+test\+\_\+write\+\_\+custom\+\_\+byte (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Sends a number of bytes (determined by the user) to the selected S\+PI device. 
+
+Gets the number of bytes bytes to send from the user, gets the data to send from the user, then sends the data.
+
+\begin{DoxyWarning}{Warning}
+This function was breaking at some point, but due to the inability to fully test the feature at this time, it may not have been fixed 
+\end{DoxyWarning}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{spi__test__prog_8h_a02bd3a1d8e294a8f64c769178ec07eea}\label{spi__test__prog_8h_a02bd3a1d8e294a8f64c769178ec07eea}} 
+\index{spi\_test\_prog.h@{spi\_test\_prog.h}!fram\_dev@{fram\_dev}}
+\index{fram\_dev@{fram\_dev}!spi\_test\_prog.h@{spi\_test\_prog.h}}
+\doxysubsubsection{\texorpdfstring{fram\_dev}{fram\_dev}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structspi__dev}{spi\+\_\+dev}} fram\+\_\+dev}
+
+\begin{DoxyNote}{Note}
+Global variables that couldn\textquotesingle{}t be initialized in the header file 
+\end{DoxyNote}
+\mbox{\Hypertarget{spi__test__prog_8h_a2700cde8d3662ef58b647d5e4b14e18b}\label{spi__test__prog_8h_a2700cde8d3662ef58b647d5e4b14e18b}} 
+\index{spi\_test\_prog.h@{spi\_test\_prog.h}!g\_uart@{g\_uart}}
+\index{g\_uart@{g\_uart}!spi\_test\_prog.h@{spi\_test\_prog.h}}
+\doxysubsubsection{\texorpdfstring{g\_uart}{g\_uart}}
+{\footnotesize\ttfamily U\+A\+R\+T\+\_\+instance\+\_\+t g\+\_\+uart}
+
+\begin{DoxyNote}{Note}
+These global variables are declared and initialized in \mbox{\hyperlink{spi__test__prog_8c}{spi\+\_\+test\+\_\+prog.\+c}} 
+\end{DoxyNote}
+\mbox{\Hypertarget{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}\label{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}} 
+\index{spi\_test\_prog.h@{spi\_test\_prog.h}!riscv\_spi@{riscv\_spi}}
+\index{riscv\_spi@{riscv\_spi}!spi\_test\_prog.h@{spi\_test\_prog.h}}
+\doxysubsubsection{\texorpdfstring{riscv\_spi}{riscv\_spi}}
+{\footnotesize\ttfamily spi\+\_\+instance\+\_\+t riscv\+\_\+spi}
+
+\begin{DoxyNote}{Note}
+Global variables used by S\+PI test program 
+\end{DoxyNote}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2spi_tese17fefff49c75df7ea943a0d370ed077}{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/spi\+\_\+test\+\_\+files/spi\+\_\+test\+\_\+prog.\+c}}.\end{Desc}

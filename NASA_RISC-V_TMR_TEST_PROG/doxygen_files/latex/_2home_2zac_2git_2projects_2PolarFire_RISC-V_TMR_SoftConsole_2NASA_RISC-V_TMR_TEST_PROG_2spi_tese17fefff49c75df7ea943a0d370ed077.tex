@@ -1,0 +1,652 @@
+\hypertarget{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2spi_tese17fefff49c75df7ea943a0d370ed077}{}\doxysection{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/spi\+\_\+test\+\_\+files/spi\+\_\+test\+\_\+prog.\+c}
+Reads x bytes (x specified by the data\+\_\+size param)The function will send a read command to the specified device, then fill up the data param with the information comming in
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{   \#define DATA\_SIZE 10}}
+\DoxyCodeLine{}
+\DoxyCodeLine{uint8\_t data\_size = DATA\_SIZE;}
+\DoxyCodeLine{   uint8\_t data\_read[DATA\_SIZE];}
+\DoxyCodeLine{   uint8\_t read\_command = 0x10; \textcolor{comment}{// Can be any byte-\/sized read command}}
+\DoxyCodeLine{   \mbox{\hyperlink{structspi__dev}{spi\_dev}} device = \{}
+\DoxyCodeLine{   .spi = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},      \textcolor{comment}{// Any "spi\_instance\_t" type}}
+\DoxyCodeLine{       .spi\_sel = SPI\_SLAVE\_0  \textcolor{comment}{// Any "spi\_slave\_t" type}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{   spi\_test\_read(\&device, \&command, \&data\_read, \&data\_size);}
+\DoxyCodeLine{   \textcolor{keywordflow}{for}(uint8\_t i = 0; i < DATA\_SIZE; i++) \{ \textcolor{comment}{// <Print\_data\_here> \}}}
+\end{DoxyCode}
+ ~\newline
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & Pointer to device to read data from. There are currently 6 different device that can be read from \\
+\hline
+{\em command} & Pointer to read command to send to the device \\
+\hline
+{\em data} & Pointer/array to be filled with incomming data \\
+\hline
+{\em data\+\_\+size} & Size of the data array\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "\mbox{\hyperlink{spi__test__prog_8h}{spi\_test\_prog.h}}"}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} \mbox{\hyperlink{spi__test__prog_8c_a02bd3a1d8e294a8f64c769178ec07eea}{fram\_dev}} = \{}
+\DoxyCodeLine{        .spi = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
+\DoxyCodeLine{        .spi\_sel = SPI\_SLAVE\_0}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} external\_spi\_0 = \{}
+\DoxyCodeLine{        .spi = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
+\DoxyCodeLine{        .spi\_sel = SPI\_SLAVE\_1}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} external\_spi\_1 = \{}
+\DoxyCodeLine{        .spi = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
+\DoxyCodeLine{        .spi\_sel = SPI\_SLAVE\_2}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} adc\_dev = \{}
+\DoxyCodeLine{        .spi = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
+\DoxyCodeLine{        .spi\_sel = SPI\_SLAVE\_3}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} lcd\_screen\_dev = \{}
+\DoxyCodeLine{        .spi = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
+\DoxyCodeLine{        .spi\_sel = SPI\_SLAVE\_4}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} accelerometer\_dev = \{}
+\DoxyCodeLine{        .spi = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
+\DoxyCodeLine{        .spi\_sel = SPI\_SLAVE\_5}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_a4aa3a2916650e7131e463bf9739a90e4}{spi\_test\_init}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    quit\_spi\_test = 0;}
+\DoxyCodeLine{    spi\_command\_byte = 0;}
+\DoxyCodeLine{    selected\_dev = \&external\_spi\_0;}
+\DoxyCodeLine{    selected\_dev\_id = external\_spi\_0.spi\_sel;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    SPI\_init(\&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}}, FLASH\_CORE\_SPI\_BASE, 32);}
+\DoxyCodeLine{    SPI\_configure\_master\_mode(\&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} spi\_test\_read(\mbox{\hyperlink{structspi__dev}{spi\_dev}} *device, uint8\_t *command, uint8\_t *data, uint8\_t data\_size)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    SPI\_set\_slave\_select(device-\/>spi, device-\/>spi\_sel);}
+\DoxyCodeLine{    SPI\_transfer\_block(device-\/>spi, command, 1, data, data\_size);}
+\DoxyCodeLine{    SPI\_clear\_slave\_select(device-\/>spi, device-\/>spi\_sel);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} spi\_test\_write(\mbox{\hyperlink{structspi__dev}{spi\_dev}} *device, uint8\_t *data, uint8\_t data\_size, uint8\_t *resp\_data)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    SPI\_set\_slave\_select(device-\/>spi, device-\/>spi\_sel);}
+\DoxyCodeLine{    SPI\_transfer\_block(device-\/>spi, data, data\_size, resp\_data, 1);}
+\DoxyCodeLine{    SPI\_clear\_slave\_select(device-\/>spi, device-\/>spi\_sel);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_a3753e083a99f55a45620bfdfb9a01321}{spi\_test\_handler}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} command = 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)rWELCOME TO THE SPI TEST!\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    \mbox{\hyperlink{spi__test__prog_8c_ab54fd668cdde6ffa7a15834575d72d7c}{spi\_test\_display\_commands}}();}
+\DoxyCodeLine{    \mbox{\hyperlink{spi__test__prog_8c_a4aa3a2916650e7131e463bf9739a90e4}{spi\_test\_init}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(quit\_spi\_test == 0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r What would you like to do?\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{        command = \mbox{\hyperlink{user__handler_8c_a0666705090c419d176b72b152202375c}{get\_single\_char\_from\_user}}();}
+\DoxyCodeLine{        \textcolor{keywordflow}{switch}(command)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'h'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_ab54fd668cdde6ffa7a15834575d72d7c}{spi\_test\_display\_commands}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'d'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a91d0dbf99b5d8fd68965f66788e58da0}{spi\_test\_display\_devices}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'q'}:}
+\DoxyCodeLine{                quit\_spi\_test = 1;}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'0'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a75ee3c2ffd172efb123cb50496ee639d}{spi\_test\_change\_selected\_device}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'1'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_ad799be8216be4017e5a770110a45741f}{spi\_test\_display\_selected\_device}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'2'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_aa03991b42e71182694f4c300cd9d13a4}{spi\_test\_send\_write\_command}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'3'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a846cd22404be760a5672a1296b0fe015}{spi\_test\_send\_read\_command}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a82e391b12230212dcdf85056c5975c36}{spi\_test\_display\_incorrect\_command}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)rLeaving SPI Test Program\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_aa03991b42e71182694f4c300cd9d13a4}{spi\_test\_send\_write\_command}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} command = 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(quit\_spi\_test == 0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"You have entered the \(\backslash\)"Send Write Command\(\backslash\)" tool\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{        \mbox{\hyperlink{spi__test__prog_8c_ac23eef55b6f2e2814b632e12e0391ed3}{spi\_test\_display\_write\_command\_instructions}}();}
+\DoxyCodeLine{        command = \mbox{\hyperlink{user__handler_8c_a0666705090c419d176b72b152202375c}{get\_single\_char\_from\_user}}();}
+\DoxyCodeLine{        \textcolor{keywordflow}{switch}(command)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'h'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_ac23eef55b6f2e2814b632e12e0391ed3}{spi\_test\_display\_write\_command\_instructions}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'d'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a91d0dbf99b5d8fd68965f66788e58da0}{spi\_test\_display\_devices}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'q'}:}
+\DoxyCodeLine{                quit\_spi\_test = 1;}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'0'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a75ee3c2ffd172efb123cb50496ee639d}{spi\_test\_change\_selected\_device}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'1'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_ad799be8216be4017e5a770110a45741f}{spi\_test\_display\_selected\_device}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'2'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_ad176bd9962e81c229f93bd5cc7413815}{spi\_test\_write\_single\_byte}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'3'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a6700ca2b131d3f21079949d966ac4a13}{spi\_test\_write\_quad\_byte}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'4'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_ad167029c4b60cb972f21723128bca4f9}{spi\_test\_write\_custom\_byte}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a82e391b12230212dcdf85056c5975c36}{spi\_test\_display\_incorrect\_command}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    quit\_spi\_test = 0;}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)rWELCOME TO THE SPI TEST!\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_a846cd22404be760a5672a1296b0fe015}{spi\_test\_send\_read\_command}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} command = 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(quit\_spi\_test == 0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"You have entered the \(\backslash\)"Send Write Command\(\backslash\)" tool\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{        \mbox{\hyperlink{spi__test__prog_8c_ac23eef55b6f2e2814b632e12e0391ed3}{spi\_test\_display\_write\_command\_instructions}}();}
+\DoxyCodeLine{        command = \mbox{\hyperlink{user__handler_8c_a0666705090c419d176b72b152202375c}{get\_single\_char\_from\_user}}();}
+\DoxyCodeLine{        \textcolor{keywordflow}{switch}(command)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'h'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a4df05b3818122bb87731fa7a090bb9b1}{spi\_test\_display\_read\_command\_instructions}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'d'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a91d0dbf99b5d8fd68965f66788e58da0}{spi\_test\_display\_devices}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'q'}:}
+\DoxyCodeLine{                quit\_spi\_test = 1;}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'0'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a75ee3c2ffd172efb123cb50496ee639d}{spi\_test\_change\_selected\_device}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'1'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_ad799be8216be4017e5a770110a45741f}{spi\_test\_display\_selected\_device}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'2'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a48f1a7e0236a6a1cc890471821905d28}{spi\_test\_read\_single\_byte}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'3'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a648b08a88f807c3dac6447a7bb57274f}{spi\_test\_read\_quad\_byte}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'4'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_af4c48d4cc470d5844ede6426ed43a5e0}{spi\_test\_read\_custom\_byte}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a82e391b12230212dcdf85056c5975c36}{spi\_test\_display\_incorrect\_command}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    quit\_spi\_test = 0;}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)rWELCOME TO THE SPI TEST!\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_ac23eef55b6f2e2814b632e12e0391ed3}{spi\_test\_display\_write\_command\_instructions}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tCOMMANDS:\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ 0\(\backslash\)t change selected device\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ 1\(\backslash\)t display selected device\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ 2\(\backslash\)t write a single byte\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ 3\(\backslash\)t write 4 bytes\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ 4\(\backslash\)t write custom number of bytes\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ h\(\backslash\)t display these commands\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ d\(\backslash\)t display SPI device IDs\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ q\(\backslash\)t exit \(\backslash\)"Send Write Command\(\backslash\)" tool\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_ad176bd9962e81c229f93bd5cc7413815}{spi\_test\_write\_single\_byte}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    uint8\_t writeData[1] = \{0\};}
+\DoxyCodeLine{    uint8\_t response = 0;}
+\DoxyCodeLine{    uint8\_t sendData = 0;}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} hexStr[5];}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"You have entered the \(\backslash\)"Send Single Byte\(\backslash\)" tool\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(sendData == 0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tEnter Write Command:"});}
+\DoxyCodeLine{        spi\_command\_byte = (uint8\_t)(\mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1));}
+\DoxyCodeLine{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tEnter Value to write:"});}
+\DoxyCodeLine{        writeData[0] = (uint8\_t)(\mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1));}
+\DoxyCodeLine{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tSend write command \(\backslash\)""});}
+\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(spi\_command\_byte, hexStr);}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)" and value \(\backslash\)""});}
+\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(writeData[0], hexStr);}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)"?"});}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(\mbox{\hyperlink{user__handler_8c_aee6480d62151c6f2ebd0d0bf519dc520}{get\_yes\_no\_from\_user}}() == 1)}
+\DoxyCodeLine{            sendData = 1;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    spi\_test\_write(selected\_dev, writeData, 1, \&response);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)tData has been sent!\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tResponse was \(\backslash\)""});}
+\DoxyCodeLine{    \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(response, hexStr);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)"\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_a6700ca2b131d3f21079949d966ac4a13}{spi\_test\_write\_quad\_byte}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    uint8\_t i = 0;}
+\DoxyCodeLine{    uint8\_t response = 0;}
+\DoxyCodeLine{    uint8\_t sendData = 0;}
+\DoxyCodeLine{    uint8\_t temp[1] = \{0\};}
+\DoxyCodeLine{    uint8\_t writeData[4];}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} hexStr[5];}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"You have entered the \(\backslash\)"Send Quad Byte\(\backslash\)" tool\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(sendData == 0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tEnter Write Command:"});}
+\DoxyCodeLine{        spi\_command\_byte = \mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{for}(i = 0; i < 4; i++)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            temp[0] = i + \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tEnter Value for byte "});}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)temp);}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(i == 0)}
+\DoxyCodeLine{                UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{" (MSB)"});}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{":\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{            writeData[i] = (uint8\_t)(\mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1));}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tSend write command \(\backslash\)""});}
+\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(spi\_command\_byte, hexStr);}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)" and values"});}
+\DoxyCodeLine{        \textcolor{keywordflow}{for}(i = 0; i < 4; i++)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(writeData[i], hexStr);}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{" \(\backslash\)""});}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)""});}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"?[Y/N] "});}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(\mbox{\hyperlink{user__handler_8c_aee6480d62151c6f2ebd0d0bf519dc520}{get\_yes\_no\_from\_user}}() == 1)}
+\DoxyCodeLine{            sendData = 1;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    spi\_test\_write(selected\_dev, writeData, 4, \&response);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)tData has been sent!\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tResponse was \(\backslash\)""});}
+\DoxyCodeLine{    \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(response, hexStr);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)"\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_ad167029c4b60cb972f21723128bca4f9}{spi\_test\_write\_custom\_byte}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    uint8\_t i = 0;}
+\DoxyCodeLine{    uint8\_t numBytes = 0;}
+\DoxyCodeLine{    uint8\_t response = 0;}
+\DoxyCodeLine{    uint8\_t sendData = 0;}
+\DoxyCodeLine{    uint8\_t temp[1] = \{0\};}
+\DoxyCodeLine{    uint8\_t* writeData;}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} hexStr[5];}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"You have entered the \(\backslash\)"Send Custom Byte\(\backslash\)" tool\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"How many bytes would you like to send?\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    numBytes = get\_dec\_from\_user(3);}
+\DoxyCodeLine{    writeData = malloc(\textcolor{keyword}{sizeof}(int8\_t)*numBytes);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(sendData == 0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tEnter Write Command:"});}
+\DoxyCodeLine{        spi\_command\_byte = \mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{for}(i = 0; i < numBytes; i++)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            temp[0] = i + \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tEnter Value for byte "});}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)temp);}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(i == 0)}
+\DoxyCodeLine{                UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{" (MSB)"});}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{":\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{            writeData[i] = (uint8\_t)(\mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1));}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tSend write command \(\backslash\)""});}
+\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(spi\_command\_byte, hexStr);}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)" and values"});}
+\DoxyCodeLine{        \textcolor{keywordflow}{for}(i = 0; i < numBytes; i++)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(writeData[i], hexStr);}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{" \(\backslash\)""});}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)""});}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"?[Y/N] "});}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(\mbox{\hyperlink{user__handler_8c_aee6480d62151c6f2ebd0d0bf519dc520}{get\_yes\_no\_from\_user}}() == 1)}
+\DoxyCodeLine{            sendData = 1;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    spi\_test\_write(selected\_dev, writeData, numBytes, \&response);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)tData has been sent!\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tResponse was \(\backslash\)""});}
+\DoxyCodeLine{    \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(response, hexStr);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)"\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    free(writeData);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_a4df05b3818122bb87731fa7a090bb9b1}{spi\_test\_display\_read\_command\_instructions}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tCOMMANDS:\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ 0\(\backslash\)t change selected device\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ 1\(\backslash\)t display selected device\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ 2\(\backslash\)t read a single byte\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ 3\(\backslash\)t read 4 bytes\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ 4\(\backslash\)t read custom number of bytes\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ h\(\backslash\)t display these commands\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ d\(\backslash\)t display SPI device IDs\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ q\(\backslash\)t exit \(\backslash\)"Send Write Command\(\backslash\)" tool\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_a48f1a7e0236a6a1cc890471821905d28}{spi\_test\_read\_single\_byte}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    uint8\_t readData[1] = \{0\};}
+\DoxyCodeLine{    uint8\_t sendData = 0;}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} hexStr[5];}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"You have entered the \(\backslash\)"Read Single Byte\(\backslash\)" tool\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(sendData == 0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tEnter Read Command:"});}
+\DoxyCodeLine{        spi\_command\_byte = (uint8\_t)(\mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1));}
+\DoxyCodeLine{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tSend read command \(\backslash\)""});}
+\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(spi\_command\_byte, hexStr);}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)"?"});}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(\mbox{\hyperlink{user__handler_8c_aee6480d62151c6f2ebd0d0bf519dc520}{get\_yes\_no\_from\_user}}() == 1)}
+\DoxyCodeLine{            sendData = 1;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    spi\_test\_read(selected\_dev, \&spi\_command\_byte, readData, 1);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)tData has been read!\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tRead Data is \(\backslash\)""});}
+\DoxyCodeLine{    \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(readData[0], hexStr);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)"\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_a648b08a88f807c3dac6447a7bb57274f}{spi\_test\_read\_quad\_byte}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    uint8\_t i = 0;}
+\DoxyCodeLine{    uint8\_t sendData = 0;}
+\DoxyCodeLine{    uint8\_t temp[1] = \{0\};}
+\DoxyCodeLine{    uint8\_t readData[4];}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} hexStr[5];}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"You have entered the \(\backslash\)"Read Quad Byte\(\backslash\)" tool\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(sendData == 0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tEnter Read Command:"});}
+\DoxyCodeLine{        spi\_command\_byte = \mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tSend write command \(\backslash\)""});}
+\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(spi\_command\_byte, hexStr);}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)"?[Y/N] "});}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(\mbox{\hyperlink{user__handler_8c_aee6480d62151c6f2ebd0d0bf519dc520}{get\_yes\_no\_from\_user}}() == 1)}
+\DoxyCodeLine{            sendData = 1;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    spi\_test\_read(selected\_dev, \&spi\_command\_byte, readData, 4);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)tData has been sent!\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tRead Data is "});}
+\DoxyCodeLine{    \textcolor{keywordflow}{for}(i = 0; i < 4; i++)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{" \(\backslash\)""});}
+\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(readData[i], hexStr);}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)""});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_af4c48d4cc470d5844ede6426ed43a5e0}{spi\_test\_read\_custom\_byte}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    uint8\_t i = 0;}
+\DoxyCodeLine{    uint8\_t numBytes = 0;}
+\DoxyCodeLine{    uint8\_t sendData = 0;}
+\DoxyCodeLine{    uint8\_t temp[1] = \{0\};}
+\DoxyCodeLine{    uint8\_t* readData;}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} hexStr[5];}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"You have entered the \(\backslash\)"Send Custom Byte\(\backslash\)" tool\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"How many bytes would you like to send?\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    numBytes = get\_dec\_from\_user(3);}
+\DoxyCodeLine{    readData = malloc(\textcolor{keyword}{sizeof}(int8\_t)*numBytes);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(sendData == 0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tEnter Write Command:"});}
+\DoxyCodeLine{        spi\_command\_byte = \mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tSend write command \(\backslash\)""});}
+\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(spi\_command\_byte, hexStr);}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)"?[Y/N] "});}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(\mbox{\hyperlink{user__handler_8c_aee6480d62151c6f2ebd0d0bf519dc520}{get\_yes\_no\_from\_user}}() == 1)}
+\DoxyCodeLine{            sendData = 1;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    spi\_test\_read(selected\_dev, \&spi\_command\_byte, readData, numBytes);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)tData has been sent!\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tRead Data is "});}
+\DoxyCodeLine{    \textcolor{keywordflow}{for}(i = 0; i < 4; i++)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{" \(\backslash\)""});}
+\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(readData[i], hexStr);}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)""});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    free(readData);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_ab54fd668cdde6ffa7a15834575d72d7c}{spi\_test\_display\_commands}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tCOMMANDS:\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ 0\(\backslash\)t change selected device\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ 1\(\backslash\)t display selected device\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ 2\(\backslash\)t send write command\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ 3\(\backslash\)t send read command\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ h\(\backslash\)t display these commands\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ d\(\backslash\)t display SPI device IDs\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/ q\(\backslash\)t exit SPI Test Program\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_a91d0dbf99b5d8fd68965f66788e58da0}{spi\_test\_display\_devices}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tSPI DEVICE IDs:\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/(0) FRAM\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/(1) EXTERNAL\_SPI\_0\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/(2) EXTERNAL\_SPI\_1\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/(3) ADC\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/(4) LCD\_SCREEN\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/(5) ACCELEROMETER\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_ad799be8216be4017e5a770110a45741f}{spi\_test\_display\_selected\_device}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tCURRENT DEVICE: "});}
+\DoxyCodeLine{    \textcolor{keywordflow}{switch}(selected\_dev\_id)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} FRAM:}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"FRAM\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{            \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} EXTERNAL\_SPI\_0:}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"EXTERNAL\_SPI\_0\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{            \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} EXTERNAL\_SPI\_1:}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"EXTERNAL\_SPI\_1\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{            \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} ADC:}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"ADC\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{            \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} LCD\_SCREEN:}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"LCD\_SCREEN\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{            \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} ACCELEROMETER:}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"ACCELEROMETER\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{            \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"<ERROR>\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{            \textcolor{keywordflow}{break};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_a75ee3c2ffd172efb123cb50496ee639d}{spi\_test\_change\_selected\_device}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    uint8\_t correct\_id = 0;}
+\DoxyCodeLine{    uint8\_t isDeviceID = 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)rYou have entered the \(\backslash\)"Change Selected Device\(\backslash\)" tool\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"-\/ Enter device ID to set the new device\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"-\/ Enter \(\backslash\)'d\(\backslash\)' to display current selected device\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \mbox{\hyperlink{spi__test__prog_8c_a91d0dbf99b5d8fd68965f66788e58da0}{spi\_test\_display\_devices}}();}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(correct\_id == 0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"Device ID:\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{        \textcolor{keywordtype}{char} input = \mbox{\hyperlink{user__handler_8c_a0666705090c419d176b72b152202375c}{get\_single\_char\_from\_user}}();}
+\DoxyCodeLine{        uint8\_t device = (uint8\_t)input -\/ \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{switch}(input)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'h'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a91d0dbf99b5d8fd68965f66788e58da0}{spi\_test\_display\_devices}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'d'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_ad799be8216be4017e5a770110a45741f}{spi\_test\_display\_selected\_device}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'q'}:}
+\DoxyCodeLine{                UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"Device not changed.\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{                correct\_id = 1;}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{                isDeviceID = 1;}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(isDeviceID)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            correct\_id = 1;}
+\DoxyCodeLine{            \textcolor{keywordflow}{switch}(device)}
+\DoxyCodeLine{            \{}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} FRAM:}
+\DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"WARNING: This may not be a good idea...\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{                    selected\_dev = \&\mbox{\hyperlink{spi__test__prog_8c_a02bd3a1d8e294a8f64c769178ec07eea}{fram\_dev}};}
+\DoxyCodeLine{                    selected\_dev\_id = \mbox{\hyperlink{spi__test__prog_8c_a02bd3a1d8e294a8f64c769178ec07eea}{fram\_dev}}.spi\_sel;}
+\DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"FRAM selected\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{                    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} EXTERNAL\_SPI\_0:}
+\DoxyCodeLine{                    selected\_dev = \&external\_spi\_0;}
+\DoxyCodeLine{                    selected\_dev\_id = external\_spi\_0.spi\_sel;}
+\DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"EXTERNAL\_SPI\_0 selected\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{                    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} EXTERNAL\_SPI\_1:}
+\DoxyCodeLine{                    selected\_dev = \&external\_spi\_1;}
+\DoxyCodeLine{                    selected\_dev\_id = external\_spi\_1.spi\_sel;}
+\DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"EXTERNAL\_SPI\_1 selected\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{                    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} ADC:}
+\DoxyCodeLine{                    selected\_dev = \&adc\_dev;}
+\DoxyCodeLine{                    selected\_dev\_id = adc\_dev.spi\_sel;}
+\DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"ADC selected\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{                    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} LCD\_SCREEN:}
+\DoxyCodeLine{                    selected\_dev = \&lcd\_screen\_dev;}
+\DoxyCodeLine{                    selected\_dev\_id = lcd\_screen\_dev.spi\_sel;}
+\DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"LCD\_SCREEN selected\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{                    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} ACCELEROMETER:}
+\DoxyCodeLine{                    selected\_dev = \&accelerometer\_dev;}
+\DoxyCodeLine{                    selected\_dev\_id = accelerometer\_dev.spi\_sel;}
+\DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"ACCELEROMETER selected\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{                    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{                \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"ERROR: Device not found!\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{                    correct\_id = 0;}
+\DoxyCodeLine{                    isDeviceID = 0;}
+\DoxyCodeLine{                    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_a82e391b12230212dcdf85056c5975c36}{spi\_test\_display\_incorrect\_command}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"ERROR! Invalid Command!\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{\}}
+\end{DoxyCodeInclude}
+ 

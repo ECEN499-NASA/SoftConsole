@@ -1,0 +1,442 @@
+\hypertarget{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2user_haf7df9e71e1fd068c10e6591694aab189}{}\doxysection{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/user\+\_\+handler\+\_\+files/user\+\_\+handler.\+c}
+Gets a string of characters from the user\+Doesn\textquotesingle{}t register the user pressing the E\+S\+C\+\_\+\+K\+EY, B\+A\+C\+K\+S\+P\+A\+C\+E\+\_\+\+K\+EY, or T\+A\+B\+\_\+\+K\+EY. When the user has entered the maximum amount of characters, or has pressed the E\+N\+T\+E\+R\+\_\+\+K\+EY, it will end the function. If param \char`\"{}space\+Enabled\char`\"{} is false, it will ignore that to
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{   \#define MAX\_INPUT 10}}
+\DoxyCodeLine{uint8\_t numChars = MAX\_INPUT;}
+\DoxyCodeLine{   \textcolor{keywordtype}{char} input[MAX\_INPUT];}
+\DoxyCodeLine{   uint8\_t spaceEnabled = 0x01;}
+\DoxyCodeLine{}
+\DoxyCodeLine{   get\_string\_from\_user(numChars, spaceEnabled, \&input);}
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Chars} & The maximum number of characters the user can enter \\
+\hline
+{\em space\+Enabled} & 1 \+: Accepts spacebar input 0 \+: Ignores spacebar input \\
+\hline
+{\em input} & Pointer/array to be filled with user input. Array\textquotesingle{}s size is defined by the \char`\"{}num\+Chars\char`\"{} param\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "\mbox{\hyperlink{user__handler_8h}{user\_handler.h}}"}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{user__handler_8c_a505d07343781a86d67e03d7b1001af87}{user\_handler\_unit\_test\_handler}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    uint8\_t quit = 0;}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} command = 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"Welcome to user handler unit tester!\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    \mbox{\hyperlink{user__handler_8c_afe80d86391249c43921f7622eec20788}{user\_handler\_display\_instructions}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(quit == 0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        command = \mbox{\hyperlink{user__handler_8c_a0666705090c419d176b72b152202375c}{get\_single\_char\_from\_user}}();}
+\DoxyCodeLine{        \textcolor{keywordflow}{switch}(command)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'0'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{user__handler_8c_a9ce7618326e88956857b07299387332d}{user\_handler\_test\_yes\_no}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'1'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{user__handler_8c_aad8bc3be32ab61870684e9a2d47a8490}{user\_handler\_test\_string}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'2'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{user__handler_8c_a794ae274d6f05c88936a6dd4916e81f5}{user\_handler\_test\_decimal}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'3'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{user__handler_8c_a1693a2c19b7f7c9aeb1a439b7810ca1f}{user\_handler\_test\_bytes}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'h'}:}
+\DoxyCodeLine{                \mbox{\hyperlink{user__handler_8c_afe80d86391249c43921f7622eec20788}{user\_handler\_display\_instructions}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'q'}:}
+\DoxyCodeLine{                quit = 1;}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{                \mbox{\hyperlink{user__handler_8c_abc3dda9f871b2f471bee1008057ecfa7}{user\_handler\_invalid\_command}}();}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{user__handler_8c_abc3dda9f871b2f471bee1008057ecfa7}{user\_handler\_invalid\_command}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"ERROR: Invalid Command!\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{user__handler_8c_afe80d86391249c43921f7622eec20788}{user\_handler\_display\_instructions}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tCOMMANDS:\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/0 \(\backslash\)t Test getting yes/no\(\backslash\)n\(\backslash\)r "});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/1 \(\backslash\)t Test getting entire string\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/2 \(\backslash\)t Test getting decimal\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/3 \(\backslash\)t Test getting bytes\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/h \(\backslash\)t Display this menu\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/q \(\backslash\)t Quit\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{user__handler_8c_a9ce7618326e88956857b07299387332d}{user\_handler\_test\_yes\_no}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"YES/NO:\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    \textcolor{keywordflow}{if}(\mbox{\hyperlink{user__handler_8c_aee6480d62151c6f2ebd0d0bf519dc520}{get\_yes\_no\_from\_user}}())}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"TRUE\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    \textcolor{keywordflow}{else}}
+\DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"FALSE\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{user__handler_8c_aad8bc3be32ab61870684e9a2d47a8490}{user\_handler\_test\_string}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} str[50];}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"STRING TEST:\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tNO-\/SPACES:\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    get\_string\_from\_user(50, 0, str);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tYou Entered: "});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)str);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r\(\backslash\)tSPACES:\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    get\_string\_from\_user(50, 1, str);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tYou Entered: "});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)str);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{user__handler_8c_a794ae274d6f05c88936a6dd4916e81f5}{user\_handler\_test\_decimal}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    uint8\_t num[1];}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} decStr[4];}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"DECIMAL TEST:\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    num[0] = (uint8\_t)get\_dec\_from\_user(3);}
+\DoxyCodeLine{    \mbox{\hyperlink{user__handler_8c_afe3cfeebce751c4563a0b7b103c5a80d}{byte\_to\_dec\_string}}(num[0], decStr);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tRAW VALUE: "});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)num);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)tSTRING VALUE:"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)decStr);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{user__handler_8c_a1693a2c19b7f7c9aeb1a439b7810ca1f}{user\_handler\_test\_bytes}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    uint32\_t byteData[1];}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} hexStr[12];}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"BYTES TEST:\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tSingle Byte:\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    byteData[0] = \mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/RAW VALUE:"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)byteData);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)t-\/STRING VALUE:"});}
+\DoxyCodeLine{    \mbox{\hyperlink{user__handler_8c_a77f375f90c3968d56d1bd03b0a754c30}{int\_to\_hex\_string}}(byteData[0], hexStr);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)tQuad Byte:\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    byteData[0] = \mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(4);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t-\/RAW VALUE:"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)byteData);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)t-\/STRING VALUE:"});}
+\DoxyCodeLine{    \mbox{\hyperlink{user__handler_8c_a77f375f90c3968d56d1bd03b0a754c30}{int\_to\_hex\_string}}(byteData[0], hexStr);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{char} \mbox{\hyperlink{user__handler_8c_a0666705090c419d176b72b152202375c}{get\_single\_char\_from\_user}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    uint8\_t rx\_size=0;}
+\DoxyCodeLine{    uint8\_t rx\_buff[2];}
+\DoxyCodeLine{    uint8\_t correct\_input = 0;}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)t> "});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(correct\_input == 0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        rx\_size = UART\_get\_rx(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, rx\_buff, \textcolor{keyword}{sizeof}(rx\_buff));}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(rx\_size > 0)}
+\DoxyCodeLine{            correct\_input = 1;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    rx\_buff[1] = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)rx\_buff);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} (\textcolor{keywordtype}{char})rx\_buff[0];}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{uint8\_t \mbox{\hyperlink{user__handler_8c_aee6480d62151c6f2ebd0d0bf519dc520}{get\_yes\_no\_from\_user}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    uint8\_t rx\_size=0;}
+\DoxyCodeLine{    uint8\_t rx\_buff[2];}
+\DoxyCodeLine{    uint8\_t correct\_input = 0;}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)t> "});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(correct\_input == 0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        rx\_size = UART\_get\_rx(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, rx\_buff, \textcolor{keyword}{sizeof}(rx\_buff));}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(rx\_size > 0)}
+\DoxyCodeLine{            correct\_input = 1;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    rx\_buff[1] = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)rx\_buff);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if}(rx\_buff[0] == \textcolor{charliteral}{'N'} || rx\_buff[0] == \textcolor{charliteral}{'n'})}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{    \textcolor{keywordflow}{else}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} get\_string\_from\_user(uint8\_t numChars, uint8\_t spaceEnabled, \textcolor{keywordtype}{char}* input)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    uint8\_t count = 0;}
+\DoxyCodeLine{    uint8\_t receivedInput = 0;}
+\DoxyCodeLine{    uint8\_t enteredValue = 0;}
+\DoxyCodeLine{    uint8\_t rx\_size = 0;}
+\DoxyCodeLine{    uint8\_t rx\_buf[2];}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} numCharsString[4];}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \mbox{\hyperlink{user__handler_8c_afe3cfeebce751c4563a0b7b103c5a80d}{byte\_to\_dec\_string}}(numChars, numCharsString);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)tPlease enter no more than "});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)numCharsString);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{" characters:\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t> "});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(receivedInput == 0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{while}(enteredValue == 0)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            rx\_size = UART\_get\_rx(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, rx\_buf, \textcolor{keyword}{sizeof}(rx\_buf));}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(rx\_size > 0)}
+\DoxyCodeLine{                enteredValue = 1;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        rx\_buf[1] = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{        enteredValue = 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(count < numChars -\/ 1)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{switch}(rx\_buf[0])}
+\DoxyCodeLine{            \{}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} RETURN\_KEY:}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} NEW\_LINE:}
+\DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{                    receivedInput = 1;}
+\DoxyCodeLine{                    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} BACKSPACE\_KEY:}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} TAB\_HORZ\_KEY:}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} ESCAPE\_KEY:}
+\DoxyCodeLine{                    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} SPACE\_BAR:}
+\DoxyCodeLine{                    \textcolor{keywordflow}{if}(spaceEnabled)}
+\DoxyCodeLine{                    \{}
+\DoxyCodeLine{                        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)rx\_buf);}
+\DoxyCodeLine{                        input[count] = \textcolor{charliteral}{' '};}
+\DoxyCodeLine{                        count++;}
+\DoxyCodeLine{                    \}}
+\DoxyCodeLine{                    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{                \textcolor{keywordflow}{default}: \textcolor{comment}{// assume user entered character}}
+\DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)rx\_buf);}
+\DoxyCodeLine{                    input[count] = (char)rx\_buf[0];}
+\DoxyCodeLine{                    count++;}
+\DoxyCodeLine{                    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        enteredValue = 0;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    input[count] = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{uint32\_t get\_dec\_from\_user(uint8\_t numDecPlaces)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    uint32\_t input = 0;}
+\DoxyCodeLine{    uint8\_t count = 0;}
+\DoxyCodeLine{    uint32\_t placeHolder = 1;}
+\DoxyCodeLine{    uint8\_t receivedInput = 0;}
+\DoxyCodeLine{    uint8\_t enteredValue = 0;}
+\DoxyCodeLine{    uint8\_t rx\_size = 0;}
+\DoxyCodeLine{    uint8\_t rx\_buf[2];}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t> "});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(receivedInput == 0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{while}(enteredValue == 0)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            rx\_size = UART\_get\_rx(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, rx\_buf, \textcolor{keyword}{sizeof}(rx\_buf));}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(rx\_size > 0)}
+\DoxyCodeLine{                enteredValue = 1;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        rx\_buf[1] = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{        enteredValue = 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(count < numDecPlaces)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{switch}(rx\_buf[0])}
+\DoxyCodeLine{            \{}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} RETURN\_KEY:}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} NEW\_LINE:}
+\DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{                    receivedInput = 1;}
+\DoxyCodeLine{                    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} BACKSPACE\_KEY:}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} TAB\_HORZ\_KEY:}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} ESCAPE\_KEY:}
+\DoxyCodeLine{                \textcolor{keywordflow}{case} SPACE\_BAR:}
+\DoxyCodeLine{                    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{                \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{                    \textcolor{keywordflow}{if}(rx\_buf[0] >= \textcolor{charliteral}{'0'} \&\& rx\_buf[0] <= \textcolor{charliteral}{'9'}) \textcolor{comment}{//Look only for numbers}}
+\DoxyCodeLine{                    \{}
+\DoxyCodeLine{                        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)rx\_buf);}
+\DoxyCodeLine{                        input += (rx\_buf[0] -\/ \textcolor{charliteral}{'0'}) * placeHolder;}
+\DoxyCodeLine{                        count++;}
+\DoxyCodeLine{                        placeHolder *= 10;}
+\DoxyCodeLine{                    \}}
+\DoxyCodeLine{                    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(rx\_buf[0] == RETURN\_KEY || rx\_buf[0] == NEW\_LINE)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{            receivedInput = 1;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} input;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{uint32\_t \mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(uint8\_t numBytes)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    uint32\_t input = 0;}
+\DoxyCodeLine{    uint8\_t enteredValue = 0;}
+\DoxyCodeLine{    uint8\_t userFinished = 0;}
+\DoxyCodeLine{    uint8\_t rx\_size = 0;}
+\DoxyCodeLine{    uint16\_t numPlaces = numBytes * 2;}
+\DoxyCodeLine{    uint8\_t rx\_buf[2] = \{0\};}
+\DoxyCodeLine{    \textcolor{keywordtype}{char} numByteStr[4];}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \mbox{\hyperlink{user__handler_8c_afe3cfeebce751c4563a0b7b103c5a80d}{byte\_to\_dec\_string}}(numBytes, numByteStr);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r\(\backslash\)tEnter up to "});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)numByteStr);}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{" bytes with the first entry being the MSB.\(\backslash\)n\(\backslash\)r\(\backslash\)tSpaces can be used as separators.\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)t> 0x"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(userFinished == 0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{while}(enteredValue == 0)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            rx\_size = UART\_get\_rx(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, rx\_buf, \textcolor{keyword}{sizeof}(rx\_buf));}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(rx\_size > 0)}
+\DoxyCodeLine{                enteredValue = 1;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        rx\_buf[1] = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{        enteredValue = 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}((rx\_buf[0] >= \textcolor{charliteral}{'0'} \&\& rx\_buf[0] <= \textcolor{charliteral}{'9'}) ||}
+\DoxyCodeLine{           (rx\_buf[0] >= \textcolor{charliteral}{'a'} \&\& rx\_buf[0] <= \textcolor{charliteral}{'f'}) ||}
+\DoxyCodeLine{           (rx\_buf[0] >= \textcolor{charliteral}{'A'} \&\& rx\_buf[0] <= \textcolor{charliteral}{'F'}))}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)rx\_buf);}
+\DoxyCodeLine{        \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(rx\_buf[0] == SPACE\_BAR)}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{" "});}
+\DoxyCodeLine{        \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(rx\_buf[0] == RETURN\_KEY)}
+\DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r"});}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{switch}(rx\_buf[0])}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} RETURN\_KEY:}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} NEW\_LINE:}
+\DoxyCodeLine{                \textcolor{keywordflow}{return} input;}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'0'}:}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'1'}:}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'2'}:}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'3'}:}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'4'}:}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'5'}:}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'6'}:}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'7'}:}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'8'}:}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'9'}:}
+\DoxyCodeLine{                input = input << 4;}
+\DoxyCodeLine{                input += rx\_buf[0] -\/ \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'a'}:}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'A'}:}
+\DoxyCodeLine{                input = input << 4;}
+\DoxyCodeLine{                input += 0x0A;}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'b'}:}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'B'}:}
+\DoxyCodeLine{                input = input << 4;}
+\DoxyCodeLine{                input += 0x0B;}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'c'}:}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'C'}:}
+\DoxyCodeLine{                input = input << 4;}
+\DoxyCodeLine{                input += 0x0C;}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'d'}:}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'D'}:}
+\DoxyCodeLine{                input = input << 4;}
+\DoxyCodeLine{                input += 0x0D;}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'e'}:}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'E'}:}
+\DoxyCodeLine{                input = input << 4;}
+\DoxyCodeLine{                input += 0x0E;}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'f'}:}
+\DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'F'}:}
+\DoxyCodeLine{                input = input << 4;}
+\DoxyCodeLine{                input += 0x0F;}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} input;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{user__handler_8c_afe3cfeebce751c4563a0b7b103c5a80d}{byte\_to\_dec\_string}}(uint8\_t \textcolor{keywordtype}{byte}, \textcolor{keywordtype}{char} dec\_string[4])}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    dec\_string[3] = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{    dec\_string[2] = \textcolor{keywordtype}{byte} \% 10 + \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{    dec\_string[1] = \textcolor{keywordtype}{byte} / 10 \% 10 + \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{    dec\_string[0] = \textcolor{keywordtype}{byte} / 100 \% 10 + \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{user__handler_8c_a77f375f90c3968d56d1bd03b0a754c30}{int\_to\_hex\_string}}(uint32\_t num, \textcolor{keywordtype}{char} hex\_string[12])}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    hex\_string[11] = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{    hex\_string[10] = num \% 0x10 + \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{    hex\_string[9] = num / 0x10 \% 0x10 + \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{    hex\_string[8] = num / 0x100 \% 0x10 + \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{    hex\_string[7] = num / 0x1000 \% 0x10 + \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{    hex\_string[6] = num / 0x10000 \% 0x10 + \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{    hex\_string[5] = num / 0x100000 \% 0x10 + \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{    hex\_string[4] = num / 0x1000000 \% 0x10 + \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{    hex\_string[3] = num / 0x10000000 \% 0x10 + \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{    hex\_string[2] = num / 0x100000000 \% 0x10 + \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{    hex\_string[1] = \textcolor{charliteral}{'x'};}
+\DoxyCodeLine{    hex\_string[0] = \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(uint8\_t num, \textcolor{keywordtype}{char} hex\_string[5])}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    hex\_string[4] = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{    hex\_string[3] = num \% 0x10 + \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{    hex\_string[2] = num / 0x10 \% 0x10 + \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{    hex\_string[1] = \textcolor{charliteral}{'x'};}
+\DoxyCodeLine{    hex\_string[0] = \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{\}}
+\end{DoxyCodeInclude}
+ 

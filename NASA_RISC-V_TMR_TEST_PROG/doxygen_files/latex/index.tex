@@ -1,0 +1,10 @@
+the Mi-\/V processors.\hypertarget{index_intro_sec}{}\doxysection{Introduction}\label{index_intro_sec}
+The \mbox{\hyperlink{hw__platform_8h_source}{hw\+\_\+platform.\+h}} is to be located in the project root directory. Currently this file must be hand crafted when using the Mi-\/V Soft Processor.
+
+You can use this file as sample. Rename this file from sample\+\_\+hw\+\_\+platform.\+h to \mbox{\hyperlink{hw__platform_8h_source}{hw\+\_\+platform.\+h}} and store it in the root folder of your project. Then customize it per your HW design.\hypertarget{index_driver_configuration}{}\doxysection{Project configuration Instructions}\label{index_driver_configuration}
+
+\begin{DoxyEnumerate}
+\item Change S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+F\+R\+EQ define to frequency of Mi-\/V Soft processor clock 2 Add all other core B\+A\+SE addresses
+\item Add peripheral Core Interrupt to Mi-\/V Soft processor interrupt mappings
+\item Define M\+S\+C\+C\+\_\+\+S\+T\+D\+I\+O\+\_\+\+U\+A\+R\+T\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR if you want a Core\+U\+A\+R\+Tapb mapped to S\+T\+D\+IO 
+\end{DoxyEnumerate}

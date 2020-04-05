@@ -1,0 +1,215 @@
+\hypertarget{user__handler_8h}{}\doxysection{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/user\+\_\+handler\+\_\+files/user\+\_\+handler.h File Reference}
+\label{user__handler_8h}\index{/home/zac/git/projects/PolarFire\_RISC-\/V\_TMR\_SoftConsole/NASA\_RISC-\/V\_TMR\_TEST\_PROG/user\_handler\_files/user\_handler.h@{/home/zac/git/projects/PolarFire\_RISC-\/V\_TMR\_SoftConsole/NASA\_RISC-\/V\_TMR\_TEST\_PROG/user\_handler\_files/user\_handler.h}}
+
+
+Header file containing all the prototypes and declarations for handling user input.  
+
+
+{\ttfamily \#include \char`\"{}core\+\_\+uart\+\_\+apb.\+h\char`\"{}}\newline
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{user__handler_8h_aef0ddb86c9cd9a73b23ff91cdce924f6}\label{user__handler_8h_aef0ddb86c9cd9a73b23ff91cdce924f6}} 
+enum \mbox{\hyperlink{user__handler_8h_aef0ddb86c9cd9a73b23ff91cdce924f6}{K\+E\+Y\+\_\+\+T\+A\+B\+LE}} \{ \newline
+{\bfseries B\+A\+C\+K\+S\+P\+A\+C\+E\+\_\+\+K\+EY} = 0x08, 
+{\bfseries T\+A\+B\+\_\+\+H\+O\+R\+Z\+\_\+\+K\+EY} = 0x09, 
+{\bfseries N\+E\+W\+\_\+\+L\+I\+NE} = 0x0A, 
+{\bfseries T\+A\+B\+\_\+\+V\+E\+R\+T\+\_\+\+K\+EY} = 0x0B, 
+\newline
+{\bfseries R\+E\+T\+U\+R\+N\+\_\+\+K\+EY} = 0x0D, 
+{\bfseries E\+S\+C\+A\+P\+E\+\_\+\+K\+EY} = 0x1B, 
+{\bfseries S\+P\+A\+C\+E\+\_\+\+B\+AR} = 0x20
+ \}
+\begin{DoxyCompactList}\small\item\em A\+S\+C\+II values that can\textquotesingle{}t be represented by characters well. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{user__handler_8h_a505d07343781a86d67e03d7b1001af87}{user\+\_\+handler\+\_\+unit\+\_\+test\+\_\+handler}} (void)
+\begin{DoxyCompactList}\small\item\em Used to easily perform unit tests of all functions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{user__handler_8h_abc3dda9f871b2f471bee1008057ecfa7}\label{user__handler_8h_abc3dda9f871b2f471bee1008057ecfa7}} 
+void \mbox{\hyperlink{user__handler_8h_abc3dda9f871b2f471bee1008057ecfa7}{user\+\_\+handler\+\_\+invalid\+\_\+command}} (void)
+\begin{DoxyCompactList}\small\item\em Displays when user enters an invalid commands. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{user__handler_8h_afe80d86391249c43921f7622eec20788}\label{user__handler_8h_afe80d86391249c43921f7622eec20788}} 
+void \mbox{\hyperlink{user__handler_8h_afe80d86391249c43921f7622eec20788}{user\+\_\+handler\+\_\+display\+\_\+instructions}} (void)
+\begin{DoxyCompactList}\small\item\em Displays available unit tests. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{user__handler_8h_a9ce7618326e88956857b07299387332d}\label{user__handler_8h_a9ce7618326e88956857b07299387332d}} 
+void \mbox{\hyperlink{user__handler_8h_a9ce7618326e88956857b07299387332d}{user\+\_\+handler\+\_\+test\+\_\+yes\+\_\+no}} (void)
+\begin{DoxyCompactList}\small\item\em Used to perform unit test for getting boolean value from the user. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{user__handler_8h_aad8bc3be32ab61870684e9a2d47a8490}\label{user__handler_8h_aad8bc3be32ab61870684e9a2d47a8490}} 
+void \mbox{\hyperlink{user__handler_8h_aad8bc3be32ab61870684e9a2d47a8490}{user\+\_\+handler\+\_\+test\+\_\+string}} (void)
+\begin{DoxyCompactList}\small\item\em Used to perform unit test for getting a string from the user. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{user__handler_8h_a794ae274d6f05c88936a6dd4916e81f5}\label{user__handler_8h_a794ae274d6f05c88936a6dd4916e81f5}} 
+void \mbox{\hyperlink{user__handler_8h_a794ae274d6f05c88936a6dd4916e81f5}{user\+\_\+handler\+\_\+test\+\_\+decimal}} (void)
+\begin{DoxyCompactList}\small\item\em Used to perform unit test for getting an integer value from user. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{user__handler_8h_a1693a2c19b7f7c9aeb1a439b7810ca1f}\label{user__handler_8h_a1693a2c19b7f7c9aeb1a439b7810ca1f}} 
+void \mbox{\hyperlink{user__handler_8h_a1693a2c19b7f7c9aeb1a439b7810ca1f}{user\+\_\+handler\+\_\+test\+\_\+bytes}} (void)
+\begin{DoxyCompactList}\small\item\em Used to perform unit test for getting data (in bytes) from the user. \end{DoxyCompactList}\item 
+char \mbox{\hyperlink{user__handler_8h_a0666705090c419d176b72b152202375c}{get\+\_\+single\+\_\+char\+\_\+from\+\_\+user}} (void)
+\begin{DoxyCompactList}\small\item\em Gets a single character from the user\textquotesingle{}s input. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{user__handler_8h_aee6480d62151c6f2ebd0d0bf519dc520}{get\+\_\+yes\+\_\+no\+\_\+from\+\_\+user}} (void)
+\begin{DoxyCompactList}\small\item\em Gets a boolean value (Y/N) from the user. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{user__handler_8h_a6f809636e3eec5f1bb62fe12d6201c15}\label{user__handler_8h_a6f809636e3eec5f1bb62fe12d6201c15}} 
+void {\bfseries get\+\_\+string\+\_\+from\+\_\+user} (uint8\+\_\+t num\+Chars, uint8\+\_\+t space\+Enabled, char $\ast$input)
+\item 
+\mbox{\Hypertarget{user__handler_8h_a3369cf60c9eac966eb6f0a4205d1c400}\label{user__handler_8h_a3369cf60c9eac966eb6f0a4205d1c400}} 
+uint32\+\_\+t {\bfseries get\+\_\+dec\+\_\+from\+\_\+user} (uint8\+\_\+t num\+Dec\+Places)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{user__handler_8h_ae9efc9ff2f203678792c4e907caad6e3}{get\+\_\+bytes\+\_\+from\+\_\+user}} (uint8\+\_\+t num\+Bytes)
+\begin{DoxyCompactList}\small\item\em Gets input from the user in hexidecimal form. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{user__handler_8h_afe3cfeebce751c4563a0b7b103c5a80d}{byte\+\_\+to\+\_\+dec\+\_\+string}} (uint8\+\_\+t byte, char dec\+\_\+string\mbox{[}4\mbox{]})
+\begin{DoxyCompactList}\small\item\em Turns an integer value into a string representation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{user__handler_8h_a77f375f90c3968d56d1bd03b0a754c30}{int\+\_\+to\+\_\+hex\+\_\+string}} (uint32\+\_\+t num, char hex\+\_\+string\mbox{[}12\mbox{]})
+\begin{DoxyCompactList}\small\item\em Converts a 32-\/bit integer into a string representation of bytes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{user__handler_8h_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\+\_\+to\+\_\+single\+\_\+byte\+\_\+string}} (uint8\+\_\+t num, char hex\+\_\+string\mbox{[}5\mbox{]})
+\begin{DoxyCompactList}\small\item\em Converts a byte into a string representation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+U\+A\+R\+T\+\_\+instance\+\_\+t \mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\+\_\+uart}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file containing all the prototypes and declarations for handling user input. 
+
+\begin{DoxyAuthor}{Author}
+Zac Carico 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+Mar 16 2020 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{user__handler_8h_afe3cfeebce751c4563a0b7b103c5a80d}\label{user__handler_8h_afe3cfeebce751c4563a0b7b103c5a80d}} 
+\index{user\_handler.h@{user\_handler.h}!byte\_to\_dec\_string@{byte\_to\_dec\_string}}
+\index{byte\_to\_dec\_string@{byte\_to\_dec\_string}!user\_handler.h@{user\_handler.h}}
+\doxysubsubsection{\texorpdfstring{byte\_to\_dec\_string()}{byte\_to\_dec\_string()}}
+{\footnotesize\ttfamily void byte\+\_\+to\+\_\+dec\+\_\+string (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{byte,  }\item[{char}]{dec\+\_\+string\mbox{[}4\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Turns an integer value into a string representation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em byte} & Integer to convert to a string representation \\
+\hline
+{\em dec\+\_\+string} & Array with 4 elements that is a string representation of an integer ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{user__handler_8h_ae9efc9ff2f203678792c4e907caad6e3}\label{user__handler_8h_ae9efc9ff2f203678792c4e907caad6e3}} 
+\index{user\_handler.h@{user\_handler.h}!get\_bytes\_from\_user@{get\_bytes\_from\_user}}
+\index{get\_bytes\_from\_user@{get\_bytes\_from\_user}!user\_handler.h@{user\_handler.h}}
+\doxysubsubsection{\texorpdfstring{get\_bytes\_from\_user()}{get\_bytes\_from\_user()}}
+{\footnotesize\ttfamily uint32\+\_\+t get\+\_\+bytes\+\_\+from\+\_\+user (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{num\+Bytes }\end{DoxyParamCaption})}
+
+
+
+Gets input from the user in hexidecimal form. 
+
+Lets the user input bytes, using spaces to help sperate each byte without messing up the data. The maximum amount of bytes the user can actually input without overflow is 4
+
+\begin{DoxyWarning}{Warning}
+This may not work correctly, run the unit test to verify
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Bytes} & Number of bytes for the user to input\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+data entered by user 
+\end{DoxyReturn}
+\mbox{\Hypertarget{user__handler_8h_a0666705090c419d176b72b152202375c}\label{user__handler_8h_a0666705090c419d176b72b152202375c}} 
+\index{user\_handler.h@{user\_handler.h}!get\_single\_char\_from\_user@{get\_single\_char\_from\_user}}
+\index{get\_single\_char\_from\_user@{get\_single\_char\_from\_user}!user\_handler.h@{user\_handler.h}}
+\doxysubsubsection{\texorpdfstring{get\_single\_char\_from\_user()}{get\_single\_char\_from\_user()}}
+{\footnotesize\ttfamily char get\+\_\+single\+\_\+char\+\_\+from\+\_\+user (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Gets a single character from the user\textquotesingle{}s input. 
+
+\begin{DoxyReturn}{Returns}
+Value of type char (the user\textquotesingle{}s input) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{user__handler_8h_aee6480d62151c6f2ebd0d0bf519dc520}\label{user__handler_8h_aee6480d62151c6f2ebd0d0bf519dc520}} 
+\index{user\_handler.h@{user\_handler.h}!get\_yes\_no\_from\_user@{get\_yes\_no\_from\_user}}
+\index{get\_yes\_no\_from\_user@{get\_yes\_no\_from\_user}!user\_handler.h@{user\_handler.h}}
+\doxysubsubsection{\texorpdfstring{get\_yes\_no\_from\_user()}{get\_yes\_no\_from\_user()}}
+{\footnotesize\ttfamily uint8\+\_\+t get\+\_\+yes\+\_\+no\+\_\+from\+\_\+user (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Gets a boolean value (Y/N) from the user. 
+
+\begin{DoxyReturn}{Returns}
+1 \+: The user selected \char`\"{}yes\char`\"{} 0 \+: The user selected \char`\"{}no\char`\"{} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{user__handler_8h_a77f375f90c3968d56d1bd03b0a754c30}\label{user__handler_8h_a77f375f90c3968d56d1bd03b0a754c30}} 
+\index{user\_handler.h@{user\_handler.h}!int\_to\_hex\_string@{int\_to\_hex\_string}}
+\index{int\_to\_hex\_string@{int\_to\_hex\_string}!user\_handler.h@{user\_handler.h}}
+\doxysubsubsection{\texorpdfstring{int\_to\_hex\_string()}{int\_to\_hex\_string()}}
+{\footnotesize\ttfamily void int\+\_\+to\+\_\+hex\+\_\+string (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{num,  }\item[{char}]{hex\+\_\+string\mbox{[}12\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Converts a 32-\/bit integer into a string representation of bytes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & The 32-\/but integer to convert to a ~\newline
+ string representation of bytes \\
+\hline
+{\em hex\+\_\+string} & Array with 12 elements representing a 32-\/bit integer as a string of bytes \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{user__handler_8h_a2209b2abeaa2ec57db9f82a4d89b4e07}\label{user__handler_8h_a2209b2abeaa2ec57db9f82a4d89b4e07}} 
+\index{user\_handler.h@{user\_handler.h}!int\_to\_single\_byte\_string@{int\_to\_single\_byte\_string}}
+\index{int\_to\_single\_byte\_string@{int\_to\_single\_byte\_string}!user\_handler.h@{user\_handler.h}}
+\doxysubsubsection{\texorpdfstring{int\_to\_single\_byte\_string()}{int\_to\_single\_byte\_string()}}
+{\footnotesize\ttfamily void int\+\_\+to\+\_\+single\+\_\+byte\+\_\+string (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{num,  }\item[{char}]{hex\+\_\+string\mbox{[}5\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Converts a byte into a string representation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & Byte to convert into string representation \\
+\hline
+{\em hex\+\_\+string} & Array with 5 elements that represents a byte in string a format \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{user__handler_8h_a505d07343781a86d67e03d7b1001af87}\label{user__handler_8h_a505d07343781a86d67e03d7b1001af87}} 
+\index{user\_handler.h@{user\_handler.h}!user\_handler\_unit\_test\_handler@{user\_handler\_unit\_test\_handler}}
+\index{user\_handler\_unit\_test\_handler@{user\_handler\_unit\_test\_handler}!user\_handler.h@{user\_handler.h}}
+\doxysubsubsection{\texorpdfstring{user\_handler\_unit\_test\_handler()}{user\_handler\_unit\_test\_handler()}}
+{\footnotesize\ttfamily void user\+\_\+handler\+\_\+unit\+\_\+test\+\_\+handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Used to easily perform unit tests of all functions. 
+
+\begin{DoxyNote}{Note}
+Funciton prototypes
+
+\char`\"{}get\+\_\+single\+\_\+char\+\_\+from\+\_\+user()\char`\"{} is not specifically in the unit test, but is technically tested when the user chooses what unit test to perform 
+\end{DoxyNote}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}\label{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}} 
+\index{user\_handler.h@{user\_handler.h}!g\_uart@{g\_uart}}
+\index{g\_uart@{g\_uart}!user\_handler.h@{user\_handler.h}}
+\doxysubsubsection{\texorpdfstring{g\_uart}{g\_uart}}
+{\footnotesize\ttfamily U\+A\+R\+T\+\_\+instance\+\_\+t g\+\_\+uart}
+
+\begin{DoxyNote}{Note}
+Global variable initialized in \char`\"{}main()\char`\"{} 
+\end{DoxyNote}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2spi_tese17fefff49c75df7ea943a0d370ed077}{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/spi\+\_\+test\+\_\+files/spi\+\_\+test\+\_\+prog.\+c}}, and \mbox{\hyperlink{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2user_haf7df9e71e1fd068c10e6591694aab189}{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/user\+\_\+handler\+\_\+files/user\+\_\+handler.\+c}}.\end{Desc}
