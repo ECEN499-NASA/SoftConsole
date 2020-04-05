@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['byte_5fto_5fdec_5fstring_0',['byte_to_dec_string',['../user__handler_8c.html#afe3cfeebce751c4563a0b7b103c5a80d',1,'byte_to_dec_string(uint8_t byte, char dec_string[4]):&#160;user_handler.c'],['../user__handler_8h.html#afe3cfeebce751c4563a0b7b103c5a80d',1,'byte_to_dec_string(uint8_t byte, char dec_string[4]):&#160;user_handler.c']]]
+  ['accelerometer_5fdev_0',['accelerometer_dev',['../spi__test__prog_8c.html#a5779eee5a7019ec0d0b15312d53bcdd9',1,'accelerometer_dev():&#160;spi_test_prog.c'],['../spi__test__prog_8h.html#a5779eee5a7019ec0d0b15312d53bcdd9',1,'accelerometer_dev():&#160;spi_test_prog.c']]],
+  ['adc_5fdev_1',['adc_dev',['../spi__test__prog_8c.html#a467bd423905e83ac180fe7dbf81291bf',1,'adc_dev():&#160;spi_test_prog.c'],['../spi__test__prog_8h.html#a467bd423905e83ac180fe7dbf81291bf',1,'adc_dev():&#160;spi_test_prog.c']]]
 ];

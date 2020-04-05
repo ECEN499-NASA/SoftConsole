@@ -1,26 +1,18 @@
 \hypertarget{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2user_haf7df9e71e1fd068c10e6591694aab189}{}\doxysection{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/user\+\_\+handler\+\_\+files/user\+\_\+handler.\+c}
-Gets a string of characters from the user\+Doesn\textquotesingle{}t register the user pressing the E\+S\+C\+\_\+\+K\+EY, B\+A\+C\+K\+S\+P\+A\+C\+E\+\_\+\+K\+EY, or T\+A\+B\+\_\+\+K\+EY. When the user has entered the maximum amount of characters, or has pressed the E\+N\+T\+E\+R\+\_\+\+K\+EY, it will end the function. If param \char`\"{}space\+Enabled\char`\"{} is false, it will ignore that to
+Gets an integer value from the user\+Function will only return a correct value if it is smaller than the max value represented with 32bits. If the user enters more than the number of placed specified, the function will ignore them.
 
+printf(\char`\"{}\+What is 2 + 2?\textbackslash{}n\char`\"{}); uint32\+\_\+t input = get\+\_\+dec\+\_\+from\+\_\+user(2);
 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{   \#define MAX\_INPUT 10}}
-\DoxyCodeLine{uint8\_t numChars = MAX\_INPUT;}
-\DoxyCodeLine{   \textcolor{keywordtype}{char} input[MAX\_INPUT];}
-\DoxyCodeLine{   uint8\_t spaceEnabled = 0x01;}
-\DoxyCodeLine{}
-\DoxyCodeLine{   get\_string\_from\_user(numChars, spaceEnabled, \&input);}
-\end{DoxyCode}
-
+If the user\textquotesingle{}s input is \char`\"{}004\char`\"{}, then the returned value would be 0 If the user enters \char`\"{}4\char`\"{} or \char`\"{}04\char`\"{}, then the returned value would be 4 if(input != 4) printf(\char`\"{}\+Go back to kindergarden\textbackslash{}n\char`\"{}); else printf(\char`\"{}\+Good job! Here is a cookie\textbackslash{}n\char`\"{}); 
 
 
 \begin{DoxyParams}{Parameters}
-{\em num\+Chars} & The maximum number of characters the user can enter \\
-\hline
-{\em space\+Enabled} & 1 \+: Accepts spacebar input 0 \+: Ignores spacebar input \\
-\hline
-{\em input} & Pointer/array to be filled with user input. Array\textquotesingle{}s size is defined by the \char`\"{}num\+Chars\char`\"{} param\\
+{\em num\+Dec\+Places} & Number of decimal places to be received by the user \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+User input of uint32\+\_\+t type
+\end{DoxyReturn}
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{}
@@ -95,12 +87,12 @@ Gets a string of characters from the user\+Doesn\textquotesingle{}t register the
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"STRING TEST:\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tNO-\/SPACES:\(\backslash\)n\(\backslash\)r"});}
-\DoxyCodeLine{    get\_string\_from\_user(50, 0, str);}
+\DoxyCodeLine{    \mbox{\hyperlink{user__handler_8c_a6f809636e3eec5f1bb62fe12d6201c15}{get\_string\_from\_user}}(50, 0, str);}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tYou Entered: "});}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)str);}
 \DoxyCodeLine{}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r\(\backslash\)tSPACES:\(\backslash\)n\(\backslash\)r"});}
-\DoxyCodeLine{    get\_string\_from\_user(50, 1, str);}
+\DoxyCodeLine{    \mbox{\hyperlink{user__handler_8c_a6f809636e3eec5f1bb62fe12d6201c15}{get\_string\_from\_user}}(50, 1, str);}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tYou Entered: "});}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)str);}
 \DoxyCodeLine{\}}
@@ -193,7 +185,7 @@ Gets a string of characters from the user\+Doesn\textquotesingle{}t register the
 \DoxyCodeLine{        \textcolor{keywordflow}{return} 1;}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{void} get\_string\_from\_user(uint8\_t numChars, uint8\_t spaceEnabled, \textcolor{keywordtype}{char}* input)}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{user__handler_8c_a6f809636e3eec5f1bb62fe12d6201c15}{get\_string\_from\_user}}(uint8\_t numChars, uint8\_t spaceEnabled, \textcolor{keywordtype}{char}* input)}
 \DoxyCodeLine{\{}
 \DoxyCodeLine{    uint8\_t count = 0;}
 \DoxyCodeLine{    uint8\_t receivedInput = 0;}

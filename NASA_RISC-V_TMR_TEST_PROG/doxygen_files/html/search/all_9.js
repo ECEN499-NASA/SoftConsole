@@ -1,12 +1,4 @@
 var searchData=
 [
-  ['user_5fhandler_2ec_37',['user_handler.c',['../user__handler_8c.html',1,'']]],
-  ['user_5fhandler_2eh_38',['user_handler.h',['../user__handler_8h.html',1,'']]],
-  ['user_5fhandler_5fdisplay_5finstructions_39',['user_handler_display_instructions',['../user__handler_8c.html#afe80d86391249c43921f7622eec20788',1,'user_handler_display_instructions(void):&#160;user_handler.c'],['../user__handler_8h.html#afe80d86391249c43921f7622eec20788',1,'user_handler_display_instructions(void):&#160;user_handler.c']]],
-  ['user_5fhandler_5finvalid_5fcommand_40',['user_handler_invalid_command',['../user__handler_8c.html#abc3dda9f871b2f471bee1008057ecfa7',1,'user_handler_invalid_command(void):&#160;user_handler.c'],['../user__handler_8h.html#abc3dda9f871b2f471bee1008057ecfa7',1,'user_handler_invalid_command(void):&#160;user_handler.c']]],
-  ['user_5fhandler_5ftest_5fbytes_41',['user_handler_test_bytes',['../user__handler_8c.html#a1693a2c19b7f7c9aeb1a439b7810ca1f',1,'user_handler_test_bytes(void):&#160;user_handler.c'],['../user__handler_8h.html#a1693a2c19b7f7c9aeb1a439b7810ca1f',1,'user_handler_test_bytes(void):&#160;user_handler.c']]],
-  ['user_5fhandler_5ftest_5fdecimal_42',['user_handler_test_decimal',['../user__handler_8c.html#a794ae274d6f05c88936a6dd4916e81f5',1,'user_handler_test_decimal(void):&#160;user_handler.c'],['../user__handler_8h.html#a794ae274d6f05c88936a6dd4916e81f5',1,'user_handler_test_decimal(void):&#160;user_handler.c']]],
-  ['user_5fhandler_5ftest_5fstring_43',['user_handler_test_string',['../user__handler_8c.html#aad8bc3be32ab61870684e9a2d47a8490',1,'user_handler_test_string(void):&#160;user_handler.c'],['../user__handler_8h.html#aad8bc3be32ab61870684e9a2d47a8490',1,'user_handler_test_string(void):&#160;user_handler.c']]],
-  ['user_5fhandler_5ftest_5fyes_5fno_44',['user_handler_test_yes_no',['../user__handler_8c.html#a9ce7618326e88956857b07299387332d',1,'user_handler_test_yes_no(void):&#160;user_handler.c'],['../user__handler_8h.html#a9ce7618326e88956857b07299387332d',1,'user_handler_test_yes_no(void):&#160;user_handler.c']]],
-  ['user_5fhandler_5funit_5ftest_5fhandler_45',['user_handler_unit_test_handler',['../user__handler_8c.html#a505d07343781a86d67e03d7b1001af87',1,'user_handler_unit_test_handler(void):&#160;user_handler.c'],['../user__handler_8h.html#a505d07343781a86d67e03d7b1001af87',1,'user_handler_unit_test_handler(void):&#160;user_handler.c']]]
+  ['quit_5fspi_5ftest_19',['quit_spi_test',['../spi__test__prog_8h.html#a686e9ce5422577f0ea11f28b4c33fc52',1,'spi_test_prog.h']]]
 ];

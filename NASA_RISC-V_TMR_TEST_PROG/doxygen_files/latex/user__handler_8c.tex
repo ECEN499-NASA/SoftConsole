@@ -33,12 +33,10 @@ char \mbox{\hyperlink{user__handler_8c_a0666705090c419d176b72b152202375c}{get\+\
 \begin{DoxyCompactList}\small\item\em Gets a single character from the user\textquotesingle{}s input. \end{DoxyCompactList}\item 
 uint8\+\_\+t \mbox{\hyperlink{user__handler_8c_aee6480d62151c6f2ebd0d0bf519dc520}{get\+\_\+yes\+\_\+no\+\_\+from\+\_\+user}} (void)
 \begin{DoxyCompactList}\small\item\em Gets a boolean value (Y/N) from the user. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{user__handler_8c_a6f809636e3eec5f1bb62fe12d6201c15}\label{user__handler_8c_a6f809636e3eec5f1bb62fe12d6201c15}} 
-void {\bfseries get\+\_\+string\+\_\+from\+\_\+user} (uint8\+\_\+t num\+Chars, uint8\+\_\+t space\+Enabled, char $\ast$input)
-\item 
-\mbox{\Hypertarget{user__handler_8c_a3369cf60c9eac966eb6f0a4205d1c400}\label{user__handler_8c_a3369cf60c9eac966eb6f0a4205d1c400}} 
-uint32\+\_\+t {\bfseries get\+\_\+dec\+\_\+from\+\_\+user} (uint8\+\_\+t num\+Dec\+Places)
-\item 
+void \mbox{\hyperlink{user__handler_8c_a6f809636e3eec5f1bb62fe12d6201c15}{get\+\_\+string\+\_\+from\+\_\+user}} (uint8\+\_\+t num\+Chars, uint8\+\_\+t space\+Enabled, char $\ast$input)
+\begin{DoxyCompactList}\small\item\em Gets a string of characters from the user. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{user__handler_8c_a3369cf60c9eac966eb6f0a4205d1c400}{get\+\_\+dec\+\_\+from\+\_\+user}} (uint8\+\_\+t num\+Dec\+Places)
+\begin{DoxyCompactList}\small\item\em Gets an integer value from the user. \end{DoxyCompactList}\item 
 uint32\+\_\+t \mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\+\_\+bytes\+\_\+from\+\_\+user}} (uint8\+\_\+t num\+Bytes)
 \begin{DoxyCompactList}\small\item\em Gets input from the user in hexidecimal form. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{user__handler_8c_afe3cfeebce751c4563a0b7b103c5a80d}{byte\+\_\+to\+\_\+dec\+\_\+string}} (uint8\+\_\+t byte, char dec\+\_\+string\mbox{[}4\mbox{]})
@@ -79,9 +77,6 @@ Turns an integer value into a string representation.
  \\
 \hline
 \end{DoxyParams}
-\begin{Desc}
-\item[Examples]\par
-\mbox{\hyperlink{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2user_haf7df9e71e1fd068c10e6591694aab189}{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/user\+\_\+handler\+\_\+files/user\+\_\+handler.\+c}}.\end{Desc}
 \mbox{\Hypertarget{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}\label{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}} 
 \index{user\_handler.c@{user\_handler.c}!get\_bytes\_from\_user@{get\_bytes\_from\_user}}
 \index{get\_bytes\_from\_user@{get\_bytes\_from\_user}!user\_handler.c@{user\_handler.c}}
@@ -105,9 +100,40 @@ This may not work correctly, run the unit test to verify
 \begin{DoxyReturn}{Returns}
 data entered by user 
 \end{DoxyReturn}
-\begin{Desc}
-\item[Examples]\par
-\mbox{\hyperlink{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2spi_tese17fefff49c75df7ea943a0d370ed077}{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/spi\+\_\+test\+\_\+files/spi\+\_\+test\+\_\+prog.\+c}}, and \mbox{\hyperlink{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2user_haf7df9e71e1fd068c10e6591694aab189}{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/user\+\_\+handler\+\_\+files/user\+\_\+handler.\+c}}.\end{Desc}
+\mbox{\Hypertarget{user__handler_8c_a3369cf60c9eac966eb6f0a4205d1c400}\label{user__handler_8c_a3369cf60c9eac966eb6f0a4205d1c400}} 
+\index{user\_handler.c@{user\_handler.c}!get\_dec\_from\_user@{get\_dec\_from\_user}}
+\index{get\_dec\_from\_user@{get\_dec\_from\_user}!user\_handler.c@{user\_handler.c}}
+\doxysubsubsection{\texorpdfstring{get\_dec\_from\_user()}{get\_dec\_from\_user()}}
+{\footnotesize\ttfamily uint32\+\_\+t get\+\_\+dec\+\_\+from\+\_\+user (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{num\+Dec\+Places }\end{DoxyParamCaption})}
+
+
+
+Gets an integer value from the user. 
+
+Function will only return a correct value if it is smaller than the max value represented with 32bits. If the user enters more than the number of placed specified, the function will ignore them.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"What is 2 + 2?\(\backslash\)n"});}
+\DoxyCodeLine{uint32\_t input = \mbox{\hyperlink{user__handler_8c_a3369cf60c9eac966eb6f0a4205d1c400}{get\_dec\_from\_user}}(2); }
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// If the user's input is "004", then the returned value would be 0}}
+\DoxyCodeLine{\textcolor{comment}{// If the user enters "4" or "04", then the returned value would be 4}}
+\DoxyCodeLine{\textcolor{keywordflow}{if}(input != 4)}
+\DoxyCodeLine{   printf(\textcolor{stringliteral}{"Go back to kindergarden\(\backslash\)n"});}
+\DoxyCodeLine{\textcolor{keywordflow}{else}}
+\DoxyCodeLine{   printf(\textcolor{stringliteral}{"Good job! Here is a cookie\(\backslash\)n"});}
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Dec\+Places} & Number of decimal places to be received by the user \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+User input of uint32\+\_\+t type 
+\end{DoxyReturn}
 \mbox{\Hypertarget{user__handler_8c_a0666705090c419d176b72b152202375c}\label{user__handler_8c_a0666705090c419d176b72b152202375c}} 
 \index{user\_handler.c@{user\_handler.c}!get\_single\_char\_from\_user@{get\_single\_char\_from\_user}}
 \index{get\_single\_char\_from\_user@{get\_single\_char\_from\_user}!user\_handler.c@{user\_handler.c}}
@@ -121,9 +147,39 @@ Gets a single character from the user\textquotesingle{}s input.
 \begin{DoxyReturn}{Returns}
 Value of type char (the user\textquotesingle{}s input) 
 \end{DoxyReturn}
-\begin{Desc}
-\item[Examples]\par
-\mbox{\hyperlink{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2spi_tese17fefff49c75df7ea943a0d370ed077}{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/spi\+\_\+test\+\_\+files/spi\+\_\+test\+\_\+prog.\+c}}, and \mbox{\hyperlink{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2user_haf7df9e71e1fd068c10e6591694aab189}{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/user\+\_\+handler\+\_\+files/user\+\_\+handler.\+c}}.\end{Desc}
+\mbox{\Hypertarget{user__handler_8c_a6f809636e3eec5f1bb62fe12d6201c15}\label{user__handler_8c_a6f809636e3eec5f1bb62fe12d6201c15}} 
+\index{user\_handler.c@{user\_handler.c}!get\_string\_from\_user@{get\_string\_from\_user}}
+\index{get\_string\_from\_user@{get\_string\_from\_user}!user\_handler.c@{user\_handler.c}}
+\doxysubsubsection{\texorpdfstring{get\_string\_from\_user()}{get\_string\_from\_user()}}
+{\footnotesize\ttfamily void get\+\_\+string\+\_\+from\+\_\+user (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{num\+Chars,  }\item[{uint8\+\_\+t}]{space\+Enabled,  }\item[{char $\ast$}]{input }\end{DoxyParamCaption})}
+
+
+
+Gets a string of characters from the user. 
+
+Doesn\textquotesingle{}t register the user pressing the E\+S\+C\+\_\+\+K\+EY, B\+A\+C\+K\+S\+P\+A\+C\+E\+\_\+\+K\+EY, or T\+A\+B\+\_\+\+K\+EY. When the user has entered the maximum amount of characters, or has pressed the E\+N\+T\+E\+R\+\_\+\+K\+EY, it will end the function. If param \char`\"{}space\+Enabled\char`\"{} is false, it will ignore that to
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define MAX\_INPUT 10}}
+\DoxyCodeLine{}
+\DoxyCodeLine{uint8\_t numChars = MAX\_INPUT;}
+\DoxyCodeLine{\textcolor{keywordtype}{char} input[MAX\_INPUT];}
+\DoxyCodeLine{uint8\_t spaceEnabled = 0x01;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{user__handler_8c_a6f809636e3eec5f1bb62fe12d6201c15}{get\_string\_from\_user}}(numChars, spaceEnabled, \&input);}
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Chars} & The maximum number of characters the user can enter \\
+\hline
+{\em space\+Enabled} & 1 \+: Accepts spacebar input 0 \+: Ignores spacebar input \\
+\hline
+{\em input} & Pointer/array to be filled with user input. Array\textquotesingle{}s \textbackslash{} size is defined by the \char`\"{}num\+Chars\char`\"{} param \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{user__handler_8c_aee6480d62151c6f2ebd0d0bf519dc520}\label{user__handler_8c_aee6480d62151c6f2ebd0d0bf519dc520}} 
 \index{user\_handler.c@{user\_handler.c}!get\_yes\_no\_from\_user@{get\_yes\_no\_from\_user}}
 \index{get\_yes\_no\_from\_user@{get\_yes\_no\_from\_user}!user\_handler.c@{user\_handler.c}}
@@ -137,9 +193,6 @@ Gets a boolean value (Y/N) from the user.
 \begin{DoxyReturn}{Returns}
 1 \+: The user selected \char`\"{}yes\char`\"{} 0 \+: The user selected \char`\"{}no\char`\"{} 
 \end{DoxyReturn}
-\begin{Desc}
-\item[Examples]\par
-\mbox{\hyperlink{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2spi_tese17fefff49c75df7ea943a0d370ed077}{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/spi\+\_\+test\+\_\+files/spi\+\_\+test\+\_\+prog.\+c}}, and \mbox{\hyperlink{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2user_haf7df9e71e1fd068c10e6591694aab189}{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/user\+\_\+handler\+\_\+files/user\+\_\+handler.\+c}}.\end{Desc}
 \mbox{\Hypertarget{user__handler_8c_a77f375f90c3968d56d1bd03b0a754c30}\label{user__handler_8c_a77f375f90c3968d56d1bd03b0a754c30}} 
 \index{user\_handler.c@{user\_handler.c}!int\_to\_hex\_string@{int\_to\_hex\_string}}
 \index{int\_to\_hex\_string@{int\_to\_hex\_string}!user\_handler.c@{user\_handler.c}}
@@ -158,9 +211,6 @@ Converts a 32-\/bit integer into a string representation of bytes.
 {\em hex\+\_\+string} & Array with 12 elements representing a 32-\/bit integer as a string of bytes \\
 \hline
 \end{DoxyParams}
-\begin{Desc}
-\item[Examples]\par
-\mbox{\hyperlink{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2user_haf7df9e71e1fd068c10e6591694aab189}{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/user\+\_\+handler\+\_\+files/user\+\_\+handler.\+c}}.\end{Desc}
 \mbox{\Hypertarget{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}\label{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}} 
 \index{user\_handler.c@{user\_handler.c}!int\_to\_single\_byte\_string@{int\_to\_single\_byte\_string}}
 \index{int\_to\_single\_byte\_string@{int\_to\_single\_byte\_string}!user\_handler.c@{user\_handler.c}}
@@ -178,9 +228,6 @@ Converts a byte into a string representation.
 {\em hex\+\_\+string} & Array with 5 elements that represents a byte in string a format \\
 \hline
 \end{DoxyParams}
-\begin{Desc}
-\item[Examples]\par
-\mbox{\hyperlink{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2spi_tese17fefff49c75df7ea943a0d370ed077}{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/spi\+\_\+test\+\_\+files/spi\+\_\+test\+\_\+prog.\+c}}, and \mbox{\hyperlink{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2user_haf7df9e71e1fd068c10e6591694aab189}{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/user\+\_\+handler\+\_\+files/user\+\_\+handler.\+c}}.\end{Desc}
 \mbox{\Hypertarget{user__handler_8c_a505d07343781a86d67e03d7b1001af87}\label{user__handler_8c_a505d07343781a86d67e03d7b1001af87}} 
 \index{user\_handler.c@{user\_handler.c}!user\_handler\_unit\_test\_handler@{user\_handler\_unit\_test\_handler}}
 \index{user\_handler\_unit\_test\_handler@{user\_handler\_unit\_test\_handler}!user\_handler.c@{user\_handler.c}}
@@ -194,6 +241,3 @@ Used to easily perform unit tests of all functions.
 \begin{DoxyNote}{Note}
 \char`\"{}get\+\_\+single\+\_\+char\+\_\+from\+\_\+user()\char`\"{} is not specifically in the unit test, but is technically tested when the user chooses what unit test to perform 
 \end{DoxyNote}
-\begin{Desc}
-\item[Examples]\par
-\mbox{\hyperlink{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2user_haf7df9e71e1fd068c10e6591694aab189}{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/user\+\_\+handler\+\_\+files/user\+\_\+handler.\+c}}.\end{Desc}

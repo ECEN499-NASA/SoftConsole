@@ -1,4 +1,9 @@
 var searchData=
 [
-  ['key_5ftable_9',['KEY_TABLE',['../user__handler_8h.html#aef0ddb86c9cd9a73b23ff91cdce924f6',1,'user_handler.h']]]
+  ['g_5fuart_6',['g_uart',['../user__handler_8h.html#a2700cde8d3662ef58b647d5e4b14e18b',1,'g_uart():&#160;main.c'],['../spi__test__prog_8h.html#a2700cde8d3662ef58b647d5e4b14e18b',1,'g_uart():&#160;main.c']]],
+  ['get_5fbytes_5ffrom_5fuser_7',['get_bytes_from_user',['../user__handler_8c.html#ae9efc9ff2f203678792c4e907caad6e3',1,'get_bytes_from_user(uint8_t numBytes):&#160;user_handler.c'],['../user__handler_8h.html#ae9efc9ff2f203678792c4e907caad6e3',1,'get_bytes_from_user(uint8_t numBytes):&#160;user_handler.c']]],
+  ['get_5fdec_5ffrom_5fuser_8',['get_dec_from_user',['../user__handler_8c.html#a3369cf60c9eac966eb6f0a4205d1c400',1,'get_dec_from_user(uint8_t numDecPlaces):&#160;user_handler.c'],['../user__handler_8h.html#a3369cf60c9eac966eb6f0a4205d1c400',1,'get_dec_from_user(uint8_t numDecPlaces):&#160;user_handler.c']]],
+  ['get_5fsingle_5fchar_5ffrom_5fuser_9',['get_single_char_from_user',['../user__handler_8c.html#a0666705090c419d176b72b152202375c',1,'get_single_char_from_user(void):&#160;user_handler.c'],['../user__handler_8h.html#a0666705090c419d176b72b152202375c',1,'get_single_char_from_user(void):&#160;user_handler.c']]],
+  ['get_5fstring_5ffrom_5fuser_10',['get_string_from_user',['../user__handler_8c.html#a6f809636e3eec5f1bb62fe12d6201c15',1,'get_string_from_user(uint8_t numChars, uint8_t spaceEnabled, char *input):&#160;user_handler.c'],['../user__handler_8h.html#a6f809636e3eec5f1bb62fe12d6201c15',1,'get_string_from_user(uint8_t numChars, uint8_t spaceEnabled, char *input):&#160;user_handler.c']]],
+  ['get_5fyes_5fno_5ffrom_5fuser_11',['get_yes_no_from_user',['../user__handler_8c.html#aee6480d62151c6f2ebd0d0bf519dc520',1,'get_yes_no_from_user(void):&#160;user_handler.c'],['../user__handler_8h.html#aee6480d62151c6f2ebd0d0bf519dc520',1,'get_yes_no_from_user(void):&#160;user_handler.c']]]
 ];

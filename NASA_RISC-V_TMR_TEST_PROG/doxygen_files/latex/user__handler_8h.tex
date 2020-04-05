@@ -48,12 +48,10 @@ char \mbox{\hyperlink{user__handler_8h_a0666705090c419d176b72b152202375c}{get\+\
 \begin{DoxyCompactList}\small\item\em Gets a single character from the user\textquotesingle{}s input. \end{DoxyCompactList}\item 
 uint8\+\_\+t \mbox{\hyperlink{user__handler_8h_aee6480d62151c6f2ebd0d0bf519dc520}{get\+\_\+yes\+\_\+no\+\_\+from\+\_\+user}} (void)
 \begin{DoxyCompactList}\small\item\em Gets a boolean value (Y/N) from the user. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{user__handler_8h_a6f809636e3eec5f1bb62fe12d6201c15}\label{user__handler_8h_a6f809636e3eec5f1bb62fe12d6201c15}} 
-void {\bfseries get\+\_\+string\+\_\+from\+\_\+user} (uint8\+\_\+t num\+Chars, uint8\+\_\+t space\+Enabled, char $\ast$input)
-\item 
-\mbox{\Hypertarget{user__handler_8h_a3369cf60c9eac966eb6f0a4205d1c400}\label{user__handler_8h_a3369cf60c9eac966eb6f0a4205d1c400}} 
-uint32\+\_\+t {\bfseries get\+\_\+dec\+\_\+from\+\_\+user} (uint8\+\_\+t num\+Dec\+Places)
-\item 
+void \mbox{\hyperlink{user__handler_8h_a6f809636e3eec5f1bb62fe12d6201c15}{get\+\_\+string\+\_\+from\+\_\+user}} (uint8\+\_\+t num\+Chars, uint8\+\_\+t space\+Enabled, char $\ast$input)
+\begin{DoxyCompactList}\small\item\em Gets a string of characters from the user. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{user__handler_8h_a3369cf60c9eac966eb6f0a4205d1c400}{get\+\_\+dec\+\_\+from\+\_\+user}} (uint8\+\_\+t num\+Dec\+Places)
+\begin{DoxyCompactList}\small\item\em Gets an integer value from the user. \end{DoxyCompactList}\item 
 uint32\+\_\+t \mbox{\hyperlink{user__handler_8h_ae9efc9ff2f203678792c4e907caad6e3}{get\+\_\+bytes\+\_\+from\+\_\+user}} (uint8\+\_\+t num\+Bytes)
 \begin{DoxyCompactList}\small\item\em Gets input from the user in hexidecimal form. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{user__handler_8h_afe3cfeebce751c4563a0b7b103c5a80d}{byte\+\_\+to\+\_\+dec\+\_\+string}} (uint8\+\_\+t byte, char dec\+\_\+string\mbox{[}4\mbox{]})
@@ -122,6 +120,40 @@ This may not work correctly, run the unit test to verify
 \begin{DoxyReturn}{Returns}
 data entered by user 
 \end{DoxyReturn}
+\mbox{\Hypertarget{user__handler_8h_a3369cf60c9eac966eb6f0a4205d1c400}\label{user__handler_8h_a3369cf60c9eac966eb6f0a4205d1c400}} 
+\index{user\_handler.h@{user\_handler.h}!get\_dec\_from\_user@{get\_dec\_from\_user}}
+\index{get\_dec\_from\_user@{get\_dec\_from\_user}!user\_handler.h@{user\_handler.h}}
+\doxysubsubsection{\texorpdfstring{get\_dec\_from\_user()}{get\_dec\_from\_user()}}
+{\footnotesize\ttfamily uint32\+\_\+t get\+\_\+dec\+\_\+from\+\_\+user (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{num\+Dec\+Places }\end{DoxyParamCaption})}
+
+
+
+Gets an integer value from the user. 
+
+Function will only return a correct value if it is smaller than the max value represented with 32bits. If the user enters more than the number of placed specified, the function will ignore them.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"What is 2 + 2?\(\backslash\)n"});}
+\DoxyCodeLine{uint32\_t input = \mbox{\hyperlink{user__handler_8c_a3369cf60c9eac966eb6f0a4205d1c400}{get\_dec\_from\_user}}(2); }
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// If the user's input is "004", then the returned value would be 0}}
+\DoxyCodeLine{\textcolor{comment}{// If the user enters "4" or "04", then the returned value would be 4}}
+\DoxyCodeLine{\textcolor{keywordflow}{if}(input != 4)}
+\DoxyCodeLine{   printf(\textcolor{stringliteral}{"Go back to kindergarden\(\backslash\)n"});}
+\DoxyCodeLine{\textcolor{keywordflow}{else}}
+\DoxyCodeLine{   printf(\textcolor{stringliteral}{"Good job! Here is a cookie\(\backslash\)n"});}
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Dec\+Places} & Number of decimal places to be received by the user \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+User input of uint32\+\_\+t type 
+\end{DoxyReturn}
 \mbox{\Hypertarget{user__handler_8h_a0666705090c419d176b72b152202375c}\label{user__handler_8h_a0666705090c419d176b72b152202375c}} 
 \index{user\_handler.h@{user\_handler.h}!get\_single\_char\_from\_user@{get\_single\_char\_from\_user}}
 \index{get\_single\_char\_from\_user@{get\_single\_char\_from\_user}!user\_handler.h@{user\_handler.h}}
@@ -135,6 +167,39 @@ Gets a single character from the user\textquotesingle{}s input.
 \begin{DoxyReturn}{Returns}
 Value of type char (the user\textquotesingle{}s input) 
 \end{DoxyReturn}
+\mbox{\Hypertarget{user__handler_8h_a6f809636e3eec5f1bb62fe12d6201c15}\label{user__handler_8h_a6f809636e3eec5f1bb62fe12d6201c15}} 
+\index{user\_handler.h@{user\_handler.h}!get\_string\_from\_user@{get\_string\_from\_user}}
+\index{get\_string\_from\_user@{get\_string\_from\_user}!user\_handler.h@{user\_handler.h}}
+\doxysubsubsection{\texorpdfstring{get\_string\_from\_user()}{get\_string\_from\_user()}}
+{\footnotesize\ttfamily void get\+\_\+string\+\_\+from\+\_\+user (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{num\+Chars,  }\item[{uint8\+\_\+t}]{space\+Enabled,  }\item[{char $\ast$}]{input }\end{DoxyParamCaption})}
+
+
+
+Gets a string of characters from the user. 
+
+Doesn\textquotesingle{}t register the user pressing the E\+S\+C\+\_\+\+K\+EY, B\+A\+C\+K\+S\+P\+A\+C\+E\+\_\+\+K\+EY, or T\+A\+B\+\_\+\+K\+EY. When the user has entered the maximum amount of characters, or has pressed the E\+N\+T\+E\+R\+\_\+\+K\+EY, it will end the function. If param \char`\"{}space\+Enabled\char`\"{} is false, it will ignore that to
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define MAX\_INPUT 10}}
+\DoxyCodeLine{}
+\DoxyCodeLine{uint8\_t numChars = MAX\_INPUT;}
+\DoxyCodeLine{\textcolor{keywordtype}{char} input[MAX\_INPUT];}
+\DoxyCodeLine{uint8\_t spaceEnabled = 0x01;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{user__handler_8c_a6f809636e3eec5f1bb62fe12d6201c15}{get\_string\_from\_user}}(numChars, spaceEnabled, \&input);}
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Chars} & The maximum number of characters the user can enter \\
+\hline
+{\em space\+Enabled} & 1 \+: Accepts spacebar input 0 \+: Ignores spacebar input \\
+\hline
+{\em input} & Pointer/array to be filled with user input. Array\textquotesingle{}s \textbackslash{} size is defined by the \char`\"{}num\+Chars\char`\"{} param \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{user__handler_8h_aee6480d62151c6f2ebd0d0bf519dc520}\label{user__handler_8h_aee6480d62151c6f2ebd0d0bf519dc520}} 
 \index{user\_handler.h@{user\_handler.h}!get\_yes\_no\_from\_user@{get\_yes\_no\_from\_user}}
 \index{get\_yes\_no\_from\_user@{get\_yes\_no\_from\_user}!user\_handler.h@{user\_handler.h}}
@@ -194,8 +259,6 @@ Converts a byte into a string representation.
 Used to easily perform unit tests of all functions. 
 
 \begin{DoxyNote}{Note}
-Funciton prototypes
-
 \char`\"{}get\+\_\+single\+\_\+char\+\_\+from\+\_\+user()\char`\"{} is not specifically in the unit test, but is technically tested when the user chooses what unit test to perform 
 \end{DoxyNote}
 
@@ -210,6 +273,3 @@ Funciton prototypes
 \begin{DoxyNote}{Note}
 Global variable initialized in \char`\"{}main()\char`\"{} 
 \end{DoxyNote}
-\begin{Desc}
-\item[Examples]\par
-\mbox{\hyperlink{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2spi_tese17fefff49c75df7ea943a0d370ed077}{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/spi\+\_\+test\+\_\+files/spi\+\_\+test\+\_\+prog.\+c}}, and \mbox{\hyperlink{_2home_2zac_2git_2projects_2PolarFire_RISC-V_TMR_SoftConsole_2NASA_RISC-V_TMR_TEST_PROG_2user_haf7df9e71e1fd068c10e6591694aab189}{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/user\+\_\+handler\+\_\+files/user\+\_\+handler.\+c}}.\end{Desc}

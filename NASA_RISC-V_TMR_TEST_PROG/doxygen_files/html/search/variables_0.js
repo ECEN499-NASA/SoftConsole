@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['fram_5fdev_85',['fram_dev',['../spi__test__prog_8c.html#a02bd3a1d8e294a8f64c769178ec07eea',1,'fram_dev():&#160;spi_test_prog.c'],['../spi__test__prog_8h.html#a02bd3a1d8e294a8f64c769178ec07eea',1,'fram_dev():&#160;spi_test_prog.c']]]
+  ['accelerometer_5fdev_104',['accelerometer_dev',['../spi__test__prog_8c.html#a5779eee5a7019ec0d0b15312d53bcdd9',1,'accelerometer_dev():&#160;spi_test_prog.c'],['../spi__test__prog_8h.html#a5779eee5a7019ec0d0b15312d53bcdd9',1,'accelerometer_dev():&#160;spi_test_prog.c']]],
+  ['adc_5fdev_105',['adc_dev',['../spi__test__prog_8c.html#a467bd423905e83ac180fe7dbf81291bf',1,'adc_dev():&#160;spi_test_prog.c'],['../spi__test__prog_8h.html#a467bd423905e83ac180fe7dbf81291bf',1,'adc_dev():&#160;spi_test_prog.c']]]
 ];

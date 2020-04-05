@@ -3,25 +3,29 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{   \#define DATA\_SIZE 10}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define DATA\_SIZE 10}}
 \DoxyCodeLine{}
 \DoxyCodeLine{uint8\_t data\_size = DATA\_SIZE;}
-\DoxyCodeLine{   uint8\_t data\_read[DATA\_SIZE];}
-\DoxyCodeLine{   uint8\_t read\_command = 0x10; \textcolor{comment}{// Can be any byte-\/sized read command}}
-\DoxyCodeLine{   \mbox{\hyperlink{structspi__dev}{spi\_dev}} device = \{}
-\DoxyCodeLine{   .spi = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},      \textcolor{comment}{// Any "spi\_instance\_t" type}}
-\DoxyCodeLine{       .spi\_sel = SPI\_SLAVE\_0  \textcolor{comment}{// Any "spi\_slave\_t" type}}
+\DoxyCodeLine{uint8\_t data\_read[DATA\_SIZE];}
+\DoxyCodeLine{uint8\_t read\_command = 0x10; \textcolor{comment}{// Can be any byte-\/sized read command}}
+\DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} device = \{}
+\DoxyCodeLine{   .\mbox{\hyperlink{structspi__dev_ae5a31ddc8d2628abca254a9b30a7acbd}{spi}} = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},      \textcolor{comment}{// Any "spi\_instance\_t" type}}
+\DoxyCodeLine{   .spi\_sel = SPI\_SLAVE\_0  \textcolor{comment}{// Any "spi\_slave\_t" type}}
 \DoxyCodeLine{\};}
 \DoxyCodeLine{}
-\DoxyCodeLine{   spi\_test\_read(\&device, \&command, \&data\_read, \&data\_size);}
-\DoxyCodeLine{   \textcolor{keywordflow}{for}(uint8\_t i = 0; i < DATA\_SIZE; i++) \{ \textcolor{comment}{// <Print\_data\_here> \}}}
+\DoxyCodeLine{spi\_test\_read(\&device, \&command, \&data\_read, \&data\_size);}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"Data Read:\(\backslash\)t0x"});}
+\DoxyCodeLine{\textcolor{keywordflow}{for}(uint8\_t i = 0; i < DATA\_SIZE; i++) \{}
+\DoxyCodeLine{     printf(\textcolor{stringliteral}{" \%x"}, data\_read[i]); }
+\DoxyCodeLine{\}}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"\(\backslash\)n"});}
 \end{DoxyCode}
  ~\newline
 
 
 
 \begin{DoxyParams}{Parameters}
-{\em device} & Pointer to device to read data from. There are currently 6 different device that can be read from \\
+{\em device} & Pointer to device to read data from. There are currently 6 different devices that can be read from \\
 \hline
 {\em command} & Pointer to read command to send to the device \\
 \hline
@@ -30,47 +34,50 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 {\em data\+\_\+size} & Size of the data array\\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include "\mbox{\hyperlink{spi__test__prog_8h}{spi\_test\_prog.h}}"}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} \mbox{\hyperlink{spi__test__prog_8c_a02bd3a1d8e294a8f64c769178ec07eea}{fram\_dev}} = \{}
-\DoxyCodeLine{        .spi = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
+\DoxyCodeLine{        .\mbox{\hyperlink{structspi__dev_ae5a31ddc8d2628abca254a9b30a7acbd}{spi}} = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
 \DoxyCodeLine{        .spi\_sel = SPI\_SLAVE\_0}
 \DoxyCodeLine{\};}
 \DoxyCodeLine{}
-\DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} external\_spi\_0 = \{}
-\DoxyCodeLine{        .spi = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
+\DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} \mbox{\hyperlink{spi__test__prog_8c_a277eb22a369721f017cd65d93034d8b7}{external\_spi\_0}} = \{}
+\DoxyCodeLine{        .\mbox{\hyperlink{structspi__dev_ae5a31ddc8d2628abca254a9b30a7acbd}{spi}} = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
 \DoxyCodeLine{        .spi\_sel = SPI\_SLAVE\_1}
 \DoxyCodeLine{\};}
 \DoxyCodeLine{}
-\DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} external\_spi\_1 = \{}
-\DoxyCodeLine{        .spi = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
+\DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} \mbox{\hyperlink{spi__test__prog_8c_a623ebc73879144145e467950be650deb}{external\_spi\_1}} = \{}
+\DoxyCodeLine{        .\mbox{\hyperlink{structspi__dev_ae5a31ddc8d2628abca254a9b30a7acbd}{spi}} = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
 \DoxyCodeLine{        .spi\_sel = SPI\_SLAVE\_2}
 \DoxyCodeLine{\};}
 \DoxyCodeLine{}
-\DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} adc\_dev = \{}
-\DoxyCodeLine{        .spi = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
+\DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} \mbox{\hyperlink{spi__test__prog_8c_a467bd423905e83ac180fe7dbf81291bf}{adc\_dev}} = \{}
+\DoxyCodeLine{        .\mbox{\hyperlink{structspi__dev_ae5a31ddc8d2628abca254a9b30a7acbd}{spi}} = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
 \DoxyCodeLine{        .spi\_sel = SPI\_SLAVE\_3}
 \DoxyCodeLine{\};}
 \DoxyCodeLine{}
-\DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} lcd\_screen\_dev = \{}
-\DoxyCodeLine{        .spi = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
+\DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} \mbox{\hyperlink{spi__test__prog_8c_a91f5baec8594e14ef1799a74e537dfaa}{lcd\_screen\_dev}} = \{}
+\DoxyCodeLine{        .\mbox{\hyperlink{structspi__dev_ae5a31ddc8d2628abca254a9b30a7acbd}{spi}} = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
 \DoxyCodeLine{        .spi\_sel = SPI\_SLAVE\_4}
 \DoxyCodeLine{\};}
 \DoxyCodeLine{}
-\DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} accelerometer\_dev = \{}
-\DoxyCodeLine{        .spi = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
+\DoxyCodeLine{\mbox{\hyperlink{structspi__dev}{spi\_dev}} \mbox{\hyperlink{spi__test__prog_8c_a5779eee5a7019ec0d0b15312d53bcdd9}{accelerometer\_dev}} = \{}
+\DoxyCodeLine{        .\mbox{\hyperlink{structspi__dev_ae5a31ddc8d2628abca254a9b30a7acbd}{spi}} = \&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}},}
 \DoxyCodeLine{        .spi\_sel = SPI\_SLAVE\_5}
 \DoxyCodeLine{\};}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_a4aa3a2916650e7131e463bf9739a90e4}{spi\_test\_init}}(\textcolor{keywordtype}{void})}
 \DoxyCodeLine{\{}
-\DoxyCodeLine{    quit\_spi\_test = 0;}
-\DoxyCodeLine{    spi\_command\_byte = 0;}
-\DoxyCodeLine{    selected\_dev = \&external\_spi\_0;}
-\DoxyCodeLine{    selected\_dev\_id = external\_spi\_0.spi\_sel;}
+\DoxyCodeLine{    \mbox{\hyperlink{spi__test__prog_8h_a686e9ce5422577f0ea11f28b4c33fc52}{quit\_spi\_test}} = 0;}
+\DoxyCodeLine{    \mbox{\hyperlink{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}{spi\_command\_byte}} = 0;}
+\DoxyCodeLine{    \mbox{\hyperlink{spi__test__prog_8h_a2e074965d77b7cc2854b2b89748b666a}{selected\_dev}} = \&\mbox{\hyperlink{spi__test__prog_8c_a277eb22a369721f017cd65d93034d8b7}{external\_spi\_0}};}
+\DoxyCodeLine{    \mbox{\hyperlink{spi__test__prog_8h_a29a1d98fbd9a5932b4e319345046e3b3}{selected\_dev\_id}} = \mbox{\hyperlink{spi__test__prog_8c_a277eb22a369721f017cd65d93034d8b7}{external\_spi\_0}}.\mbox{\hyperlink{structspi__dev_af481a62e80b304163756fd6f74c745fc}{spi\_sel}};}
 \DoxyCodeLine{}
 \DoxyCodeLine{    SPI\_init(\&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}}, FLASH\_CORE\_SPI\_BASE, 32);}
 \DoxyCodeLine{    SPI\_configure\_master\_mode(\&\mbox{\hyperlink{spi__test__prog_8h_a250197ee931f58248dd31b2028d1611d}{riscv\_spi}});}
@@ -78,16 +85,16 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keywordtype}{void} spi\_test\_read(\mbox{\hyperlink{structspi__dev}{spi\_dev}} *device, uint8\_t *command, uint8\_t *data, uint8\_t data\_size)}
 \DoxyCodeLine{\{}
-\DoxyCodeLine{    SPI\_set\_slave\_select(device-\/>spi, device-\/>spi\_sel);}
-\DoxyCodeLine{    SPI\_transfer\_block(device-\/>spi, command, 1, data, data\_size);}
-\DoxyCodeLine{    SPI\_clear\_slave\_select(device-\/>spi, device-\/>spi\_sel);}
+\DoxyCodeLine{    SPI\_set\_slave\_select(device-\/>\mbox{\hyperlink{structspi__dev_ae5a31ddc8d2628abca254a9b30a7acbd}{spi}}, device-\/>\mbox{\hyperlink{structspi__dev_af481a62e80b304163756fd6f74c745fc}{spi\_sel}});}
+\DoxyCodeLine{    SPI\_transfer\_block(device-\/>\mbox{\hyperlink{structspi__dev_ae5a31ddc8d2628abca254a9b30a7acbd}{spi}}, command, 1, data, data\_size);}
+\DoxyCodeLine{    SPI\_clear\_slave\_select(device-\/>\mbox{\hyperlink{structspi__dev_ae5a31ddc8d2628abca254a9b30a7acbd}{spi}}, device-\/>\mbox{\hyperlink{structspi__dev_af481a62e80b304163756fd6f74c745fc}{spi\_sel}});}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keywordtype}{void} spi\_test\_write(\mbox{\hyperlink{structspi__dev}{spi\_dev}} *device, uint8\_t *data, uint8\_t data\_size, uint8\_t *resp\_data)}
 \DoxyCodeLine{\{}
-\DoxyCodeLine{    SPI\_set\_slave\_select(device-\/>spi, device-\/>spi\_sel);}
-\DoxyCodeLine{    SPI\_transfer\_block(device-\/>spi, data, data\_size, resp\_data, 1);}
-\DoxyCodeLine{    SPI\_clear\_slave\_select(device-\/>spi, device-\/>spi\_sel);}
+\DoxyCodeLine{    SPI\_set\_slave\_select(device-\/>\mbox{\hyperlink{structspi__dev_ae5a31ddc8d2628abca254a9b30a7acbd}{spi}}, device-\/>\mbox{\hyperlink{structspi__dev_af481a62e80b304163756fd6f74c745fc}{spi\_sel}});}
+\DoxyCodeLine{    SPI\_transfer\_block(device-\/>\mbox{\hyperlink{structspi__dev_ae5a31ddc8d2628abca254a9b30a7acbd}{spi}}, data, data\_size, resp\_data, 1);}
+\DoxyCodeLine{    SPI\_clear\_slave\_select(device-\/>\mbox{\hyperlink{structspi__dev_ae5a31ddc8d2628abca254a9b30a7acbd}{spi}}, device-\/>\mbox{\hyperlink{structspi__dev_af481a62e80b304163756fd6f74c745fc}{spi\_sel}});}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_a3753e083a99f55a45620bfdfb9a01321}{spi\_test\_handler}}(\textcolor{keywordtype}{void})}
@@ -98,7 +105,7 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{    \mbox{\hyperlink{spi__test__prog_8c_ab54fd668cdde6ffa7a15834575d72d7c}{spi\_test\_display\_commands}}();}
 \DoxyCodeLine{    \mbox{\hyperlink{spi__test__prog_8c_a4aa3a2916650e7131e463bf9739a90e4}{spi\_test\_init}}();}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{keywordflow}{while}(quit\_spi\_test == 0)}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(\mbox{\hyperlink{spi__test__prog_8h_a686e9ce5422577f0ea11f28b4c33fc52}{quit\_spi\_test}} == 0)}
 \DoxyCodeLine{    \{}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r What would you like to do?\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{        command = \mbox{\hyperlink{user__handler_8c_a0666705090c419d176b72b152202375c}{get\_single\_char\_from\_user}}();}
@@ -111,7 +118,7 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a91d0dbf99b5d8fd68965f66788e58da0}{spi\_test\_display\_devices}}();}
 \DoxyCodeLine{                \textcolor{keywordflow}{break};}
 \DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'q'}:}
-\DoxyCodeLine{                quit\_spi\_test = 1;}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8h_a686e9ce5422577f0ea11f28b4c33fc52}{quit\_spi\_test}} = 1;}
 \DoxyCodeLine{                \textcolor{keywordflow}{break};}
 \DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'0'}:}
 \DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a75ee3c2ffd172efb123cb50496ee639d}{spi\_test\_change\_selected\_device}}();}
@@ -139,7 +146,7 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{\{}
 \DoxyCodeLine{    \textcolor{keywordtype}{char} command = 0;}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{keywordflow}{while}(quit\_spi\_test == 0)}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(\mbox{\hyperlink{spi__test__prog_8h_a686e9ce5422577f0ea11f28b4c33fc52}{quit\_spi\_test}} == 0)}
 \DoxyCodeLine{    \{}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"You have entered the \(\backslash\)"Send Write Command\(\backslash\)" tool\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{        \mbox{\hyperlink{spi__test__prog_8c_ac23eef55b6f2e2814b632e12e0391ed3}{spi\_test\_display\_write\_command\_instructions}}();}
@@ -153,7 +160,7 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a91d0dbf99b5d8fd68965f66788e58da0}{spi\_test\_display\_devices}}();}
 \DoxyCodeLine{                \textcolor{keywordflow}{break};}
 \DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'q'}:}
-\DoxyCodeLine{                quit\_spi\_test = 1;}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8h_a686e9ce5422577f0ea11f28b4c33fc52}{quit\_spi\_test}} = 1;}
 \DoxyCodeLine{                \textcolor{keywordflow}{break};}
 \DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'0'}:}
 \DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a75ee3c2ffd172efb123cb50496ee639d}{spi\_test\_change\_selected\_device}}();}
@@ -176,7 +183,7 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{        \}}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
-\DoxyCodeLine{    quit\_spi\_test = 0;}
+\DoxyCodeLine{    \mbox{\hyperlink{spi__test__prog_8h_a686e9ce5422577f0ea11f28b4c33fc52}{quit\_spi\_test}} = 0;}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)rWELCOME TO THE SPI TEST!\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
@@ -184,7 +191,7 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{\{}
 \DoxyCodeLine{    \textcolor{keywordtype}{char} command = 0;}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{keywordflow}{while}(quit\_spi\_test == 0)}
+\DoxyCodeLine{    \textcolor{keywordflow}{while}(\mbox{\hyperlink{spi__test__prog_8h_a686e9ce5422577f0ea11f28b4c33fc52}{quit\_spi\_test}} == 0)}
 \DoxyCodeLine{    \{}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"You have entered the \(\backslash\)"Send Write Command\(\backslash\)" tool\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{        \mbox{\hyperlink{spi__test__prog_8c_ac23eef55b6f2e2814b632e12e0391ed3}{spi\_test\_display\_write\_command\_instructions}}();}
@@ -198,7 +205,7 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a91d0dbf99b5d8fd68965f66788e58da0}{spi\_test\_display\_devices}}();}
 \DoxyCodeLine{                \textcolor{keywordflow}{break};}
 \DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'q'}:}
-\DoxyCodeLine{                quit\_spi\_test = 1;}
+\DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8h_a686e9ce5422577f0ea11f28b4c33fc52}{quit\_spi\_test}} = 1;}
 \DoxyCodeLine{                \textcolor{keywordflow}{break};}
 \DoxyCodeLine{            \textcolor{keywordflow}{case} \textcolor{charliteral}{'0'}:}
 \DoxyCodeLine{                \mbox{\hyperlink{spi__test__prog_8c_a75ee3c2ffd172efb123cb50496ee639d}{spi\_test\_change\_selected\_device}}();}
@@ -221,7 +228,7 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{        \}}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
-\DoxyCodeLine{    quit\_spi\_test = 0;}
+\DoxyCodeLine{    \mbox{\hyperlink{spi__test__prog_8h_a686e9ce5422577f0ea11f28b4c33fc52}{quit\_spi\_test}} = 0;}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)rWELCOME TO THE SPI TEST!\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
@@ -250,13 +257,13 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{    \textcolor{keywordflow}{while}(sendData == 0)}
 \DoxyCodeLine{    \{}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tEnter Write Command:"});}
-\DoxyCodeLine{        spi\_command\_byte = (uint8\_t)(\mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1));}
+\DoxyCodeLine{        \mbox{\hyperlink{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}{spi\_command\_byte}} = (uint8\_t)(\mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1));}
 \DoxyCodeLine{}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tEnter Value to write:"});}
 \DoxyCodeLine{        writeData[0] = (uint8\_t)(\mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1));}
 \DoxyCodeLine{}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tSend write command \(\backslash\)""});}
-\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(spi\_command\_byte, hexStr);}
+\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(\mbox{\hyperlink{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}{spi\_command\_byte}}, hexStr);}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)" and value \(\backslash\)""});}
 \DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(writeData[0], hexStr);}
@@ -265,7 +272,7 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{        \textcolor{keywordflow}{if}(\mbox{\hyperlink{user__handler_8c_aee6480d62151c6f2ebd0d0bf519dc520}{get\_yes\_no\_from\_user}}() == 1)}
 \DoxyCodeLine{            sendData = 1;}
 \DoxyCodeLine{    \}}
-\DoxyCodeLine{    spi\_test\_write(selected\_dev, writeData, 1, \&response);}
+\DoxyCodeLine{    spi\_test\_write(\mbox{\hyperlink{spi__test__prog_8h_a2e074965d77b7cc2854b2b89748b666a}{selected\_dev}}, writeData, 1, \&response);}
 \DoxyCodeLine{}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)tData has been sent!\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{}
@@ -289,7 +296,7 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{    \textcolor{keywordflow}{while}(sendData == 0)}
 \DoxyCodeLine{    \{}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tEnter Write Command:"});}
-\DoxyCodeLine{        spi\_command\_byte = \mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1);}
+\DoxyCodeLine{        \mbox{\hyperlink{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}{spi\_command\_byte}} = \mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1);}
 \DoxyCodeLine{}
 \DoxyCodeLine{        \textcolor{keywordflow}{for}(i = 0; i < 4; i++)}
 \DoxyCodeLine{        \{}
@@ -304,7 +311,7 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tSend write command \(\backslash\)""});}
-\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(spi\_command\_byte, hexStr);}
+\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(\mbox{\hyperlink{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}{spi\_command\_byte}}, hexStr);}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)" and values"});}
 \DoxyCodeLine{        \textcolor{keywordflow}{for}(i = 0; i < 4; i++)}
@@ -320,7 +327,7 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{            sendData = 1;}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
-\DoxyCodeLine{    spi\_test\_write(selected\_dev, writeData, 4, \&response);}
+\DoxyCodeLine{    spi\_test\_write(\mbox{\hyperlink{spi__test__prog_8h_a2e074965d77b7cc2854b2b89748b666a}{selected\_dev}}, writeData, 4, \&response);}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)tData has been sent!\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tResponse was \(\backslash\)""});}
@@ -341,13 +348,13 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"You have entered the \(\backslash\)"Send Custom Byte\(\backslash\)" tool\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"How many bytes would you like to send?\(\backslash\)n\(\backslash\)r"});}
-\DoxyCodeLine{    numBytes = get\_dec\_from\_user(3);}
+\DoxyCodeLine{    numBytes = \mbox{\hyperlink{user__handler_8c_a3369cf60c9eac966eb6f0a4205d1c400}{get\_dec\_from\_user}}(3);}
 \DoxyCodeLine{    writeData = malloc(\textcolor{keyword}{sizeof}(int8\_t)*numBytes);}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{keywordflow}{while}(sendData == 0)}
 \DoxyCodeLine{    \{}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tEnter Write Command:"});}
-\DoxyCodeLine{        spi\_command\_byte = \mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1);}
+\DoxyCodeLine{        \mbox{\hyperlink{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}{spi\_command\_byte}} = \mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1);}
 \DoxyCodeLine{}
 \DoxyCodeLine{        \textcolor{keywordflow}{for}(i = 0; i < numBytes; i++)}
 \DoxyCodeLine{        \{}
@@ -362,7 +369,7 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tSend write command \(\backslash\)""});}
-\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(spi\_command\_byte, hexStr);}
+\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(\mbox{\hyperlink{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}{spi\_command\_byte}}, hexStr);}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)" and values"});}
 \DoxyCodeLine{        \textcolor{keywordflow}{for}(i = 0; i < numBytes; i++)}
@@ -378,7 +385,7 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{            sendData = 1;}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
-\DoxyCodeLine{    spi\_test\_write(selected\_dev, writeData, numBytes, \&response);}
+\DoxyCodeLine{    spi\_test\_write(\mbox{\hyperlink{spi__test__prog_8h_a2e074965d77b7cc2854b2b89748b666a}{selected\_dev}}, writeData, numBytes, \&response);}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)tData has been sent!\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tResponse was \(\backslash\)""});}
@@ -412,17 +419,17 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{    \textcolor{keywordflow}{while}(sendData == 0)}
 \DoxyCodeLine{    \{}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tEnter Read Command:"});}
-\DoxyCodeLine{        spi\_command\_byte = (uint8\_t)(\mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1));}
+\DoxyCodeLine{        \mbox{\hyperlink{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}{spi\_command\_byte}} = (uint8\_t)(\mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1));}
 \DoxyCodeLine{}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tSend read command \(\backslash\)""});}
-\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(spi\_command\_byte, hexStr);}
+\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(\mbox{\hyperlink{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}{spi\_command\_byte}}, hexStr);}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)"?"});}
 \DoxyCodeLine{        \textcolor{keywordflow}{if}(\mbox{\hyperlink{user__handler_8c_aee6480d62151c6f2ebd0d0bf519dc520}{get\_yes\_no\_from\_user}}() == 1)}
 \DoxyCodeLine{            sendData = 1;}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
-\DoxyCodeLine{    spi\_test\_read(selected\_dev, \&spi\_command\_byte, readData, 1);}
+\DoxyCodeLine{    spi\_test\_read(\mbox{\hyperlink{spi__test__prog_8h_a2e074965d77b7cc2854b2b89748b666a}{selected\_dev}}, \&\mbox{\hyperlink{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}{spi\_command\_byte}}, readData, 1);}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)tData has been read!\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tRead Data is \(\backslash\)""});}
@@ -444,17 +451,17 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{    \textcolor{keywordflow}{while}(sendData == 0)}
 \DoxyCodeLine{    \{}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tEnter Read Command:"});}
-\DoxyCodeLine{        spi\_command\_byte = \mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1);}
+\DoxyCodeLine{        \mbox{\hyperlink{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}{spi\_command\_byte}} = \mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1);}
 \DoxyCodeLine{}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tSend write command \(\backslash\)""});}
-\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(spi\_command\_byte, hexStr);}
+\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(\mbox{\hyperlink{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}{spi\_command\_byte}}, hexStr);}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)"?[Y/N] "});}
 \DoxyCodeLine{}
 \DoxyCodeLine{        \textcolor{keywordflow}{if}(\mbox{\hyperlink{user__handler_8c_aee6480d62151c6f2ebd0d0bf519dc520}{get\_yes\_no\_from\_user}}() == 1)}
 \DoxyCodeLine{            sendData = 1;}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
-\DoxyCodeLine{    spi\_test\_read(selected\_dev, \&spi\_command\_byte, readData, 4);}
+\DoxyCodeLine{    spi\_test\_read(\mbox{\hyperlink{spi__test__prog_8h_a2e074965d77b7cc2854b2b89748b666a}{selected\_dev}}, \&\mbox{\hyperlink{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}{spi\_command\_byte}}, readData, 4);}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)tData has been sent!\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tRead Data is "});}
@@ -480,16 +487,16 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"You have entered the \(\backslash\)"Send Custom Byte\(\backslash\)" tool\(\backslash\)n\(\backslash\)r\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"How many bytes would you like to send?\(\backslash\)n\(\backslash\)r"});}
-\DoxyCodeLine{    numBytes = get\_dec\_from\_user(3);}
+\DoxyCodeLine{    numBytes = \mbox{\hyperlink{user__handler_8c_a3369cf60c9eac966eb6f0a4205d1c400}{get\_dec\_from\_user}}(3);}
 \DoxyCodeLine{    readData = malloc(\textcolor{keyword}{sizeof}(int8\_t)*numBytes);}
 \DoxyCodeLine{}
 \DoxyCodeLine{    \textcolor{keywordflow}{while}(sendData == 0)}
 \DoxyCodeLine{    \{}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tEnter Write Command:"});}
-\DoxyCodeLine{        spi\_command\_byte = \mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1);}
+\DoxyCodeLine{        \mbox{\hyperlink{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}{spi\_command\_byte}} = \mbox{\hyperlink{user__handler_8c_ae9efc9ff2f203678792c4e907caad6e3}{get\_bytes\_from\_user}}(1);}
 \DoxyCodeLine{}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tSend write command \(\backslash\)""});}
-\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(spi\_command\_byte, hexStr);}
+\DoxyCodeLine{        \mbox{\hyperlink{user__handler_8c_a2209b2abeaa2ec57db9f82a4d89b4e07}{int\_to\_single\_byte\_string}}(\mbox{\hyperlink{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}{spi\_command\_byte}}, hexStr);}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)hexStr);}
 \DoxyCodeLine{        UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)"?[Y/N] "});}
 \DoxyCodeLine{}
@@ -497,7 +504,7 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{            sendData = 1;}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
-\DoxyCodeLine{    spi\_test\_read(selected\_dev, \&spi\_command\_byte, readData, numBytes);}
+\DoxyCodeLine{    spi\_test\_read(\mbox{\hyperlink{spi__test__prog_8h_a2e074965d77b7cc2854b2b89748b666a}{selected\_dev}}, \&\mbox{\hyperlink{spi__test__prog_8h_a46dcef2d0c8a10b1934f5c812ac28895}{spi\_command\_byte}}, readData, numBytes);}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)r\(\backslash\)tData has been sent!\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tRead Data is "});}
@@ -539,7 +546,7 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{spi__test__prog_8c_ad799be8216be4017e5a770110a45741f}{spi\_test\_display\_selected\_device}}(\textcolor{keywordtype}{void})}
 \DoxyCodeLine{\{}
 \DoxyCodeLine{    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"\(\backslash\)tCURRENT DEVICE: "});}
-\DoxyCodeLine{    \textcolor{keywordflow}{switch}(selected\_dev\_id)}
+\DoxyCodeLine{    \textcolor{keywordflow}{switch}(\mbox{\hyperlink{spi__test__prog_8h_a29a1d98fbd9a5932b4e319345046e3b3}{selected\_dev\_id}})}
 \DoxyCodeLine{    \{}
 \DoxyCodeLine{        \textcolor{keywordflow}{case} FRAM:}
 \DoxyCodeLine{            UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"FRAM\(\backslash\)n\(\backslash\)r"});}
@@ -605,33 +612,33 @@ Reads x bytes (x specified by the data\+\_\+size param)The function will send a 
 \DoxyCodeLine{            \{}
 \DoxyCodeLine{                \textcolor{keywordflow}{case} FRAM:}
 \DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"WARNING: This may not be a good idea...\(\backslash\)n\(\backslash\)r"});}
-\DoxyCodeLine{                    selected\_dev = \&\mbox{\hyperlink{spi__test__prog_8c_a02bd3a1d8e294a8f64c769178ec07eea}{fram\_dev}};}
-\DoxyCodeLine{                    selected\_dev\_id = \mbox{\hyperlink{spi__test__prog_8c_a02bd3a1d8e294a8f64c769178ec07eea}{fram\_dev}}.spi\_sel;}
+\DoxyCodeLine{                    \mbox{\hyperlink{spi__test__prog_8h_a2e074965d77b7cc2854b2b89748b666a}{selected\_dev}} = \&\mbox{\hyperlink{spi__test__prog_8c_a02bd3a1d8e294a8f64c769178ec07eea}{fram\_dev}};}
+\DoxyCodeLine{                    \mbox{\hyperlink{spi__test__prog_8h_a29a1d98fbd9a5932b4e319345046e3b3}{selected\_dev\_id}} = \mbox{\hyperlink{spi__test__prog_8c_a02bd3a1d8e294a8f64c769178ec07eea}{fram\_dev}}.\mbox{\hyperlink{structspi__dev_af481a62e80b304163756fd6f74c745fc}{spi\_sel}};}
 \DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"FRAM selected\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{                    \textcolor{keywordflow}{break};}
 \DoxyCodeLine{                \textcolor{keywordflow}{case} EXTERNAL\_SPI\_0:}
-\DoxyCodeLine{                    selected\_dev = \&external\_spi\_0;}
-\DoxyCodeLine{                    selected\_dev\_id = external\_spi\_0.spi\_sel;}
+\DoxyCodeLine{                    \mbox{\hyperlink{spi__test__prog_8h_a2e074965d77b7cc2854b2b89748b666a}{selected\_dev}} = \&\mbox{\hyperlink{spi__test__prog_8c_a277eb22a369721f017cd65d93034d8b7}{external\_spi\_0}};}
+\DoxyCodeLine{                    \mbox{\hyperlink{spi__test__prog_8h_a29a1d98fbd9a5932b4e319345046e3b3}{selected\_dev\_id}} = \mbox{\hyperlink{spi__test__prog_8c_a277eb22a369721f017cd65d93034d8b7}{external\_spi\_0}}.\mbox{\hyperlink{structspi__dev_af481a62e80b304163756fd6f74c745fc}{spi\_sel}};}
 \DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"EXTERNAL\_SPI\_0 selected\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{                    \textcolor{keywordflow}{break};}
 \DoxyCodeLine{                \textcolor{keywordflow}{case} EXTERNAL\_SPI\_1:}
-\DoxyCodeLine{                    selected\_dev = \&external\_spi\_1;}
-\DoxyCodeLine{                    selected\_dev\_id = external\_spi\_1.spi\_sel;}
+\DoxyCodeLine{                    \mbox{\hyperlink{spi__test__prog_8h_a2e074965d77b7cc2854b2b89748b666a}{selected\_dev}} = \&\mbox{\hyperlink{spi__test__prog_8c_a623ebc73879144145e467950be650deb}{external\_spi\_1}};}
+\DoxyCodeLine{                    \mbox{\hyperlink{spi__test__prog_8h_a29a1d98fbd9a5932b4e319345046e3b3}{selected\_dev\_id}} = \mbox{\hyperlink{spi__test__prog_8c_a623ebc73879144145e467950be650deb}{external\_spi\_1}}.\mbox{\hyperlink{structspi__dev_af481a62e80b304163756fd6f74c745fc}{spi\_sel}};}
 \DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"EXTERNAL\_SPI\_1 selected\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{                    \textcolor{keywordflow}{break};}
 \DoxyCodeLine{                \textcolor{keywordflow}{case} ADC:}
-\DoxyCodeLine{                    selected\_dev = \&adc\_dev;}
-\DoxyCodeLine{                    selected\_dev\_id = adc\_dev.spi\_sel;}
+\DoxyCodeLine{                    \mbox{\hyperlink{spi__test__prog_8h_a2e074965d77b7cc2854b2b89748b666a}{selected\_dev}} = \&\mbox{\hyperlink{spi__test__prog_8c_a467bd423905e83ac180fe7dbf81291bf}{adc\_dev}};}
+\DoxyCodeLine{                    \mbox{\hyperlink{spi__test__prog_8h_a29a1d98fbd9a5932b4e319345046e3b3}{selected\_dev\_id}} = \mbox{\hyperlink{spi__test__prog_8c_a467bd423905e83ac180fe7dbf81291bf}{adc\_dev}}.\mbox{\hyperlink{structspi__dev_af481a62e80b304163756fd6f74c745fc}{spi\_sel}};}
 \DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"ADC selected\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{                    \textcolor{keywordflow}{break};}
 \DoxyCodeLine{                \textcolor{keywordflow}{case} LCD\_SCREEN:}
-\DoxyCodeLine{                    selected\_dev = \&lcd\_screen\_dev;}
-\DoxyCodeLine{                    selected\_dev\_id = lcd\_screen\_dev.spi\_sel;}
+\DoxyCodeLine{                    \mbox{\hyperlink{spi__test__prog_8h_a2e074965d77b7cc2854b2b89748b666a}{selected\_dev}} = \&\mbox{\hyperlink{spi__test__prog_8c_a91f5baec8594e14ef1799a74e537dfaa}{lcd\_screen\_dev}};}
+\DoxyCodeLine{                    \mbox{\hyperlink{spi__test__prog_8h_a29a1d98fbd9a5932b4e319345046e3b3}{selected\_dev\_id}} = \mbox{\hyperlink{spi__test__prog_8c_a91f5baec8594e14ef1799a74e537dfaa}{lcd\_screen\_dev}}.\mbox{\hyperlink{structspi__dev_af481a62e80b304163756fd6f74c745fc}{spi\_sel}};}
 \DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"LCD\_SCREEN selected\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{                    \textcolor{keywordflow}{break};}
 \DoxyCodeLine{                \textcolor{keywordflow}{case} ACCELEROMETER:}
-\DoxyCodeLine{                    selected\_dev = \&accelerometer\_dev;}
-\DoxyCodeLine{                    selected\_dev\_id = accelerometer\_dev.spi\_sel;}
+\DoxyCodeLine{                    \mbox{\hyperlink{spi__test__prog_8h_a2e074965d77b7cc2854b2b89748b666a}{selected\_dev}} = \&\mbox{\hyperlink{spi__test__prog_8c_a5779eee5a7019ec0d0b15312d53bcdd9}{accelerometer\_dev}};}
+\DoxyCodeLine{                    \mbox{\hyperlink{spi__test__prog_8h_a29a1d98fbd9a5932b4e319345046e3b3}{selected\_dev\_id}} = \mbox{\hyperlink{spi__test__prog_8c_a5779eee5a7019ec0d0b15312d53bcdd9}{accelerometer\_dev}}.\mbox{\hyperlink{structspi__dev_af481a62e80b304163756fd6f74c745fc}{spi\_sel}};}
 \DoxyCodeLine{                    UART\_polled\_tx\_string(\&\mbox{\hyperlink{user__handler_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\_uart}}, (\textcolor{keyword}{const} uint8\_t *)\textcolor{stringliteral}{"ACCELEROMETER selected\(\backslash\)n\(\backslash\)r"});}
 \DoxyCodeLine{                    \textcolor{keywordflow}{break};}
 \DoxyCodeLine{                \textcolor{keywordflow}{default}:}
