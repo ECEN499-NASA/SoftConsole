@@ -1,6 +1,19 @@
-
+/**
+ * @file	user_handler.c
+ * @author	Zac Carico
+ * @date	Mar 16 2020
+ * 
+ * @brief	Function definitions of user_handler.h
+ */
 #include "user_handler.h"
 
+/**
+ * @brief	Used to easily perform unit tests of all functions
+ * 
+ * @note 	"get_single_char_from_user()" is not specifically in the unit
+ * 			test, but is technically tested when the user chooses what 
+ * 			unit test to perform
+ */
 void user_handler_unit_test_handler(void)
 {
 	uint8_t quit = 0;
@@ -39,11 +52,17 @@ void user_handler_unit_test_handler(void)
 	}
 }
 
+/**
+ * @brief	Displays when user enters an invalid commands
+ */
 void user_handler_invalid_command(void)
 {
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"ERROR: Invalid Command!\n\r");
 }
 
+/**
+ * @brief 	Displays available unit tests 
+ */
 void user_handler_display_instructions(void)
 {
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\tCOMMANDS:\n\r");
@@ -55,6 +74,9 @@ void user_handler_display_instructions(void)
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\t-q \t Quit\n\r");
 }
 
+/**
+ * @brief 	Used to perform unit test for getting boolean value from the user
+ */
 void user_handler_test_yes_no(void)
 {
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"YES/NO:\n\r");
@@ -64,6 +86,9 @@ void user_handler_test_yes_no(void)
 		UART_polled_tx_string(&g_uart, (const uint8_t *)"FALSE\n\r");
 }
 
+/**
+ * @brief	Used to perform unit test for getting a string from the user
+ */
 void user_handler_test_string(void)
 {
 	char str[50];
@@ -80,6 +105,9 @@ void user_handler_test_string(void)
 	UART_polled_tx_string(&g_uart, (const uint8_t *)str);
 }
 
+/**
+ * @brief	Used to perform unit test for getting an integer value from user
+ */
 void user_handler_test_decimal(void)
 {
 	uint8_t num[1];
@@ -98,6 +126,9 @@ void user_handler_test_decimal(void)
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\r");
 }
 
+/**
+ * @brief	Used to perform unit test for getting data (in bytes) from the user
+ */
 void user_handler_test_bytes(void)
 {
 	uint32_t byteData[1];
@@ -123,6 +154,10 @@ void user_handler_test_bytes(void)
 	UART_polled_tx_string(&g_uart, (const uint8_t *)hexStr);
 }
 
+/**
+ * @brief	Gets a single character from the user's input
+ * @return	Value of type char (the user's input)
+ */
 char get_single_char_from_user(void)
 {
 	uint8_t rx_size=0;
@@ -143,6 +178,11 @@ char get_single_char_from_user(void)
 	return (char)rx_buff[0];
 }
 
+/**
+ * @brief	Gets a boolean value (Y/N) from the user
+ * @return	1 : The user selected "yes"
+ * 			0 : The user selected "no"
+ */
 uint8_t get_yes_no_from_user(void)
 {
 	uint8_t rx_size=0;
@@ -168,6 +208,31 @@ uint8_t get_yes_no_from_user(void)
 		return 1;
 }
 
+/**
+ * @brief		Gets a string of characters from the user
+ * 
+ * @details		Doesn't register the user pressing the ESC_KEY, BACKSPACE_KEY, 
+ * 				or TAB_KEY. When the user has entered the maximum amount of 
+ * 				characters, or has pressed the ENTER_KEY, it will end the 
+ * 				function. If param "spaceEnabled" is false, it will ignore 
+ * 				that to
+ * 
+ * @example
+ * @code 
+ * 	#define MAX_INPUT 10
+ *  uint8_t numChars = MAX_INPUT;
+ * 	char input[MAX_INPUT];
+ * 	uint8_t spaceEnabled = 0x01;
+ * 
+ * 	get_string_from_user(numChars, spaceEnabled, &input);
+ * @endcode
+ * 				
+ * @param numChars		The maximum number of characters the user can enter
+ * @param spaceEnabled	1 : Accepts spacebar input
+ * 						0 : Ignores spacebar input
+ * @param input			Pointer/array to be filled with user input. Array's
+ * 						size is defined by the "numChars" param
+ */
 void get_string_from_user(uint8_t numChars, uint8_t spaceEnabled, char* input)
 {
 	uint8_t count = 0;
@@ -228,6 +293,28 @@ void get_string_from_user(uint8_t numChars, uint8_t spaceEnabled, char* input)
 	input[count] = '\0';
 }
 
+/**
+ * @brief		Gets an integer value from the user
+ * 
+ * @details 	Function will only return a correct value if it is smaller 
+ * 				than the max value represented with 32bits. If the user 
+ * 				enters more than the number of placed specified, the function 
+ * 				will ignore them.
+ * 
+ * @example
+ * @code
+ * 	printf("What is 2 + 2?\n");
+ * 	if(get_dec_from_user(2) != 4)
+ * 		printf("Go back to Kindergarden\n");
+ * 	else
+ * 		printf("Good job! Here is a cookie\n");
+ * 	// If the user's input is "004", then the returned value would be 0
+ * 	// If the user enters "4" or "04" then the returned value would be 4
+ * @endcode
+ * 
+ * @param numDecPlaces	Number of decimal places to be received by the user
+ * @return	User input of uint32_t type
+ */
 uint32_t get_dec_from_user(uint8_t numDecPlaces)
 {
 	uint32_t input = 0;
@@ -286,6 +373,20 @@ uint32_t get_dec_from_user(uint8_t numDecPlaces)
 	return input;
 }
 
+/**
+ * @brief	Gets input from the user in hexidecimal form
+ * 
+ * @details	Lets the user input bytes, using spaces to help 
+ * 			sperate each byte without messing up the data. The
+ * 			maximum amount of bytes the user can actually input
+ * 			without overflow is 4
+ * 
+ * @warning	This may not work correctly, run the unit test to verify
+ * 
+ * @param numBytes	Number of bytes for the user to input
+ * 
+ * @return 	data entered by user
+ */
 uint32_t get_bytes_from_user(uint8_t numBytes)
 {
 	uint32_t input = 0;
@@ -381,6 +482,13 @@ uint32_t get_bytes_from_user(uint8_t numBytes)
 	return input;
 }
 
+/**
+ * @brief	Turns an integer value into a string representation
+ * 
+ * @param byte			Integer to convert to a string representation
+ * @param dec_string	Array with 4 elements that is a string 
+ * 						representation of an integer	
+ */
 void byte_to_dec_string(uint8_t byte, char dec_string[4])
 {
 	dec_string[3] = '\0';
@@ -389,6 +497,15 @@ void byte_to_dec_string(uint8_t byte, char dec_string[4])
 	dec_string[0] = byte / 100 % 10 + '0';
 }
 
+/**
+ * @brief 	Converts a 32-bit integer into a string 
+ * 			representation of bytes
+ * 
+ * @param num			The 32-but integer to convert to a  
+ * 						string representation of bytes
+ * @param hex_string	Array with 12 elements representing 
+ * 						a 32-bit integer as a string of bytes
+ */
 void int_to_hex_string(uint32_t num, char hex_string[12])
 {
 	hex_string[11] = '\0';
@@ -405,6 +522,13 @@ void int_to_hex_string(uint32_t num, char hex_string[12])
 	hex_string[0] = '0';
 }
 
+/**
+ * @brief	Converts a byte into a string representation
+ * 
+ * @param num			Byte to convert into string representation
+ * @param hex_string	Array with 5 elements that represents a byte 
+ * 						in string a format
+ */
 void int_to_single_byte_string(uint8_t num, char hex_string[5])
 {
 	hex_string[4] = '\0';

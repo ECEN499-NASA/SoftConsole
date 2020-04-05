@@ -61,12 +61,13 @@ void spi_test_init(void)
 }
 
 /**
- * @brief	Reads x bytes specified by the data_size param.
+ * @brief	Reads x bytes (x specified by the data_size param)
  * 
  * @details	The function will send a read command to the specified 
  * 			device, then fill up the data param with the information 
  * 			comming in
  * 
+ * @example
  * @code	
  * 	#define DATA_SIZE 10
  * 
@@ -79,14 +80,13 @@ void spi_test_init(void)
  *  };
  * 
  * 	spi_test_read(&device, &command, &data_read, &data_size);
- * 	
  * 	for(uint8_t i = 0; i < DATA_SIZE; i++) { // <Print_data_here> }
  * @endcode
  * 
  * @param device  	Pointer to device to read data from. There are 
  * 					currently 6 different device that can be read from
  * @param command	Pointer to read command to send to the device
- * @param data		Pointer to the array to be filled with incomming data
+ * @param data		Pointer/array to be filled with incomming data
  * @param data_size Size of the data array
  */
 void spi_test_read(spi_dev *device, uint8_t *command, uint8_t *data, uint8_t data_size)
@@ -97,7 +97,37 @@ void spi_test_read(spi_dev *device, uint8_t *command, uint8_t *data, uint8_t dat
 }
 
 /**
+ * @brief	Writes x bytes (x specified by the data_size param)
  * 
+ * @details	Writes data to the specified device and then captures the 
+ * 			device's response
+ * 
+ * @example
+ * @code
+ * 	#define DATA_SIZE 10
+ *  
+ * 	uint8_t data_size = DATA_SIZE;
+ * 	uint8_t data[DATA_SIZE] = { 
+ *  	0x10, //write_command
+ * 		0x00, 0x01, 0x02, 0x03, ..., 0x08 // data
+ *  };
+ *  spi_dev device = {
+ *  	.spi = &riscv_spi, 		// Any "spi_instance_t" type
+ * 		.spi_sel = SPI_SLAVE_0 	// Any "spi_slave_t" type
+ *  };
+ * 	uint8_t *resp_data;
+ * 	
+ * 	spi_test(&device. &data, data_size, &resp_data);
+ *  // <print_response_here>
+ * @endcode
+ * 
+ * @param device  	Pointer to device to read data from. There are 
+ * 					currently 6 different device that can be read from
+ * @param data		Pointer/array of data to send to the device, The 
+ * 					first byte in the array being the write command the 
+ * 					device needs.
+ * @param data_size	Size of the data array
+ * @param resp_data	pointer to the device's response after receiving the data
  */
 void spi_test_write(spi_dev *device, uint8_t *data, uint8_t data_size, uint8_t *resp_data)
 {
@@ -106,6 +136,10 @@ void spi_test_write(spi_dev *device, uint8_t *data, uint8_t data_size, uint8_t *
 	SPI_clear_slave_select(device->spi, device->spi_sel);
 }
 
+/**
+ * @brief	The main function of the "SPI_TEST_PROG". Lets user change 
+ * 			settings and test different aspects of the SDI
+ */
 void spi_test_handler(void)
 {
 	char command = 0;
@@ -151,6 +185,12 @@ void spi_test_handler(void)
 	return;
 }
 
+/**
+ * @brief 	Handler for used to test sending data of various sizes
+ * 			to the selected device.
+ * 
+ * @details	User can choose to send data of 1byte, 4bytes, or an amount specified by the user.
+ */
 void spi_test_send_write_command(void)
 {
 	char command = 0;
@@ -196,6 +236,12 @@ void spi_test_send_write_command(void)
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rWELCOME TO THE SPI TEST!\n\r");
 }
 
+/**
+ * @brief 	Handler for used to test reading data of various sizes
+ * 			from the selected device.
+ * 
+ * @details	User can choose to read data of 1byte, 4bytes, or an amount specified by the user.
+ */
 void spi_test_send_read_command(void)
 {
 	char command = 0;
@@ -241,6 +287,9 @@ void spi_test_send_read_command(void)
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rWELCOME TO THE SPI TEST!\n\r");
 }
 
+/**
+ * @brief	Displays the user commands for the program
+ */
 void spi_test_display_write_command_instructions(void)
 {
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\tCOMMANDS:\n\r");
@@ -254,6 +303,9 @@ void spi_test_display_write_command_instructions(void)
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- q\t exit \"Send Write Command\" tool\n\r");
 }
 
+/**
+ * @brief	Tests just sending one byte of data determined by the user's input
+ */
 void spi_test_write_single_byte(void)
 {
 	uint8_t writeData[1] = {0};
@@ -291,6 +343,9 @@ void spi_test_write_single_byte(void)
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\"\n\r");
 }
 
+/**
+ * @brief Tests sending four bytes of data determined by the user's input
+ */
 void spi_test_write_quad_byte(void)
 {
 	uint8_t i = 0;
@@ -345,6 +400,17 @@ void spi_test_write_quad_byte(void)
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\"\n\r");
 }
 
+/**
+ * @brief 	Sends a number of bytes (determined by the user) to the 
+ * 			selected SPI device
+ * 
+ * @details	Gets the number of bytes bytes to send from the user, 
+ * 			gets the data to send from the user, then sends the data.
+ * 
+ * @warning	This function was breaking at some point, but due to the 
+ * 			inability to fully test the feature at this time, it may 
+ * 			not have been fixed
+ */
 void spi_test_write_custom_byte(void)
 {
 	uint8_t i = 0;
@@ -404,6 +470,10 @@ void spi_test_write_custom_byte(void)
 	free(writeData);
 }
 
+/**
+ * @brief	Displays the commands that a user can select to test 
+ * 			reading from the selected SPI device
+ */
 void spi_test_display_read_command_instructions(void)
 {
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\tCOMMANDS:\n\r");
@@ -417,6 +487,9 @@ void spi_test_display_read_command_instructions(void)
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- q\t exit \"Send Write Command\" tool\n\r");
 }
 
+/**
+ * @brief	Tests reading a single byte from the selected SPI device
+ */
 void spi_test_read_single_byte(void)
 {
 	uint8_t readData[1] = {0};
@@ -447,6 +520,9 @@ void spi_test_read_single_byte(void)
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\"\n\r");
 }
 
+/**
+ * @brief	Tests reading four bytes from the selected SPI device
+ */
 void spi_test_read_quad_byte(void)
 {
 	uint8_t i = 0;
@@ -485,6 +561,17 @@ void spi_test_read_quad_byte(void)
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\r");
 }
 
+/**
+ * @brief 	Reads a number of bytes (determined by the user) from
+ * 			the selected SPI device
+ * 
+ * @details	Gets the number of bytes bytes to read from the user, 
+ * 			gets the read command, then reads the data.
+ * 
+ * @warning	This function was breaking at some point, but due to the 
+ * 			inability to fully test the feature at this time, it may 
+ * 			not have been fixed
+ */
 void spi_test_read_custom_byte(void)
 {
 	uint8_t i = 0;
@@ -529,6 +616,9 @@ void spi_test_read_custom_byte(void)
 	free(readData);
 }
 
+/**
+ * @brief	Displays the SPI_TEST_PROG top-level commands
+ */
 void spi_test_display_commands(void)
 {
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\tCOMMANDS:\n\r");
@@ -541,6 +631,9 @@ void spi_test_display_commands(void)
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- q\t exit SPI Test Program\n\r");
 }
 
+/**
+ * @brief	Displays available SPI devices that the user can select
+ */
 void spi_test_display_devices(void)
 {
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\tSPI DEVICE IDs:\n\r");
@@ -552,6 +645,9 @@ void spi_test_display_devices(void)
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\t-(5) ACCELEROMETER\n\r");
 }
 
+/**
+ * @brief	Displays the currently slected device to the user 
+ */
 void spi_test_display_selected_device(void)
 {
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\tCURRENT DEVICE: ");
@@ -581,6 +677,9 @@ void spi_test_display_selected_device(void)
 	}
 }
 
+/**
+ * @brief	Lets user change the selected SPI device
+ */
 void spi_test_change_selected_device(void)
 {
 	uint8_t correct_id = 0;
@@ -660,6 +759,9 @@ void spi_test_change_selected_device(void)
 	}
 }
 
+/**
+ * @brief Used when the user enters an invalid command
+ */
 void spi_test_display_incorrect_command(void)
 {
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"ERROR! Invalid Command!\n\r");
