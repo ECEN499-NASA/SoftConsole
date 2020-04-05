@@ -5,6 +5,7 @@
  * 
  * @brief	Function definitions of user_handler.h
  */
+
 #include "user_handler.h"
 
 /**
@@ -217,20 +218,20 @@ uint8_t get_yes_no_from_user(void)
  * 				function. If param "spaceEnabled" is false, it will ignore 
  * 				that to
  * 
- * @example
  * @code 
- * 	#define MAX_INPUT 10
- *  uint8_t numChars = MAX_INPUT;
- * 	char input[MAX_INPUT];
- * 	uint8_t spaceEnabled = 0x01;
- * 
- * 	get_string_from_user(numChars, spaceEnabled, &input);
+ 	#define MAX_INPUT 10
+ 	
+	uint8_t numChars = MAX_INPUT;
+ 	char input[MAX_INPUT];
+ 	uint8_t spaceEnabled = 0x01;
+ 
+ 	get_string_from_user(numChars, spaceEnabled, &input);
  * @endcode
  * 				
  * @param numChars		The maximum number of characters the user can enter
  * @param spaceEnabled	1 : Accepts spacebar input
  * 						0 : Ignores spacebar input
- * @param input			Pointer/array to be filled with user input. Array's
+ * @param input			Pointer/array to be filled with user input. Array's \
  * 						size is defined by the "numChars" param
  */
 void get_string_from_user(uint8_t numChars, uint8_t spaceEnabled, char* input)
@@ -301,15 +302,16 @@ void get_string_from_user(uint8_t numChars, uint8_t spaceEnabled, char* input)
  * 				enters more than the number of placed specified, the function 
  * 				will ignore them.
  * 
- * @example
  * @code
- * 	printf("What is 2 + 2?\n");
- * 	if(get_dec_from_user(2) != 4)
- * 		printf("Go back to Kindergarden\n");
- * 	else
- * 		printf("Good job! Here is a cookie\n");
- * 	// If the user's input is "004", then the returned value would be 0
- * 	// If the user enters "4" or "04" then the returned value would be 4
+ 	printf("What is 2 + 2?\n");
+ 	uint32_t input = get_dec_from_user(2); 
+	
+	// If the user's input is "004", then the returned value would be 0
+  	// If the user enters "4" or "04", then the returned value would be 4
+	if(input != 4)
+ 		printf("Go back to kindergarden\n");
+	else
+ 		printf("Good job! Here is a cookie\n");
  * @endcode
  * 
  * @param numDecPlaces	Number of decimal places to be received by the user

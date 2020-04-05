@@ -9,35 +9,37 @@
 
 #include "spi_test_prog.h"
 
-/**
- * @note	Global variables that couldn't be initialized 
- * 			in the header file
- */
+/** @brief Configuration for the SPI FLASH */
 spi_dev fram_dev = {
 		.spi = &riscv_spi,
 		.spi_sel = SPI_SLAVE_0
 };
 
+/** @brief Configuration for one of the external SPI ports */
 spi_dev external_spi_0 = {
 		.spi = &riscv_spi,
 		.spi_sel = SPI_SLAVE_1
 };
 
+/** @brief Configuration for one of the external SPI ports */
 spi_dev external_spi_1 = {
 		.spi = &riscv_spi,
 		.spi_sel = SPI_SLAVE_2
 };
 
+/** @brief Configuration for the ADC */
 spi_dev adc_dev = {
 		.spi = &riscv_spi,
 		.spi_sel = SPI_SLAVE_3
 };
 
+/** @brief Configuration for the LCD SCREEN */
 spi_dev lcd_screen_dev = {
 		.spi = &riscv_spi,
 		.spi_sel = SPI_SLAVE_4
 };
 
+/** @brief Configuration for the Accelerometer */
 spi_dev accelerometer_dev = {
 		.spi = &riscv_spi,
 		.spi_sel = SPI_SLAVE_5
@@ -67,27 +69,32 @@ void spi_test_init(void)
  * 			device, then fill up the data param with the information 
  * 			comming in
  * 
- * @example
  * @code	
- * 	#define DATA_SIZE 10
- * 
- *  uint8_t data_size = DATA_SIZE;
- * 	uint8_t data_read[DATA_SIZE];
- * 	uint8_t read_command = 0x10; // Can be any byte-sized read command
- * 	spi_dev device = {
- *  	.spi = &riscv_spi, 		// Any "spi_instance_t" type
- * 		.spi_sel = SPI_SLAVE_0 	// Any "spi_slave_t" type
- *  };
- * 
- * 	spi_test_read(&device, &command, &data_read, &data_size);
- * 	for(uint8_t i = 0; i < DATA_SIZE; i++) { // <Print_data_here> }
+	#define DATA_SIZE 10
+
+	uint8_t data_size = DATA_SIZE;
+	uint8_t data_read[DATA_SIZE];
+	uint8_t read_command = 0x10; // Can be any byte-sized read command
+	spi_dev device = {
+		.spi = &riscv_spi, 		// Any "spi_instance_t" type
+		.spi_sel = SPI_SLAVE_0 	// Any "spi_slave_t" type
+	};
+
+	spi_test_read(&device, &command, &data_read, &data_size);
+	printf("Data Read:\t0x");
+ 	for(uint8_t i = 0; i < DATA_SIZE; i++) {
+		  printf(" %x", data_read[i]); 
+	}
+	printf("\n");
  * @endcode
  * 
  * @param device  	Pointer to device to read data from. There are 
- * 					currently 6 different device that can be read from
+ * 					currently 6 different devices that can be read from
  * @param command	Pointer to read command to send to the device
  * @param data		Pointer/array to be filled with incomming data
  * @param data_size Size of the data array
+ * 
+ * @return void
  */
 void spi_test_read(spi_dev *device, uint8_t *command, uint8_t *data, uint8_t data_size)
 {
@@ -102,27 +109,29 @@ void spi_test_read(spi_dev *device, uint8_t *command, uint8_t *data, uint8_t dat
  * @details	Writes data to the specified device and then captures the 
  * 			device's response
  * 
- * @example
  * @code
- * 	#define DATA_SIZE 10
- *  
- * 	uint8_t data_size = DATA_SIZE;
- * 	uint8_t data[DATA_SIZE] = { 
- *  	0x10, //write_command
- * 		0x00, 0x01, 0x02, 0x03, ..., 0x08 // data
- *  };
- *  spi_dev device = {
- *  	.spi = &riscv_spi, 		// Any "spi_instance_t" type
- * 		.spi_sel = SPI_SLAVE_0 	// Any "spi_slave_t" type
- *  };
- * 	uint8_t *resp_data;
- * 	
- * 	spi_test(&device. &data, data_size, &resp_data);
- *  // <print_response_here>
+ 	#define DATA_SIZE 10
+
+	uint8_t data_size = DATA_SIZE;
+	uint8_t data[DATA_SIZE] = { 
+		// write_command
+		0x10, 
+		// data
+ 		0x00, 0x01, 0x02, 0x03, 0x04, 
+		0x05, 0x07, 0x08, 0x09
+	};
+ 	spi_dev device = {
+		.spi = &riscv_spi, 		// Any "spi_instance_t" type
+ 		.spi_sel = SPI_SLAVE_0 	// Any "spi_slave_t" type
+ 	};
+	uint8_t *resp_data;
+
+	spi_test(&device. &data, data_size, &resp_data);
+ 	printf("Response:\t%d", resp_data);
  * @endcode
  * 
  * @param device  	Pointer to device to read data from. There are 
- * 					currently 6 different device that can be read from
+ * 					currently 6 different devices that can be read from
  * @param data		Pointer/array of data to send to the device, The 
  * 					first byte in the array being the write command the 
  * 					device needs.
@@ -408,7 +417,7 @@ void spi_test_write_quad_byte(void)
  * 			gets the data to send from the user, then sends the data.
  * 
  * @warning	This function was breaking at some point, but due to the 
- * 			inability to fully test the feature at this time, it may 
+ * 			inability to fully test the feature, it may 
  * 			not have been fixed
  */
 void spi_test_write_custom_byte(void)
@@ -569,7 +578,7 @@ void spi_test_read_quad_byte(void)
  * 			gets the read command, then reads the data.
  * 
  * @warning	This function was breaking at some point, but due to the 
- * 			inability to fully test the feature at this time, it may 
+ * 			inability to fully test the feature, it may 
  * 			not have been fixed
  */
 void spi_test_read_custom_byte(void)

@@ -18,15 +18,17 @@
 #include "user_handler.h"
 
 /**
- * @brief	Structure used to create a SPI "object"
+ * @brief	Structure used to store SPI device configurations
  */
 typedef struct {
-	spi_instance_t *spi;
-	spi_slave_t spi_sel;
+	spi_instance_t *spi; /**< SPI object device is connected to */
+	spi_slave_t spi_sel; /**< Device's select number */
 } spi_dev;
 
 /**
  * @brief	List of available SPIs of the microcontroller
+ * 
+ * @details The order of the list is crucial. It is the same order as the select lines.
  */
 typedef enum {
 	FRAM,
@@ -45,19 +47,24 @@ typedef enum {
 	SEND_READ_COMM
 } SPI_TEST_SEL;
 
-/**
- * @note	Global variables used by SPI test program
- */
+/** @brief Object for the RISC-V core's SPI hardware */
 spi_instance_t riscv_spi;
+
+/** @brief Current device selected to read/write data */
 spi_dev *selected_dev;
+
+/** @brief ID of the currently selected device. 
+ * Used to tell the user what device is currently 
+ * selected 
+ */
 SPI_DEVICE_ID selected_dev_id;
+
+/** @brief Used to determine if the user wants to quit the test program */
 uint8_t quit_spi_test;
+
+/** @brief Command byte to send over SPI */
 uint8_t spi_command_byte;
 
-/**
- * @note	These global variables are declared and 
- * 			initialized in spi_test_prog.c
- */
 extern UART_instance_t g_uart;
 extern spi_dev fram_dev;
 extern spi_dev external_spi_0;
@@ -66,9 +73,6 @@ extern spi_dev adc_dev;
 extern spi_dev lcd_screen_dev;
 extern spi_dev accelerometer_dev;
 
-/**
- * @note	Function prototypes
- */
 void spi_test_init(void);
 void spi_test_read(spi_dev *device, uint8_t *command, uint8_t *data, uint8_t data_size);
 void spi_test_write(spi_dev *device, uint8_t *data, uint8_t data_size, uint8_t *resp_data);

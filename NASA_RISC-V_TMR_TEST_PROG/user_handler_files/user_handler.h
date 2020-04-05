@@ -31,9 +31,6 @@ typedef enum {
  */
 extern UART_instance_t g_uart;
 
-/**
- * @note	Funciton prototypes 
- */
 void user_handler_unit_test_handler(void);
 void user_handler_invalid_command(void);
 void user_handler_display_instructions(void);
