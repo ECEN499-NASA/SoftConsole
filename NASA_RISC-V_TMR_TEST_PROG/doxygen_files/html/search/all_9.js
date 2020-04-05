@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quit_5fspi_5ftest_19',['quit_spi_test',['../spi__test__prog_8h.html#a686e9ce5422577f0ea11f28b4c33fc52',1,'spi_test_prog.h']]]
+  ['lcd_5fscreen_5fdev_24',['lcd_screen_dev',['../spi__test__prog_8c.html#a91f5baec8594e14ef1799a74e537dfaa',1,'lcd_screen_dev():&#160;spi_test_prog.c'],['../spi__test__prog_8h.html#a91f5baec8594e14ef1799a74e537dfaa',1,'lcd_screen_dev():&#160;spi_test_prog.c']]]
 ];

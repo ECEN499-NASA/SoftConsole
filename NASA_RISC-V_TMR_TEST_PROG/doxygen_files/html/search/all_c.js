@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['target_5fenables_5ftype_51',['Target_Enables_Type',['../structTarget__Enables__Type.html',1,'']]]
+  ['riscv_5fspi_29',['riscv_spi',['../spi__test__prog_8h.html#a250197ee931f58248dd31b2028d1611d',1,'spi_test_prog.h']]],
+  ['rx_5fframe_30',['rx_frame',['../structspi__instance.html#af2612d057b2a4ad5fb2e0742f300bfc1',1,'spi_instance']]]
 ];

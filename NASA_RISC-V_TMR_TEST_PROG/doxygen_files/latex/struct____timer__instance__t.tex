@@ -1,0 +1,20 @@
+\hypertarget{struct____timer__instance__t}{}\doxysection{\+\_\+\+\_\+timer\+\_\+instance\+\_\+t Struct Reference}
+\label{struct____timer__instance__t}\index{\_\_timer\_instance\_t@{\_\_timer\_instance\_t}}
+
+
+{\ttfamily \#include $<$core\+\_\+timer.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct____timer__instance__t_a547d1107c21e058b0f9c661af64c563c}\label{struct____timer__instance__t_a547d1107c21e058b0f9c661af64c563c}} 
+addr\+\_\+t {\bfseries base\+\_\+address}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+There should be one instance of this structure for each instance of Core\+Timer in your system. The function T\+M\+R\+\_\+init() initializes this structure. It is used to identify the various Core\+Timer hardware instances in your system. An initialized timer instance structure should be passed as first parameter to Core\+Timer driver functions to identify which Core\+Timer instance should perform the requested operation. Software using this driver should only need to create one single instance of this data structure for each hardware timer instance in the system. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/drivers/\+Core\+Timer/core\+\_\+timer.\+h\end{DoxyCompactItemize}

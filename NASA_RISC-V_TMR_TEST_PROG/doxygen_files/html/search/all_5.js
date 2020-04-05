@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['int_5fto_5fhex_5fstring_12',['int_to_hex_string',['../user__handler_8c.html#a77f375f90c3968d56d1bd03b0a754c30',1,'int_to_hex_string(uint32_t num, char hex_string[12]):&#160;user_handler.c'],['../user__handler_8h.html#a77f375f90c3968d56d1bd03b0a754c30',1,'int_to_hex_string(uint32_t num, char hex_string[12]):&#160;user_handler.c']]],
-  ['int_5fto_5fsingle_5fbyte_5fstring_13',['int_to_single_byte_string',['../user__handler_8c.html#a2209b2abeaa2ec57db9f82a4d89b4e07',1,'int_to_single_byte_string(uint8_t num, char hex_string[5]):&#160;user_handler.c'],['../user__handler_8h.html#a2209b2abeaa2ec57db9f82a4d89b4e07',1,'int_to_single_byte_string(uint8_t num, char hex_string[5]):&#160;user_handler.c']]],
-  ['irq_5ftarget_5ftype_14',['IRQ_Target_Type',['../structIRQ__Target__Type.html',1,'']]]
+  ['fifo_5fdepth_10',['fifo_depth',['../structspi__instance.html#a7298e290ba7b4463febf28c2960db842',1,'spi_instance']]],
+  ['fram_5fdev_11',['fram_dev',['../spi__test__prog_8c.html#a02bd3a1d8e294a8f64c769178ec07eea',1,'fram_dev():&#160;spi_test_prog.c'],['../spi__test__prog_8h.html#a02bd3a1d8e294a8f64c769178ec07eea',1,'fram_dev():&#160;spi_test_prog.c']]],
+  ['frame_5frx_5fhandler_12',['frame_rx_handler',['../structspi__instance.html#a9a5926bb4e7b34ba50b0c96e07c6142f',1,'spi_instance']]]
 ];

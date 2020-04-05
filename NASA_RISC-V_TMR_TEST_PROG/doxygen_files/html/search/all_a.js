@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['riscv_5fspi_20',['riscv_spi',['../spi__test__prog_8h.html#a250197ee931f58248dd31b2028d1611d',1,'spi_test_prog.h']]]
+  ['polarfire_5frisc_2dv_5ftmr_5fsoftconsole_25',['PolarFire_RISC-V_TMR_SoftConsole',['../index.html',1,'']]],
+  ['plic_5ftype_26',['PLIC_Type',['../structPLIC__Type.html',1,'']]],
+  ['prci_5ftype_27',['PRCI_Type',['../structPRCI__Type.html',1,'']]]
 ];

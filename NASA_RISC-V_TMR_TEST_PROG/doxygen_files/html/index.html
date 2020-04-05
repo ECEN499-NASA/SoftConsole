@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=9"/>
 		<meta name="generator" content="Doxygen 1.8.17"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<title>RISC-Test_Program_CORE-1: Sample file detailing how hw_platform.h should be constructed for</title>
+		<title>RISC-Test_Program_CORE-1: PolarFire_RISC-V_TMR_SoftConsole</title>
 		<link href="tabs.css" rel="stylesheet" type="text/css"/>
 		<script type="text/javascript" src="jquery.js"></script>
 		<script type="text/javascript" src="dynsections.js"></script>
@@ -22,8 +22,10 @@
 			<table cellspacing="0" cellpadding="0">
 				<tbody>
 					<tr style="height: 56px;">
+						<td id="projectlogo"><img alt="Logo" src="byui-logo.png"/></td>
 						<td id="projectalign" style="padding-left: 0.5em;">
 							<div id="projectname">RISC-Test_Program_CORE-1
+								&#160;<span id="projectnumber">0.0.1_Pre-Alpha</span>
 							</div>
 							<div id="projectbrief">Program to test RISC-V configurations</div>
 						</td>
@@ -64,21 +66,10 @@ $(function() {
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Sample file detailing how <a class="el" href="hw__platform_8h_source.html">hw_platform.h</a> should be constructed for </div>  </div>
+<div class="title">PolarFire_RISC-V_TMR_SoftConsole </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>the Mi-V processors.</p>
-<h1><a class="anchor" id="intro_sec"></a>
-Introduction</h1>
-<p>The <a class="el" href="hw__platform_8h_source.html">hw_platform.h</a> is to be located in the project root directory. Currently this file must be hand crafted when using the Mi-V Soft Processor.</p>
-<p>You can use this file as sample. Rename this file from sample_hw_platform.h to <a class="el" href="hw__platform_8h_source.html">hw_platform.h</a> and store it in the root folder of your project. Then customize it per your HW design.</p>
-<h1><a class="anchor" id="driver_configuration"></a>
-Project configuration Instructions</h1>
-<ol type="1">
-<li>Change SYS_CLK_FREQ define to frequency of Mi-V Soft processor clock 2 Add all other core BASE addresses</li>
-<li>Add peripheral Core Interrupt to Mi-V Soft processor interrupt mappings</li>
-<li>Define MSCC_STDIO_UART_BASE_ADDR if you want a CoreUARTapb mapped to STDIO </li>
-</ol>
+<div class="textblock"><p>SoftConsole Project running on our RISC-V processor on a PolarFire FPGA </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->

@@ -22,8 +22,10 @@
 			<table cellspacing="0" cellpadding="0">
 				<tbody>
 					<tr style="height: 56px;">
+						<td id="projectlogo"><img alt="Logo" src="byui-logo.png"/></td>
 						<td id="projectalign" style="padding-left: 0.5em;">
 							<div id="projectname">RISC-Test_Program_CORE-1
+								&#160;<span id="projectnumber">0.0.1_Pre-Alpha</span>
 							</div>
 							<div id="projectbrief">Program to test RISC-V configurations</div>
 						</td>
@@ -83,7 +85,7 @@ $(function() {
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="user__handler_8h.html">user_handler.h</a>&quot;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structspi__dev.html">   23</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structspi__dev.html#ae5a31ddc8d2628abca254a9b30a7acbd">   24</a></span>&#160;    spi_instance_t *<a class="code" href="structspi__dev.html#ae5a31ddc8d2628abca254a9b30a7acbd">spi</a>; </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structspi__dev.html#ae5a31ddc8d2628abca254a9b30a7acbd">   24</a></span>&#160;    <a class="code" href="structspi__instance.html">spi_instance_t</a> *<a class="code" href="structspi__dev.html#ae5a31ddc8d2628abca254a9b30a7acbd">spi</a>; </div>
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structspi__dev.html#af481a62e80b304163756fd6f74c745fc">   25</a></span>&#160;    spi_slave_t <a class="code" href="structspi__dev.html#af481a62e80b304163756fd6f74c745fc">spi_sel</a>; </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;} <a class="code" href="structspi__dev.html">spi_dev</a>;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
@@ -101,7 +103,7 @@ $(function() {
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    SEND_READ_COMM</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;} <a class="code" href="spi__test__prog_8h.html#ad2469a4b04e341d27cfc8c1f6b718c79">SPI_TEST_SEL</a>;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="spi__test__prog_8h.html#a250197ee931f58248dd31b2028d1611d">   51</a></span>&#160;spi_instance_t <a class="code" href="spi__test__prog_8h.html#a250197ee931f58248dd31b2028d1611d">riscv_spi</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="spi__test__prog_8h.html#a250197ee931f58248dd31b2028d1611d">   51</a></span>&#160;<a class="code" href="structspi__instance.html">spi_instance_t</a> <a class="code" href="spi__test__prog_8h.html#a250197ee931f58248dd31b2028d1611d">riscv_spi</a>;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
 <div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="spi__test__prog_8h.html#a2e074965d77b7cc2854b2b89748b666a">   54</a></span>&#160;<a class="code" href="structspi__dev.html">spi_dev</a> *<a class="code" href="spi__test__prog_8h.html#a2e074965d77b7cc2854b2b89748b666a">selected_dev</a>;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
@@ -173,6 +175,7 @@ $(function() {
 <div class="ttc" id="aspi__test__prog_8h_html_ab54fd668cdde6ffa7a15834575d72d7c"><div class="ttname"><a href="spi__test__prog_8h.html#ab54fd668cdde6ffa7a15834575d72d7c">spi_test_display_commands</a></div><div class="ttdeci">void spi_test_display_commands(void)</div><div class="ttdoc">Displays the SPI_TEST_PROG top-level commands.</div><div class="ttdef"><b>Definition:</b> spi_test_prog.c:631</div></div>
 <div class="ttc" id="aspi__test__prog_8h_html_a277eb22a369721f017cd65d93034d8b7"><div class="ttname"><a href="spi__test__prog_8h.html#a277eb22a369721f017cd65d93034d8b7">external_spi_0</a></div><div class="ttdeci">spi_dev external_spi_0</div><div class="ttdoc">Configuration for one of the external SPI ports.</div><div class="ttdef"><b>Definition:</b> spi_test_prog.c:19</div></div>
 <div class="ttc" id="aspi__test__prog_8h_html_a623ebc73879144145e467950be650deb"><div class="ttname"><a href="spi__test__prog_8h.html#a623ebc73879144145e467950be650deb">external_spi_1</a></div><div class="ttdeci">spi_dev external_spi_1</div><div class="ttdoc">Configuration for one of the external SPI ports.</div><div class="ttdef"><b>Definition:</b> spi_test_prog.c:25</div></div>
+<div class="ttc" id="astructspi__instance_html"><div class="ttname"><a href="structspi__instance.html">spi_instance</a></div><div class="ttdef"><b>Definition:</b> core_spi.h:338</div></div>
 <div class="ttc" id="aspi__test__prog_8h_html_a2e074965d77b7cc2854b2b89748b666a"><div class="ttname"><a href="spi__test__prog_8h.html#a2e074965d77b7cc2854b2b89748b666a">selected_dev</a></div><div class="ttdeci">spi_dev * selected_dev</div><div class="ttdoc">Current device selected to read/write data.</div><div class="ttdef"><b>Definition:</b> spi_test_prog.h:54</div></div>
 <div class="ttc" id="aspi__test__prog_8h_html_a91d0dbf99b5d8fd68965f66788e58da0"><div class="ttname"><a href="spi__test__prog_8h.html#a91d0dbf99b5d8fd68965f66788e58da0">spi_test_display_devices</a></div><div class="ttdeci">void spi_test_display_devices(void)</div><div class="ttdoc">Displays available SPI devices that the user can select.</div><div class="ttdef"><b>Definition:</b> spi_test_prog.c:646</div></div>
 <div class="ttc" id="astructspi__dev_html"><div class="ttname"><a href="structspi__dev.html">spi_dev</a></div><div class="ttdoc">Structure used to store SPI device configurations.</div><div class="ttdef"><b>Definition:</b> spi_test_prog.h:23</div></div>
