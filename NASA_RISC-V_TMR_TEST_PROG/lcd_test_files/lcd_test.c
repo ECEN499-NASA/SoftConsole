@@ -4,31 +4,15 @@
 
 void lcd_command(int command)
 {
-	UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rSelect LCD Screen\n\r");
-	spi_test_change_selected_device();
-	//The RS pin on the LCD needs to be set to 0
-	for(int serialcounter = 1; serialcounter <= 8; serialcounter++)
-	{
-		if((command&0x80)==0x80)
-		{
-			//SerialInput pin set to 1
-		}
-		else
-		{
-			//SerialInput pin set to 0
-		}
-		command = (command<<1);
-		//SerialClock pin to 0
-		//SerialClock pin to 1
-		//SerialClock pin to 0
-	}
+	//TODO The RS pin on the LCD (FMC E3) needs to be set to 0
+	spi_test_write()
 }
 
 void lcd_write(int message)
 {
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rSelect LCD Screen\n\r");
 	spi_test_change_selected_device();
-	//The RS pin on the LCD needs to be set to 1
+	//The RS pin on the LCD (FMC E3) needs to be set to 1
 	for(int serialcounter = 1; serialcounter <= 8; serialcounter++)
 	{
 		if((message&0x80)==0x80)
