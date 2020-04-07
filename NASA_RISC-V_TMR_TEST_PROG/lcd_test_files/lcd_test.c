@@ -1,3 +1,11 @@
+/**
+ * @file    lcd_test.c
+ * @date    Apr 7, 2020
+ * @author  Michael Ashford
+ *
+ * @brief   Function definitions of lcd_test.h
+ */
+
 #include <time.h>
 #include "lcd_test.h"
 #include "spi_test_prog.h"
@@ -7,10 +15,12 @@
  *
  * @warning Need to change the first line so it changes the FMC E3 pin.
  */
-void lcd_command(int command)
+void lcd_command(uint8_t command)
 {
+    uint8_t response = 0;
+    uint8_t writeData[1] = {command};
 	//TODO The RS pin on the LCD (FMC E3) needs to be set to 0
-	spi_test_write();
+	spi_test_write(&lcd_screen_dev, writeData, 1, &response);
 }
 
 /**
@@ -52,11 +62,11 @@ void lcd_init(void)
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rSelect LCD Screen\n\r");
 	spi_test_change_selected_device();
 	//LCD Rst to 0
-	nanosleep((const struct timespec[]){{0, 2000000L}}, NULL);
+	//nanosleep((const struct timespec[]){{0, 2000000L}}, NULL);
 	//LCD Rst to 1
-	nanosleep((const struct timespec[]){{0, 20000000L}}, NULL);
+	//nanosleep((const struct timespec[]){{0, 20000000L}}, NULL);
 	lcd_command(0x30);
-	nanosleep((const struct timespec[]){{0, 2000000L}}, NULL);
+	//nanosleep((const struct timespec[]){{0, 2000000L}}, NULL);
 	lcd_command(0x30);
 	lcd_command(0x30);
 	lcd_command(0x39);

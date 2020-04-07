@@ -1,3 +1,12 @@
+/**
+ * @file    lcd_test.h
+ * @author  Michael Ashford
+ * @date    Apr 7, 2020
+ *
+ * @brief   Header file containing all the prototypes
+ *          and declarations for the LCD test
+ */
+
 #ifndef LCD_TEST_H
 #define LCD_TEST_H
 
@@ -6,7 +15,7 @@
 void lcd_init(void);
 
 /** @brief   Send a command to the LCD */
-void lcd_command(int command);
+void lcd_command(uint8_t command);
 
 /** @brief   Display a message on the LCD*/
 void lcd_write(int message);
