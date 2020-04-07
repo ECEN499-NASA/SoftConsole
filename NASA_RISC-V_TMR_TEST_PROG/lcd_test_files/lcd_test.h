@@ -2,24 +2,16 @@
 #define LCD_TEST_H
 
 
-/*
- * Initialize the LCD screen. This should be called on FPGA startup.
- */
+/** @brief   Initial setup of the LCD Screen */
 void lcd_init(void);
 
-/*
- * Commands can be sent to the display
- */
+/** @brief   Send a command to the LCD */
 void lcd_command(int command);
 
-/*
- * Write a message to the screen
- */
+/** @brief   Display a message on the LCD*/
 void lcd_write(int message);
 
-/*
- * Tests the LCD screen by displaying "Hello World"
- */
+/** @brief   Display "Hello World" on the LCD */
 void lcd_test(void);
 
 

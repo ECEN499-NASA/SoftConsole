@@ -2,12 +2,23 @@
 #include "lcd_test.h"
 #include "spi_test_prog.h"
 
+/**
+ * @brief   Send a command to the LCD
+ *
+ * @warning Need to change the first line so it changes the FMC E3 pin.
+ */
 void lcd_command(int command)
 {
 	//TODO The RS pin on the LCD (FMC E3) needs to be set to 0
-	spi_test_write()
+	spi_test_write();
 }
 
+/**
+ * @brief   Display a message on the LCD
+ *
+ * @warning This function is written from the LCD User Manual. It needs to be
+ *          changed to reflect SPI commands like in the lcd_command above.
+ */
 void lcd_write(int message)
 {
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rSelect LCD Screen\n\r");
@@ -30,6 +41,12 @@ void lcd_write(int message)
 	}
 }
 
+/**
+ * @brief   Initial setup of the LCD Screen
+ *
+ * @details Needs to be run each time the FPGA is powered up with the PCB in.
+ *
+ */
 void lcd_init(void)
 {
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rSelect LCD Screen\n\r");
@@ -53,6 +70,12 @@ void lcd_init(void)
 	//delay(10);
 }
 
+/**
+ * @brief   Display "Hello World" on the LCD
+ *
+ * @warning Needs to be finished.
+ *
+ */
 void lcd_test(void)
 {
 	lcd_write(0x00);
