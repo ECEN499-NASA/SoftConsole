@@ -1,0 +1,84 @@
+\hypertarget{lcd__test_8c}{}\doxysection{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/lcd\+\_\+test\+\_\+files/lcd\+\_\+test.c File Reference}
+\label{lcd__test_8c}\index{/home/zac/git/projects/PolarFire\_RISC-\/V\_TMR\_SoftConsole/NASA\_RISC-\/V\_TMR\_TEST\_PROG/lcd\_test\_files/lcd\_test.c@{/home/zac/git/projects/PolarFire\_RISC-\/V\_TMR\_SoftConsole/NASA\_RISC-\/V\_TMR\_TEST\_PROG/lcd\_test\_files/lcd\_test.c}}
+
+
+Function definitions of \mbox{\hyperlink{lcd__test_8h}{lcd\+\_\+test.\+h}}.  
+
+
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}lcd\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}spi\+\_\+test\+\_\+prog.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{lcd__test_8c_acb116d89c358367b8fd1164120d320e3}{lcd\+\_\+command}} (uint8\+\_\+t command)
+\begin{DoxyCompactList}\small\item\em Send a command to the L\+CD. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lcd__test_8c_a6ec13546fab0f60d8408ae8f40e0d239}{lcd\+\_\+write}} (int message)
+\begin{DoxyCompactList}\small\item\em Display a message on the L\+CD. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lcd__test_8c_a6842775ba83d166f02b8fef8bb63b1e6}{lcd\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initial setup of the L\+CD Screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lcd__test_8c_a3cd3b869666a4b6cd673bc92493f1c8c}{lcd\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Display \char`\"{}\+Hello World\char`\"{} on the L\+CD. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Function definitions of \mbox{\hyperlink{lcd__test_8h}{lcd\+\_\+test.\+h}}. 
+
+\begin{DoxyDate}{Date}
+Apr 7, 2020 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Author}
+Michael Ashford 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{lcd__test_8c_acb116d89c358367b8fd1164120d320e3}\label{lcd__test_8c_acb116d89c358367b8fd1164120d320e3}} 
+\index{lcd\_test.c@{lcd\_test.c}!lcd\_command@{lcd\_command}}
+\index{lcd\_command@{lcd\_command}!lcd\_test.c@{lcd\_test.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_command()}{lcd\_command()}}
+{\footnotesize\ttfamily void lcd\+\_\+command (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{command }\end{DoxyParamCaption})}
+
+
+
+Send a command to the L\+CD. 
+
+\begin{DoxyWarning}{Warning}
+Need to change the first line so it changes the F\+MC E3 pin. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{lcd__test_8c_a6842775ba83d166f02b8fef8bb63b1e6}\label{lcd__test_8c_a6842775ba83d166f02b8fef8bb63b1e6}} 
+\index{lcd\_test.c@{lcd\_test.c}!lcd\_init@{lcd\_init}}
+\index{lcd\_init@{lcd\_init}!lcd\_test.c@{lcd\_test.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_init()}{lcd\_init()}}
+{\footnotesize\ttfamily void lcd\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initial setup of the L\+CD Screen. 
+
+Needs to be run each time the F\+P\+GA is powered up with the P\+CB in. \mbox{\Hypertarget{lcd__test_8c_a3cd3b869666a4b6cd673bc92493f1c8c}\label{lcd__test_8c_a3cd3b869666a4b6cd673bc92493f1c8c}} 
+\index{lcd\_test.c@{lcd\_test.c}!lcd\_test@{lcd\_test}}
+\index{lcd\_test@{lcd\_test}!lcd\_test.c@{lcd\_test.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_test()}{lcd\_test()}}
+{\footnotesize\ttfamily void lcd\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Display \char`\"{}\+Hello World\char`\"{} on the L\+CD. 
+
+\begin{DoxyWarning}{Warning}
+Needs to be finished. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{lcd__test_8c_a6ec13546fab0f60d8408ae8f40e0d239}\label{lcd__test_8c_a6ec13546fab0f60d8408ae8f40e0d239}} 
+\index{lcd\_test.c@{lcd\_test.c}!lcd\_write@{lcd\_write}}
+\index{lcd\_write@{lcd\_write}!lcd\_test.c@{lcd\_test.c}}
+\doxysubsubsection{\texorpdfstring{lcd\_write()}{lcd\_write()}}
+{\footnotesize\ttfamily void lcd\+\_\+write (\begin{DoxyParamCaption}\item[{int}]{message }\end{DoxyParamCaption})}
+
+
+
+Display a message on the L\+CD. 
+
+\begin{DoxyWarning}{Warning}
+This function is written from the L\+CD User Manual. It needs to be changed to reflect S\+PI commands like in the lcd\+\_\+command above. 
+\end{DoxyWarning}
