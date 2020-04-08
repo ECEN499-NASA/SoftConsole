@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['external_5fspi_5f0_8',['external_spi_0',['../spi__test__prog_8c.html#a277eb22a369721f017cd65d93034d8b7',1,'external_spi_0():&#160;spi_test_prog.c'],['../spi__test__prog_8h.html#a277eb22a369721f017cd65d93034d8b7',1,'external_spi_0():&#160;spi_test_prog.c']]],
-  ['external_5fspi_5f1_9',['external_spi_1',['../spi__test__prog_8c.html#a623ebc73879144145e467950be650deb',1,'external_spi_1():&#160;spi_test_prog.c'],['../spi__test__prog_8h.html#a623ebc73879144145e467950be650deb',1,'external_spi_1():&#160;spi_test_prog.c']]]
+  ['demo_5fi2c_5ftimeout_9',['DEMO_I2C_TIMEOUT',['../i2c__test__routine_8h.html#acdb95815d4996a34f525493721a4e47b',1,'i2c_test_routine.h']]],
+  ['do_5fread_5ftransaction_10',['do_read_transaction',['../i2c__test__routine_8c.html#a61f25559e3b3995907ec7293fda7f0bf',1,'do_read_transaction(uint8_t serial_addr, uint8_t *rx_buffer, uint8_t read_length):&#160;i2c_test_routine.c'],['../i2c__test__routine_8h.html#a9c41bd4894b53dc29aa38b16795da479',1,'do_read_transaction(uint8_t, uint8_t *, uint8_t):&#160;i2c_test_routine.c']]],
+  ['do_5fwrite_5fread_5ftransaction_11',['do_write_read_transaction',['../i2c__test__routine_8c.html#a019f1ce1ccc843e53b508d2486edd8a6',1,'do_write_read_transaction(uint8_t serial_addr, uint8_t *tx_buffer, uint8_t write_length, uint8_t *rx_buffer, uint8_t read_length):&#160;i2c_test_routine.c'],['../i2c__test__routine_8h.html#a5c671b3875b3ce498130d18ceb2af55a',1,'do_write_read_transaction(uint8_t, uint8_t *, uint8_t, uint8_t *, uint8_t):&#160;i2c_test_routine.c']]],
+  ['do_5fwrite_5ftransaction_12',['do_write_transaction',['../i2c__test__routine_8c.html#a9aed3147c4ad3ef156f4445f45b2f2a9',1,'do_write_transaction(uint8_t serial_addr, uint8_t *tx_buffer, uint8_t write_length):&#160;i2c_test_routine.c'],['../i2c__test__routine_8h.html#a425f96615673cecf82105f9b30ccffab',1,'do_write_transaction(uint8_t, uint8_t *, uint8_t):&#160;i2c_test_routine.c']]]
 ];

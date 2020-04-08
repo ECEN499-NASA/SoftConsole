@@ -1,0 +1,161 @@
+\hypertarget{i2c__test__routine_8h}{}\doxysection{/home/zac/git/projects/\+Polar\+Fire\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+Soft\+Console/\+N\+A\+S\+A\+\_\+\+R\+I\+S\+C-\/\+V\+\_\+\+T\+M\+R\+\_\+\+T\+E\+S\+T\+\_\+\+P\+R\+O\+G/i2c\+\_\+test\+\_\+files/i2c\+\_\+test\+\_\+routine.h File Reference}
+\label{i2c__test__routine_8h}\index{/home/zac/git/projects/PolarFire\_RISC-\/V\_TMR\_SoftConsole/NASA\_RISC-\/V\_TMR\_TEST\_PROG/i2c\_test\_files/i2c\_test\_routine.h@{/home/zac/git/projects/PolarFire\_RISC-\/V\_TMR\_SoftConsole/NASA\_RISC-\/V\_TMR\_TEST\_PROG/i2c\_test\_files/i2c\_test\_routine.h}}
+
+
+Header file containing all the prototypes and declarations for the I2C test.  
+
+
+{\ttfamily \#include \char`\"{}core\+\_\+i2c.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}core\+\_\+uart\+\_\+apb.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{i2c__test__routine_8h_ad03125436d4d26f1a0cd90dc63614e1c}\label{i2c__test__routine_8h_ad03125436d4d26f1a0cd90dc63614e1c}} 
+\#define \mbox{\hyperlink{i2c__test__routine_8h_ad03125436d4d26f1a0cd90dc63614e1c}{M\+A\+S\+T\+E\+R\+\_\+\+S\+E\+R\+\_\+\+A\+D\+DR}}~0x21
+\begin{DoxyCompactList}\small\item\em I2C master serial address. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{i2c__test__routine_8h_af906bfcb3c243ebccc86376e900240dc}\label{i2c__test__routine_8h_af906bfcb3c243ebccc86376e900240dc}} 
+\#define \mbox{\hyperlink{i2c__test__routine_8h_af906bfcb3c243ebccc86376e900240dc}{S\+L\+A\+V\+E\+\_\+\+S\+E\+R\+\_\+\+A\+D\+DR}}~0x30
+\begin{DoxyCompactList}\small\item\em I2C slave serial address. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{i2c__test__routine_8h_a6b20d41d6252e9871430c242cb1a56e7}\label{i2c__test__routine_8h_a6b20d41d6252e9871430c242cb1a56e7}} 
+\#define \mbox{\hyperlink{i2c__test__routine_8h_a6b20d41d6252e9871430c242cb1a56e7}{B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}}~32u
+\begin{DoxyCompactList}\small\item\em Receive buffer size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{i2c__test__routine_8h_af4bced5cf8ed55746d4b5d34f9a0fe39}\label{i2c__test__routine_8h_af4bced5cf8ed55746d4b5d34f9a0fe39}} 
+\#define \mbox{\hyperlink{i2c__test__routine_8h_af4bced5cf8ed55746d4b5d34f9a0fe39}{E\+N\+T\+ER}}~13u
+\begin{DoxyCompactList}\small\item\em A\+S\+C\+II value for the enter key. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{i2c__test__routine_8h_acdb95815d4996a34f525493721a4e47b}\label{i2c__test__routine_8h_acdb95815d4996a34f525493721a4e47b}} 
+\#define \mbox{\hyperlink{i2c__test__routine_8h_acdb95815d4996a34f525493721a4e47b}{D\+E\+M\+O\+\_\+\+I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT}}~3000u
+\begin{DoxyCompactList}\small\item\em I2C operation time-\/out value in mS. Define as I2\+C\+\_\+\+N\+O\+\_\+\+T\+I\+M\+E\+O\+UT to disable the time-\/out functionality. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+i2c\+\_\+slave\+\_\+handler\+\_\+ret\+\_\+t \mbox{\hyperlink{i2c__test__routine_8h_a68b3631fd2d04310b615bc72f253d80a}{slave\+\_\+write\+\_\+handler}} (\mbox{\hyperlink{structi2c__instance}{i2c\+\_\+instance\+\_\+t}} $\ast$, uint8\+\_\+t $\ast$, uint16\+\_\+t)
+\begin{DoxyCompactList}\small\item\em Slave write handler function called as a result of a the I2C slave being the target of a write transaction. This function simply displays the date content of received write transaction. \end{DoxyCompactList}\item 
+i2c\+\_\+status\+\_\+t \mbox{\hyperlink{i2c__test__routine_8h_a425f96615673cecf82105f9b30ccffab}{do\+\_\+write\+\_\+transaction}} (uint8\+\_\+t, uint8\+\_\+t $\ast$, uint8\+\_\+t)
+\begin{DoxyCompactList}\small\item\em Perform write transaction with parameters gathered from the command line interface. This function is called as a result of the user\textquotesingle{}s input in the command line interface. \end{DoxyCompactList}\item 
+i2c\+\_\+status\+\_\+t \mbox{\hyperlink{i2c__test__routine_8h_a9c41bd4894b53dc29aa38b16795da479}{do\+\_\+read\+\_\+transaction}} (uint8\+\_\+t, uint8\+\_\+t $\ast$, uint8\+\_\+t)
+\begin{DoxyCompactList}\small\item\em Perform read transaction with parameters gathered from the command line interface. This function is called as a result of the user\textquotesingle{}s input in the command line interface. \end{DoxyCompactList}\item 
+i2c\+\_\+status\+\_\+t \mbox{\hyperlink{i2c__test__routine_8h_a5c671b3875b3ce498130d18ceb2af55a}{do\+\_\+write\+\_\+read\+\_\+transaction}} (uint8\+\_\+t, uint8\+\_\+t $\ast$, uint8\+\_\+t, uint8\+\_\+t $\ast$, uint8\+\_\+t)
+\begin{DoxyCompactList}\small\item\em Perform write-\/read transaction with parameters gathered from the command line interface. This function is called as a result of the user\textquotesingle{}s input in the command line interface. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{i2c__test__routine_8h_ad56c3a9f1e2fff1dbe209a768a9ef414}\label{i2c__test__routine_8h_ad56c3a9f1e2fff1dbe209a768a9ef414}} 
+uint8\+\_\+t \mbox{\hyperlink{i2c__test__routine_8h_ad56c3a9f1e2fff1dbe209a768a9ef414}{get\+\_\+data}} (void)
+\begin{DoxyCompactList}\small\item\em Function to get the key from user. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{i2c__test__routine_8h_a2735f8dea9a567d3712b8f97f6373120}\label{i2c__test__routine_8h_a2735f8dea9a567d3712b8f97f6373120}} 
+void \mbox{\hyperlink{i2c__test__routine_8h_a2735f8dea9a567d3712b8f97f6373120}{press\+\_\+any\+\_\+key\+\_\+to\+\_\+continue}} (void)
+\begin{DoxyCompactList}\small\item\em Display \char`\"{}\+Press any key to continue.\char`\"{} message and wait for key press. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{i2c__test__routine_8h_a62adf38824017f05dad325443c32cccf}\label{i2c__test__routine_8h_a62adf38824017f05dad325443c32cccf}} 
+int \mbox{\hyperlink{i2c__test__routine_8h_a62adf38824017f05dad325443c32cccf}{run\+\_\+i2c\+\_\+test}} (void)
+\begin{DoxyCompactList}\small\item\em Main function of i2c\+\_\+test\+\_\+routine. Currently initializes an i2c instance and displays a basic menu to run some different tests. Most tests are commented out due to only needing to verify that there is any output on the assigned pins. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{i2c__test__routine_8h_a6556630a300334a3d6617db7e58d386b}\label{i2c__test__routine_8h_a6556630a300334a3d6617db7e58d386b}} 
+\mbox{\hyperlink{structi2c__instance}{i2c\+\_\+instance\+\_\+t}} \mbox{\hyperlink{i2c__test__routine_8h_a6556630a300334a3d6617db7e58d386b}{g\+\_\+core\+\_\+i2c}}
+\begin{DoxyCompactList}\small\item\em Instance data for our Core\+I2C device. \end{DoxyCompactList}\item 
+U\+A\+R\+T\+\_\+instance\+\_\+t \mbox{\hyperlink{i2c__test__routine_8h_a2700cde8d3662ef58b647d5e4b14e18b}{g\+\_\+uart}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file containing all the prototypes and declarations for the I2C test. 
+
+\begin{DoxyDate}{Date}
+Mar 16, 2020 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Author}
+sam bagley 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{i2c__test__routine_8h_a9c41bd4894b53dc29aa38b16795da479}\label{i2c__test__routine_8h_a9c41bd4894b53dc29aa38b16795da479}} 
+\index{i2c\_test\_routine.h@{i2c\_test\_routine.h}!do\_read\_transaction@{do\_read\_transaction}}
+\index{do\_read\_transaction@{do\_read\_transaction}!i2c\_test\_routine.h@{i2c\_test\_routine.h}}
+\doxysubsubsection{\texorpdfstring{do\_read\_transaction()}{do\_read\_transaction()}}
+{\footnotesize\ttfamily i2c\+\_\+status\+\_\+t do\+\_\+read\+\_\+transaction (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{serial\+\_\+addr,  }\item[{uint8\+\_\+t $\ast$}]{rx\+\_\+buffer,  }\item[{uint8\+\_\+t}]{read\+\_\+length }\end{DoxyParamCaption})}
+
+
+
+Perform read transaction with parameters gathered from the command line interface. This function is called as a result of the user\textquotesingle{}s input in the command line interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+\_\+addr} & the i2c address of the target device \\
+\hline
+{\em rx\+\_\+buffer} & pointer to the rx buffer \\
+\hline
+{\em read\+\_\+length} & the length of the rx buffer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{i2c__test__routine_8h_a5c671b3875b3ce498130d18ceb2af55a}\label{i2c__test__routine_8h_a5c671b3875b3ce498130d18ceb2af55a}} 
+\index{i2c\_test\_routine.h@{i2c\_test\_routine.h}!do\_write\_read\_transaction@{do\_write\_read\_transaction}}
+\index{do\_write\_read\_transaction@{do\_write\_read\_transaction}!i2c\_test\_routine.h@{i2c\_test\_routine.h}}
+\doxysubsubsection{\texorpdfstring{do\_write\_read\_transaction()}{do\_write\_read\_transaction()}}
+{\footnotesize\ttfamily i2c\+\_\+status\+\_\+t do\+\_\+write\+\_\+read\+\_\+transaction (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{serial\+\_\+addr,  }\item[{uint8\+\_\+t $\ast$}]{tx\+\_\+buffer,  }\item[{uint8\+\_\+t}]{write\+\_\+length,  }\item[{uint8\+\_\+t $\ast$}]{rx\+\_\+buffer,  }\item[{uint8\+\_\+t}]{read\+\_\+length }\end{DoxyParamCaption})}
+
+
+
+Perform write-\/read transaction with parameters gathered from the command line interface. This function is called as a result of the user\textquotesingle{}s input in the command line interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+\_\+addr} & the i2c address of the target device \\
+\hline
+{\em tx\+\_\+buffer} & pointer to the tx buffer \\
+\hline
+{\em write\+\_\+length} & the length of the tx buffer \\
+\hline
+{\em rx\+\_\+buffer} & pointer to the rx buffer \\
+\hline
+{\em read\+\_\+length} & the length of the rx buffer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{i2c__test__routine_8h_a425f96615673cecf82105f9b30ccffab}\label{i2c__test__routine_8h_a425f96615673cecf82105f9b30ccffab}} 
+\index{i2c\_test\_routine.h@{i2c\_test\_routine.h}!do\_write\_transaction@{do\_write\_transaction}}
+\index{do\_write\_transaction@{do\_write\_transaction}!i2c\_test\_routine.h@{i2c\_test\_routine.h}}
+\doxysubsubsection{\texorpdfstring{do\_write\_transaction()}{do\_write\_transaction()}}
+{\footnotesize\ttfamily i2c\+\_\+status\+\_\+t do\+\_\+write\+\_\+transaction (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{serial\+\_\+addr,  }\item[{uint8\+\_\+t $\ast$}]{tx\+\_\+buffer,  }\item[{uint8\+\_\+t}]{write\+\_\+length }\end{DoxyParamCaption})}
+
+
+
+Perform write transaction with parameters gathered from the command line interface. This function is called as a result of the user\textquotesingle{}s input in the command line interface. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial\+\_\+addr} & the i2c address of the target device \\
+\hline
+{\em tx\+\_\+buffer} & pointer to the tx buffer \\
+\hline
+{\em write\+\_\+length} & the length of the tx buffer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{i2c__test__routine_8h_a68b3631fd2d04310b615bc72f253d80a}\label{i2c__test__routine_8h_a68b3631fd2d04310b615bc72f253d80a}} 
+\index{i2c\_test\_routine.h@{i2c\_test\_routine.h}!slave\_write\_handler@{slave\_write\_handler}}
+\index{slave\_write\_handler@{slave\_write\_handler}!i2c\_test\_routine.h@{i2c\_test\_routine.h}}
+\doxysubsubsection{\texorpdfstring{slave\_write\_handler()}{slave\_write\_handler()}}
+{\footnotesize\ttfamily i2c\+\_\+slave\+\_\+handler\+\_\+ret\+\_\+t slave\+\_\+write\+\_\+handler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structi2c__instance}{i2c\+\_\+instance\+\_\+t}} $\ast$}]{this\+\_\+i2c,  }\item[{uint8\+\_\+t $\ast$}]{p\+\_\+rx\+\_\+data,  }\item[{uint16\+\_\+t}]{rx\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Slave write handler function called as a result of a the I2C slave being the target of a write transaction. This function simply displays the date content of received write transaction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em this\+\_\+i2c} & pointer to the i2c instance \\
+\hline
+{\em p\+\_\+rx\+\_\+data} & pointer to the rx data \\
+\hline
+{\em rx\+\_\+size} & the size of the rx data \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{i2c__test__routine_8h_a2700cde8d3662ef58b647d5e4b14e18b}\label{i2c__test__routine_8h_a2700cde8d3662ef58b647d5e4b14e18b}} 
+\index{i2c\_test\_routine.h@{i2c\_test\_routine.h}!g\_uart@{g\_uart}}
+\index{g\_uart@{g\_uart}!i2c\_test\_routine.h@{i2c\_test\_routine.h}}
+\doxysubsubsection{\texorpdfstring{g\_uart}{g\_uart}}
+{\footnotesize\ttfamily U\+A\+R\+T\+\_\+instance\+\_\+t g\+\_\+uart}
+
+\begin{DoxyNote}{Note}
+Global variable initialized in \char`\"{}main()\char`\"{} 
+\end{DoxyNote}

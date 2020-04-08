@@ -1,3 +1,11 @@
+/**
+ * @file 	i2c_test_routine.h
+ * @date 	Mar 16, 2020
+ * @author	sam bagley
+ *
+ * @brief	Header file containing all the prototypes 
+ * 			and declarations for the I2C test
+ */
 
 #ifndef I2C_TEST_ROUTINE_H_
 #define I2C_TEST_ROUTINE_H_
@@ -5,33 +13,33 @@
 #include "core_i2c.h"
 #include "core_uart_apb.h"
 
-
-
-
-
-//stuff from i2c sample
-/*------------------------------------------------------------------------------
- * Instance data for our  CoreI2C device
+/**
+ * @brief	Instance data for our  CoreI2C device
  */
 i2c_instance_t g_core_i2c;
 
-/*------------------------------------------------------------------------------
- * I2C master serial address.
+/**
+ * @brief	I2C master serial address.
  */
 #define MASTER_SER_ADDR     0x21
 
-/*-----------------------------------------------------------------------------
- * I2C slave serial address.
+/**
+ * @brief   I2C slave serial address.
  */
 #define SLAVE_SER_ADDR     0x30
-/*-----------------------------------------------------------------------------
- * Receive buffer size.
+
+/**
+ * @brief	 Receive buffer size.
  */
 #define BUFFER_SIZE        32u
+
+/**
+ * @brief   ASCII value for the enter key
+ */
 #define ENTER              13u
 
-/*-----------------------------------------------------------------------------
- * I2C operation time-out value in mS. Define as I2C_NO_TIMEOUT to disable the
+/**
+ * @brief	I2C operation time-out value in mS. Define as I2C_NO_TIMEOUT to disable the
  * time-out functionality.
  */
 #define DEMO_I2C_TIMEOUT 3000u
@@ -48,8 +56,8 @@ static void select_mode_i2c(void);
 uint8_t get_data(void);
 void press_any_key_to_continue(void);
 
-/*------------------------------------------------------------------------------
- * I2C buffers. These are the buffers where data written transferred via I2C
+/**
+ * @brief	 I2C buffers. These are the buffers where data written transferred via I2C
  * will be stored. RX
  */
 static uint8_t g_slave_rx_buffer[BUFFER_SIZE];
@@ -57,8 +65,8 @@ static uint8_t g_slave_tx_buffer[BUFFER_SIZE] = "<<-------Slave Tx data ------->
 static uint8_t g_master_rx_buf[BUFFER_SIZE];
 static uint8_t g_master_tx_buf[BUFFER_SIZE];
 
-/*------------------------------------------------------------------------------
- * Counts of data sent by master and received by slave.
+/**
+ * @brief	Counts of data sent by master and received by slave.
  */
 static uint8_t g_tx_length=0x00;
 
@@ -73,4 +81,3 @@ int run_i2c_test(void);
 
 
 #endif  /* I2C_TEST_ROUTINE_H */
-

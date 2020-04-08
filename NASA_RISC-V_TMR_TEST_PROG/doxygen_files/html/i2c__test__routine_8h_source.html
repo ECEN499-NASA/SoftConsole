@@ -73,85 +73,67 @@ $(function() {
 <div class="title">i2c_test_routine.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef I2C_TEST_ROUTINE_H_</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define I2C_TEST_ROUTINE_H_</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;core_i2c.h&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;core_uart_apb.h&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">//stuff from i2c sample</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">/*------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * Instance data for our  CoreI2C device</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<a class="code" href="structi2c__instance.html">i2c_instance_t</a> g_core_i2c;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">/*------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * I2C master serial address.</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define MASTER_SER_ADDR     0x21</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"> * I2C slave serial address.</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define SLAVE_SER_ADDR     0x30</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * Receive buffer size.</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#define BUFFER_SIZE        32u</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#define ENTER              13u</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"> * I2C operation time-out value in mS. Define as I2C_NO_TIMEOUT to disable the</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"> * time-out functionality.</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#define DEMO_I2C_TIMEOUT 3000u</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"> * Local functions.</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;i2c_slave_handler_ret_t slave_write_handler(<a class="code" href="structi2c__instance.html">i2c_instance_t</a> *, uint8_t *, uint16_t);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;i2c_status_t do_write_transaction(uint8_t, uint8_t * , uint8_t);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;i2c_status_t do_read_transaction(uint8_t, uint8_t * , uint8_t);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;i2c_status_t do_write_read_transaction(uint8_t , uint8_t * , uint8_t , uint8_t * , uint8_t);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> display_greeting(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> select_mode_i2c(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;uint8_t get_data(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> press_any_key_to_continue(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">/*------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment"> * I2C buffers. These are the buffers where data written transferred via I2C</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment"> * will be stored. RX</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">static</span> uint8_t g_slave_rx_buffer[BUFFER_SIZE];</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">static</span> uint8_t g_slave_tx_buffer[BUFFER_SIZE] = <span class="stringliteral">&quot;&lt;&lt;-------Slave Tx data -------&gt;&gt;&quot;</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">static</span> uint8_t g_master_rx_buf[BUFFER_SIZE];</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">static</span> uint8_t g_master_tx_buf[BUFFER_SIZE];</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">/*------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"> * Counts of data sent by master and received by slave.</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">static</span> uint8_t g_tx_length=0x00;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">//end i2c sample stuff</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword">extern</span> UART_instance_t <a class="code" href="user__handler_8h.html#a2700cde8d3662ef58b647d5e4b14e18b">g_uart</a>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">int</span> run_i2c_test(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<a href="i2c__test__routine_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#ifndef I2C_TEST_ROUTINE_H_</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define I2C_TEST_ROUTINE_H_</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;core_i2c.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;core_uart_apb.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="i2c__test__routine_8h.html#a6556630a300334a3d6617db7e58d386b">   19</a></span>&#160;<a class="code" href="structi2c__instance.html">i2c_instance_t</a> <a class="code" href="i2c__test__routine_8h.html#a6556630a300334a3d6617db7e58d386b">g_core_i2c</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="i2c__test__routine_8h.html#ad03125436d4d26f1a0cd90dc63614e1c">   24</a></span>&#160;<span class="preprocessor">#define MASTER_SER_ADDR     0x21</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="i2c__test__routine_8h.html#af906bfcb3c243ebccc86376e900240dc">   29</a></span>&#160;<span class="preprocessor">#define SLAVE_SER_ADDR     0x30</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="i2c__test__routine_8h.html#a6b20d41d6252e9871430c242cb1a56e7">   34</a></span>&#160;<span class="preprocessor">#define BUFFER_SIZE        32u</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="i2c__test__routine_8h.html#af4bced5cf8ed55746d4b5d34f9a0fe39">   39</a></span>&#160;<span class="preprocessor">#define ENTER              13u</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="i2c__test__routine_8h.html#acdb95815d4996a34f525493721a4e47b">   45</a></span>&#160;<span class="preprocessor">#define DEMO_I2C_TIMEOUT 3000u</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">/*-----------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"> * Local functions.</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;i2c_slave_handler_ret_t <a class="code" href="i2c__test__routine_8h.html#a68b3631fd2d04310b615bc72f253d80a">slave_write_handler</a>(<a class="code" href="structi2c__instance.html">i2c_instance_t</a> *, uint8_t *, uint16_t);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;i2c_status_t <a class="code" href="i2c__test__routine_8h.html#a425f96615673cecf82105f9b30ccffab">do_write_transaction</a>(uint8_t, uint8_t * , uint8_t);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;i2c_status_t <a class="code" href="i2c__test__routine_8h.html#a9c41bd4894b53dc29aa38b16795da479">do_read_transaction</a>(uint8_t, uint8_t * , uint8_t);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;i2c_status_t <a class="code" href="i2c__test__routine_8h.html#a5c671b3875b3ce498130d18ceb2af55a">do_write_read_transaction</a>(uint8_t , uint8_t * , uint8_t , uint8_t * , uint8_t);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> display_greeting(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> select_mode_i2c(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;uint8_t <a class="code" href="i2c__test__routine_8h.html#ad56c3a9f1e2fff1dbe209a768a9ef414">get_data</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">void</span> <a class="code" href="i2c__test__routine_8h.html#a2735f8dea9a567d3712b8f97f6373120">press_any_key_to_continue</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">static</span> uint8_t g_slave_rx_buffer[<a class="code" href="i2c__test__routine_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>];</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">static</span> uint8_t g_slave_tx_buffer[<a class="code" href="i2c__test__routine_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>] = <span class="stringliteral">&quot;&lt;&lt;-------Slave Tx data -------&gt;&gt;&quot;</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">static</span> uint8_t g_master_rx_buf[<a class="code" href="i2c__test__routine_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>];</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">static</span> uint8_t g_master_tx_buf[<a class="code" href="i2c__test__routine_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>];</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">static</span> uint8_t g_tx_length=0x00;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">//end i2c sample stuff</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* I2C_TEST_ROUTINE_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">extern</span> UART_instance_t <a class="code" href="i2c__test__routine_8h.html#a2700cde8d3662ef58b647d5e4b14e18b">g_uart</a>;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keywordtype">int</span> <a class="code" href="i2c__test__routine_8h.html#a62adf38824017f05dad325443c32cccf">run_i2c_test</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* I2C_TEST_ROUTINE_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="ai2c__test__routine_8h_html_a62adf38824017f05dad325443c32cccf"><div class="ttname"><a href="i2c__test__routine_8h.html#a62adf38824017f05dad325443c32cccf">run_i2c_test</a></div><div class="ttdeci">int run_i2c_test(void)</div><div class="ttdoc">Main function of i2c_test_routine. Currently initializes an i2c instance and displays a basic menu to...</div><div class="ttdef"><b>Definition:</b> i2c_test_routine.c:23</div></div>
+<div class="ttc" id="ai2c__test__routine_8h_html_a2735f8dea9a567d3712b8f97f6373120"><div class="ttname"><a href="i2c__test__routine_8h.html#a2735f8dea9a567d3712b8f97f6373120">press_any_key_to_continue</a></div><div class="ttdeci">void press_any_key_to_continue(void)</div><div class="ttdoc">Display &quot;Press any key to continue.&quot; message and wait for key press.</div><div class="ttdef"><b>Definition:</b> i2c_test_routine.c:383</div></div>
+<div class="ttc" id="ai2c__test__routine_8h_html_ad56c3a9f1e2fff1dbe209a768a9ef414"><div class="ttname"><a href="i2c__test__routine_8h.html#ad56c3a9f1e2fff1dbe209a768a9ef414">get_data</a></div><div class="ttdeci">uint8_t get_data(void)</div><div class="ttdoc">Function to get the key from user.</div><div class="ttdef"><b>Definition:</b> i2c_test_routine.c:338</div></div>
+<div class="ttc" id="ai2c__test__routine_8h_html_a2700cde8d3662ef58b647d5e4b14e18b"><div class="ttname"><a href="i2c__test__routine_8h.html#a2700cde8d3662ef58b647d5e4b14e18b">g_uart</a></div><div class="ttdeci">UART_instance_t g_uart</div><div class="ttdef"><b>Definition:</b> main.c:37</div></div>
+<div class="ttc" id="ai2c__test__routine_8h_html_a6556630a300334a3d6617db7e58d386b"><div class="ttname"><a href="i2c__test__routine_8h.html#a6556630a300334a3d6617db7e58d386b">g_core_i2c</a></div><div class="ttdeci">i2c_instance_t g_core_i2c</div><div class="ttdoc">Instance data for our CoreI2C device.</div><div class="ttdef"><b>Definition:</b> i2c_test_routine.h:19</div></div>
+<div class="ttc" id="ai2c__test__routine_8h_html_a68b3631fd2d04310b615bc72f253d80a"><div class="ttname"><a href="i2c__test__routine_8h.html#a68b3631fd2d04310b615bc72f253d80a">slave_write_handler</a></div><div class="ttdeci">i2c_slave_handler_ret_t slave_write_handler(i2c_instance_t *, uint8_t *, uint16_t)</div><div class="ttdoc">Slave write handler function called as a result of a the I2C slave being the target of a write transa...</div><div class="ttdef"><b>Definition:</b> i2c_test_routine.c:283</div></div>
+<div class="ttc" id="ai2c__test__routine_8h_html_a5c671b3875b3ce498130d18ceb2af55a"><div class="ttname"><a href="i2c__test__routine_8h.html#a5c671b3875b3ce498130d18ceb2af55a">do_write_read_transaction</a></div><div class="ttdeci">i2c_status_t do_write_read_transaction(uint8_t, uint8_t *, uint8_t, uint8_t *, uint8_t)</div><div class="ttdoc">Perform write-read transaction with parameters gathered from the command line interface....</div><div class="ttdef"><b>Definition:</b> i2c_test_routine.c:260</div></div>
+<div class="ttc" id="ai2c__test__routine_8h_html_a9c41bd4894b53dc29aa38b16795da479"><div class="ttname"><a href="i2c__test__routine_8h.html#a9c41bd4894b53dc29aa38b16795da479">do_read_transaction</a></div><div class="ttdeci">i2c_status_t do_read_transaction(uint8_t, uint8_t *, uint8_t)</div><div class="ttdoc">Perform read transaction with parameters gathered from the command line interface....</div><div class="ttdef"><b>Definition:</b> i2c_test_routine.c:220</div></div>
+<div class="ttc" id="ai2c__test__routine_8h_html_a6b20d41d6252e9871430c242cb1a56e7"><div class="ttname"><a href="i2c__test__routine_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a></div><div class="ttdeci">#define BUFFER_SIZE</div><div class="ttdoc">Receive buffer size.</div><div class="ttdef"><b>Definition:</b> i2c_test_routine.h:34</div></div>
 <div class="ttc" id="astructi2c__instance_html"><div class="ttname"><a href="structi2c__instance.html">i2c_instance</a></div><div class="ttdef"><b>Definition:</b> core_i2c.h:573</div></div>
-<div class="ttc" id="auser__handler_8h_html_a2700cde8d3662ef58b647d5e4b14e18b"><div class="ttname"><a href="user__handler_8h.html#a2700cde8d3662ef58b647d5e4b14e18b">g_uart</a></div><div class="ttdeci">UART_instance_t g_uart</div><div class="ttdef"><b>Definition:</b> main.c:37</div></div>
+<div class="ttc" id="ai2c__test__routine_8h_html_a425f96615673cecf82105f9b30ccffab"><div class="ttname"><a href="i2c__test__routine_8h.html#a425f96615673cecf82105f9b30ccffab">do_write_transaction</a></div><div class="ttdeci">i2c_status_t do_write_transaction(uint8_t, uint8_t *, uint8_t)</div><div class="ttdoc">Perform write transaction with parameters gathered from the command line interface....</div><div class="ttdef"><b>Definition:</b> i2c_test_routine.c:239</div></div>
 <!-- start footer part -->
 		<script src="custom.js"></script>
 	</body>
