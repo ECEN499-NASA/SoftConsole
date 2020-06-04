@@ -49,6 +49,7 @@
 #define FLASH_CORE_SPI_BASE             0x60002000UL
 #define CORE16550_BASE_ADDR             0x70007000UL
 #define COREI2C_BASE_ADDR				0x60003000UL //not in sample hw_plat
+#define LVDS_UART_BASE_ADDR				0x60004000UL
 /***************************************************************************//**
  * Peripheral Interrupts are mapped to the corresponding Mi-V Soft processor
  * interrupt from the Libero design.
