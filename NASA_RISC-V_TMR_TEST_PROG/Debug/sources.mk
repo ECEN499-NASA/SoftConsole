@@ -28,5 +28,6 @@ lcd_test_files \
 . \
 riscv_hal \
 spi_test_files \
+uart_test_files \
 user_handler_files \
 

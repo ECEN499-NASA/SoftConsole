@@ -7,6 +7,7 @@
 #include "spi_test_prog.h"
 #include "user_handler.h"
 #include "lcd_test.h"
+#include "uart_test_files/uart_test_routine.h"
 
 /**
  * @brief	Used to list the different kinds of tests a user can use. 
@@ -146,7 +147,7 @@ void testProgramManager(void)
 					displayTestUnavailable();
 					break;
 				case LVDS_UART_TEST:
-					displayTestUnavailable();
+					run_uart_test();
 					break;
 				case ADC_TEST:
 					displayTestUnavailable();
