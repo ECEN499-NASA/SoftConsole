@@ -14,70 +14,62 @@
 #include "core_uart_apb.h"
 
 /**
- * @brief	Instance data for our  CoreI2C device
+ * @brief   Structure used to store gpio device configurations
  */
-i2c_instance_t g_core_i2c;
+typedef struct {
+    gpio_instance_t *gpio; /**< gpio object device is connected to */
+} gpio_dev;
 
 /**
- * @brief	I2C master serial address.
+ * @brief   List of available gpios of the microcontroller
+ *
+ * @details The order of the list is crucial. It is the same order as the select lines.
  */
-#define MASTER_SER_ADDR     0x21
+typedef enum {
+    GPIO,
+    SW,
+    LED
+} gpio_DEVICE_ID;
 
 /**
- * @brief   I2C slave serial address.
+ * @brief   List of different commands the user can perform
  */
-#define SLAVE_SER_ADDR     0x30
+typedef enum {
+    WRITE,
+    READ
+} gpio_TEST_SEL;
 
-/**
- * @brief	 Receive buffer size.
+/** @brief Object for the RISC-V core's gpio hardware */
+gpio_instance_t riscv_gpio;
+
+/** @brief Current device selected to read/write data */
+gpio_dev *selected_dev;
+
+/** @brief ID of the currently selected device.
+ * Used to tell the user what device is currently
+ * selected
  */
-#define BUFFER_SIZE        32u
+gpio_DEVICE_ID selected_dev_id;
 
-/**
- * @brief   ASCII value for the enter key
- */
-#define ENTER              13u
-
-/**
- * @brief	I2C operation time-out value in mS. Define as I2C_NO_TIMEOUT to disable the
- * time-out functionality.
- */
-#define DEMO_I2C_TIMEOUT 3000u
-
-/*-----------------------------------------------------------------------------
- * Local functions.
- */
-i2c_slave_handler_ret_t slave_write_handler(i2c_instance_t *, uint8_t *, uint16_t);
-i2c_status_t do_write_transaction(uint8_t, uint8_t * , uint8_t);
-i2c_status_t do_read_transaction(uint8_t, uint8_t * , uint8_t);
-i2c_status_t do_write_read_transaction(uint8_t , uint8_t * , uint8_t , uint8_t * , uint8_t);
-static void display_greeting(void);
-static void select_mode_i2c(void);
-uint8_t get_data(void);
-void press_any_key_to_continue(void);
-
-/**
- * @brief	 I2C buffers. These are the buffers where data written transferred via I2C
- * will be stored. RX
- */
-static uint8_t g_slave_rx_buffer[BUFFER_SIZE];
-static uint8_t g_slave_tx_buffer[BUFFER_SIZE] = "<<-------Slave Tx data ------->>";
-static uint8_t g_master_rx_buf[BUFFER_SIZE];
-static uint8_t g_master_tx_buf[BUFFER_SIZE];
-
-/**
- * @brief	Counts of data sent by master and received by slave.
- */
-static uint8_t g_tx_length=0x00;
-
-//end i2c sample stuff
+/** @brief Used to determine if the user wants to quit the test program */
+uint8_t quit_gpio_test;
 
 extern UART_instance_t g_uart;
+extern gpio_dev GPIO;
+extern gpio_dev LED;
+extern gpio_dev SW;
 
+void gpio_test_init(void);
+void gpio_test_read(gpio_dev *device, uint8_t *data, uint8_t data_size);
+void gpio_test_write(gpio_dev *device, uint8_t *data, uint8_t data_size, uint8_t *resp_data);
+void gpio_test_handler(void);
+void gpio_test_send_write_command(void);
+void gpio_test_send_read_command(void);
+void gpio_test_display_write_command_instructions(void);
+void gpio_test_write_single_byte(void);
+void gpio_test_display_read_command_instructions(void);
+void gpio_test_read_single_byte(void);
+void gpio_test_display_commands(void);
+void gpio_test_display_incorrect_command(void);
 
-int run_i2c_test(void);
-
-
-
-
-#endif  /* I2C_TEST_ROUTINE_H */
+#endif GPIO_TEST_ROUTINE_H_

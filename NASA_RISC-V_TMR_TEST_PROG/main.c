@@ -3,6 +3,7 @@
 #include "core_gpio.h"
 #include "hw_reg_access.h"
 #include "hw_platform.h"
+#include "gpio_test_routine.h"
 #include "i2c_test_routine.h"
 #include "spi_test_prog.h"
 #include "user_handler.h"
