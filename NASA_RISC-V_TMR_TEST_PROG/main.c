@@ -135,7 +135,7 @@ void testProgramManager(void)
 			switch(test)
 			{
 				case GPIO_TEST:
-					displayTestUnavailable();
+					gpio_test_routine();
 					break;
 				case I2C_TEST:
 					run_i2c_test();

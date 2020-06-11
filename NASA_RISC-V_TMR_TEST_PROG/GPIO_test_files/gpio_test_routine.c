@@ -24,7 +24,7 @@
  */
 void gpio_test_init(void)
 {
-
+    GPIO_init(this_GPIO, COREGPIO_OUT_BASE_ADDR)
 }
 
 /**

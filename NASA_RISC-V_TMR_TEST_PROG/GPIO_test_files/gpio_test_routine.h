@@ -60,8 +60,8 @@ extern gpio_dev LED;
 extern gpio_dev SW;
 
 void gpio_test_init(void);
-void gpio_test_read(gpio_dev *device, uint8_t *data, uint8_t data_size);
-void gpio_test_write(gpio_dev *device, uint8_t *data, uint8_t data_size, uint8_t *resp_data);
+void gpio_test_read(gpio_dev *device);
+void gpio_test_write(gpio_dev *device, uint8_t *data);
 void gpio_test_handler(void);
 void gpio_test_send_write_command(void);
 void gpio_test_send_read_command(void);
@@ -70,6 +70,7 @@ void gpio_test_write_single_byte(void);
 void gpio_test_display_read_command_instructions(void);
 void gpio_test_read_single_byte(void);
 void gpio_test_display_commands(void);
+void gpio_test_display_devices(void);
 void gpio_test_display_incorrect_command(void);
 
 #endif GPIO_TEST_ROUTINE_H_
