@@ -36,7 +36,7 @@ int run_uart_test(void)
 
 	// Display the initial information about the demo followed by the main
 	// menu.
-	display_greeting();
+	uart_display_greeting();
 	select_mode_uart();
 	for(loop_count=0; loop_count < BUFFER_SIZE; loop_count++)
 	{
@@ -55,9 +55,10 @@ int run_uart_test(void)
 				case '1':
 					UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rMT-SR Mode is Selected\n\r");
 					err_status = UART_get_rx_status(&g_uart);
-					g_tx_length = get_data();
-					if(UART_APB_NO_ERROR == err_status) {
-						if(0 == g_tx_length)
+					tx_length = uart_get_data();
+					if(UART_APB_NO_ERROR == err_status)
+					{
+						if(0 == tx_length)
 						{
 							UART_polled_tx_string(&g_uart, (const uint8_t *)"0 Byte Data Write Successful\n\r");
 						}
@@ -69,7 +70,8 @@ int run_uart_test(void)
 						}
 						UART_polled_tx_string(&g_uart, (const uint8_t*)"------------------------------------------------------------------------------\n\r");
 					}
-					else {
+					else
+					{
 						// Distinguish between an identified failure, a time out and just to be paranoid
 						// none of the above.
 						if(UART_APB_PARITY_ERROR == err_status)
@@ -93,6 +95,47 @@ int run_uart_test(void)
 					}
 					break;
 				case '2':
+					UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rMT-SR Mode is Selected\n\r");
+					UART_get_rx(&g_uart, rx_buf, BUFFER_SIZE);
+					err_status = UART_get_rx_status(&g_uart);
+					if(UART_APB_NO_ERROR == err_status)
+					{
+						if(0 == tx_length)
+						{
+							UART_polled_tx_string(&g_uart, (const uint8_t *)"0 Byte Data Write Successful\n\r");
+						}
+						else
+						{
+							UART_polled_tx_string(&g_uart, (const uint8_t *)"Data Write Successful and Data is: ");
+							//UART_send(&g_uart, g_slave_rx_buffer, g_tx_length);
+							UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\r");
+						}
+						UART_polled_tx_string(&g_uart, (const uint8_t*)"------------------------------------------------------------------------------\n\r");
+					}
+					else
+					{
+						// Distinguish between an identified failure, a time out and just to be paranoid
+						// none of the above.
+						if(UART_APB_PARITY_ERROR == err_status)
+						{
+							UART_polled_tx_string(&g_uart, (const uint8_t *)"Data Write Parity Error!\n\r");
+						}
+						else if(UART_APB_OVERFLOW_ERROR == err_status)
+						{
+							UART_polled_tx_string(&g_uart, (const uint8_t *)"Data Write Overflow Error!\n\r");
+						}
+						else if (UART_APB_FRAMING_ERROR == err_status)
+						{
+							UART_polled_tx_string(&g_uart, (const uint8_t *)"Data Write Framing Error!\n\r");
+						}
+						else
+						{
+							UART_polled_tx_string(&g_uart, (const uint8_t *)"Data Write Unknown Response!\n\r");
+						}
+
+						UART_polled_tx_string(&g_uart, (const uint8_t*)"\n\r------------------------------------------------------------------------------\n\r");
+					}
+					UART_polled_tx_string(&g_uart, &rx_buf);
 					break;
 				case '3':
 					// To Exit from the application
@@ -111,7 +154,7 @@ int run_uart_test(void)
 /**
  * @brief	Display greeting message when application is started.
  */
-static void display_greeting(void)
+static void uart_display_greeting(void)
 {
 	UART_polled_tx_string(&g_uart, (const uint8_t*)"\n\r******************************************************************************\n\r");
 	UART_polled_tx_string(&g_uart, (const uint8_t*)"**************************** Core UART Example ********************************\n\r");
@@ -140,7 +183,7 @@ static void select_mode_uart(void)
 /**
  * @brief	Function to get the key from user
  */
-uint8_t get_data()
+uint8_t uart_get_data()
 {
 	uint8_t complete = 0;
 	uint8_t rx_buffer[1];
@@ -185,7 +228,7 @@ uint8_t get_data()
 /**
  * @brief	Display "Press any key to continue." message and wait for key press.
  */
-void press_any_key_to_continue(void)
+void uart_press_any_key_to_continue(void)
 {
 	size_t rx_size;
 	uint8_t rx_char;
@@ -196,13 +239,4 @@ void press_any_key_to_continue(void)
 		rx_size = UART_get_rx(&g_uart, &rx_char, sizeof(rx_char));
 	} while(rx_size == 0);
 	select_mode_uart();
-}
-
-/**
- * @brief	Interrupt handler. Not sure what this does when called though...
- */
-uint8_t External_6_IRQHandler(void)
-{
-	//I2C_isr(&g_core_i2c1);
-	return (EXT_IRQ_KEEP_ENABLED);
 }
