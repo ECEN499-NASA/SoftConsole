@@ -42,10 +42,9 @@
  * <corename>_<instance>_BASE_ADDR
  */
 #define COREUARTAPB0_BASE_ADDR          0x60000000UL
-#define COREGPIO_IN_BASE_ADDR           0x70002000UL
 #define CORETIMER0_BASE_ADDR            0x70003000UL
 #define CORETIMER1_BASE_ADDR            0x70004000UL
-#define COREGPIO_OUT_BASE_ADDR          0x60001000UL
+#define COREGPIO_BASE_ADDR              0x60001000UL
 #define FLASH_CORE_SPI_BASE             0x60002000UL
 #define CORE16550_BASE_ADDR             0x70007000UL
 #define COREI2C_BASE_ADDR				0x60003000UL //not in sample hw_plat

@@ -7,7 +7,6 @@
  */
 
 #include "gpio_test_routine.h"
-
 #include "hal.h"
 #include "hw_platform.h"
 #include "core_gpio.h"
@@ -15,6 +14,7 @@
 #include "core_timer.h"
 #include "core_uart_apb.h"
 
+gpio_instance_t this_gpio;
 
 /**
  * @brief   Initializes the GPIO test. First function called
@@ -24,7 +24,10 @@
  */
 void gpio_test_init(void)
 {
-    GPIO_init(this_GPIO, COREGPIO_OUT_BASE_ADDR)
+    GPIO_init(this_gpio , COREGPIO_BASE_ADDR, GPIO_APB_32_BITS_BUS);
+    GPIO_config(this_gpio, GPIO_0, GPIO_INOUT_MODE);
+    GPIO_config(this_gpio, GPIO_0, GPIO_INOUT_MODE);
+
 }
 
 /**
