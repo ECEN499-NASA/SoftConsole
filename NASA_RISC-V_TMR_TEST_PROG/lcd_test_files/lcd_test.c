@@ -17,8 +17,8 @@
  */
 void lcd_command(uint8_t command)
 {
-    uint8_t response = 0;
-    uint8_t writeData[1] = {command};
+   uint8_t response = 0;
+   uint8_t writeData[1] = {command};
 	//TODO The RS pin on the LCD (FMC E3) needs to be set to 0
 	spi_test_write(&lcd_screen_dev, writeData, 1, &response);
 }
@@ -77,7 +77,7 @@ void lcd_init(void)
 	lcd_command(0x0C);
 	lcd_command(0x06);
 	lcd_command(0x01);
-	//delay(10);
+	//nanosleep((const struct timespec[]){{0, 10000000L}}, NULL);
 }
 
 /**
@@ -88,5 +88,24 @@ void lcd_init(void)
  */
 void lcd_test(void)
 {
-	lcd_write(0x00);
+   // "Hello           "
+   char row1[16] = {0x48, 0x65, 0x6C, 0x6C, 0x6F, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0};
+   // "World!          "
+   char row2[16] = {0x57, 0x6F, 0x72, 0x6C, 0x64, 0x21, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0};
+   
+   // Write to row 1
+   char col;
+   for (col = 0; col < 16; col = col + 1)
+   {
+      // Set the DDRAM address
+      lcd_command(0x80 | col);
+      lcd_write(row1[col]);
+   }
+   
+   // Write to row 2
+   for (col = 0; col < 16; col = col + 1)
+   {
+      lcd_command(0xC0 | col);
+      lcd_write(row2[col]);
+   }
 }
