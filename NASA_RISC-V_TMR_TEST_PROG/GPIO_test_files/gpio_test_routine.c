@@ -13,7 +13,7 @@
 #include "riscv_hal.h"
 #include "core_timer.h"
 #include "core_uart_apb.h"
-#include "user_handler.c"
+#include "user_handler.h"
 
 //gpio_instance_t this_gpio;
 

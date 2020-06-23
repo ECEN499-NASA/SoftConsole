@@ -35,4 +35,4 @@ void gpio_test_handler(void);
 void gpio_test_display_commands(void);
 void gpio_test_display_incorrect_command(void);
 
-#endif GPIO_TEST_ROUTINE_H_
+#endif /*GPIO_TEST_ROUTINE_H_*/
