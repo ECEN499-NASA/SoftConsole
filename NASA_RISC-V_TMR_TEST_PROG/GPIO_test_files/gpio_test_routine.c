@@ -13,100 +13,114 @@
 #include "riscv_hal.h"
 #include "core_timer.h"
 #include "core_uart_apb.h"
+#include "user_handler.c"
 
-gpio_instance_t this_gpio;
+//gpio_instance_t this_gpio;
+
 
 /**
  * @brief   Initializes the GPIO test. First function called
  *          in the test's main function.
  *
- * @details Used to initialize the GPIO
+ * @details Used to initialize and configure the GPIO
  */
-void gpio_test_init(void)
+void gpio_test_init(gpio_instance_t *this_gpio)
 {
     GPIO_init(this_gpio , COREGPIO_BASE_ADDR, GPIO_APB_32_BITS_BUS);
-    GPIO_config(this_gpio, GPIO_0, GPIO_INOUT_MODE);
-    GPIO_config(this_gpio, GPIO_0, GPIO_INOUT_MODE);
-
+    GPIO_config(this_gpio, GPIO_0, GPIO_INPUT_MODE);
+    GPIO_config(this_gpio, GPIO_1, GPIO_OUTPUT_MODE);
+    GPIO_config(this_gpio, GPIO_2, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_5, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_3, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_4, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_6, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_7, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_8, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_9, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_10, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_11, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_12, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_13, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_14, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_15, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_16, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_17, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_18, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_19, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_20, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_21, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_22, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_23, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_24, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_25, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_26, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_27, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_28, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_29, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_30, GPIO_INOUT_MODE);
+//    GPIO_config(this_gpio, GPIO_31, GPIO_INOUT_MODE);
 }
 
 /**
- * @brief   Reads x bytes (x specified by the data_size param)
+ * @brief   Reads the GPIO Inputs
  *
- * @details The function will send a read command to the specified
- *          device, then fill up the data param with the information
- *          coming in
+ * @details The function will read the input GPIO and display the results
  *
  * @code
-    #define DATA_SIZE 10
-
-    uint8_t data_size = DATA_SIZE;
-    uint8_t data_read[DATA_SIZE];
-    uint8_t read_command = 0x10; // Can be any byte-sized read command
-    gpio_dev device = {
-        .gpio = &riscv_gpio,      // Any "gpio_instance_t" type
-        .gpio_sel = gpio_SLAVE_0  // Any "gpio_slave_t" type
-    };
-
-    gpio_test_read(&device, &command, &data_read, &data_size);
-    printf("Data Read:\t0x");
-    for(uint8_t i = 0; i < DATA_SIZE; i++) {
-          printf(" %x", data_read[i]);
-    }
-    printf("\n");
- * @endcode
  *
- * @param device    Pointer to device to read data from. There are
- *                  currently 6 different devices that can be read from
- * @param command   Pointer to read command to send to the device
- * @param data      Pointer/array to be filled with incomming data
- * @param data_size Size of the data array
+ * @param this_gpio gpio_instance_t holds the information about the GPIO module.
  *
  * @return void
  */
-void gpio_test_read(gpio_dev *device)
+void gpio_test_read(gpio_instance_t *this_gpio)
 {
+    uint32_t gpio_inputs;
+    gpio_inputs = GPIO_get_inputs(this_gpio);
+    UART_polled_tx_string(&g_uart, (const uint8_t *)"Inputs are:");
+    UART_polled_tx_string(&g_uart, (const uint8_t *)gpio_inputs);
 
 }
 
 /**
- * @brief   Writes x bytes (x specified by the data_size param)
+ * @brief   Writes to the GPIO outputs
  *
- * @details Writes data to the specified device and then captures the
- *          device's response
+ * @details Writes 1 to GPIO_1 of this_gpio.
  *
  * @code
-    #define DATA_SIZE 10
 
-    uint8_t data_size = DATA_SIZE;
-    uint8_t data[DATA_SIZE] = {
-        // write_command
-        0x10,
-        // data
-        0x00, 0x01, 0x02, 0x03, 0x04,
-        0x05, 0x07, 0x08, 0x09
-    };
-    gpio_dev device = {
-        .gpio = &riscv_gpio,      // Any "gpio_instance_t" type
-        .gpio_sel = gpio_SLAVE_0  // Any "gpio_slave_t" type
-    };
-    uint8_t *resp_data;
-
-    gpio_test(&device. &data, data_size, &resp_data);
-    printf("Response:\t%d", resp_data);
  * @endcode
  *
- * @param device    Pointer to device to read data from. There are
- *                  currently 6 different devices that can be read from
- * @param data      Pointer/array of data to send to the device, The
- *                  first byte in the array being the write command the
- *                  device needs.
- * @param data_size Size of the data array
- * @param resp_data pointer to the device's response after receiving the data
+ * @param this_gpio gpio_instance_t holds the information about the GPIO module.
  */
-void gpio_test_write(gpio_dev *device, uint8_t *data)
+void gpio_test_write_1_high(gpio_instance_t *this_gpio)
 {
+    UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rWriting 1 to GPIO_1\n\r");
+    uint32_t gpio_outputs;
+    gpio_outputs = GPIO_get_outputs(this_gpio);
+    gpio_outputs = gpio_outputs | GPIO_1_MASK;
+    GPIO_set_outputs(this_gpio, gpio_outputs);
+}
 
+void gpio_test_write_1_low(gpio_instance_t *this_gpio)
+{
+    UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rWriting 0 to GPIO_1\n\r");
+    uint32_t gpio_outputs;
+    gpio_outputs = GPIO_get_outputs(this_gpio);
+    gpio_outputs = gpio_outputs | GPIO_1_MASK;
+    GPIO_set_outputs(this_gpio, gpio_outputs);
+}
+
+void gpio_test_write(gpio_instance_t *this_gpio)
+{
+//    uint32_t pin;
+//    uint32_t val;
+//    uint8_t dec_place = 2;
+//    UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\r Which pin would you like to set?\n\r");
+//    pin = get_dec_from_user(dec_place);
+//    UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\r What value to write to it?/n/r");
+//    val = get_dec_from_user(1);
+//
+//    GPIO_set_output(this_gpio, pin, val);
 }
 
 /**
@@ -116,10 +130,11 @@ void gpio_test_write(gpio_dev *device, uint8_t *data)
 void gpio_test_handler(void)
 {
     char command = 0;
+    gpio_instance_t *this_gpio;
 
     UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rWELCOME TO THE GPIO TEST!\n\r");
     gpio_test_display_commands();
-    gpio_test_init();
+    gpio_test_init(this_gpio);
 
     while(quit_gpio_test == 0)
     {
@@ -130,23 +145,20 @@ void gpio_test_handler(void)
             case 'h':
                 gpio_test_display_commands();
                 break;
-            case 'd':
-                gpio_test_display_devices();
-                break;
             case 'q':
                 quit_gpio_test = 1;
                 break;
-            case '0':
-                gpio_test_change_selected_device();
-                break;
             case '1':
-                gpio_test_display_selected_device();
+                gpio_test_write_1_high(this_gpio);
                 break;
             case '2':
-                gpio_test_send_write_command();
+                gpio_test_write_1_low(this_gpio);
                 break;
-            case '3':
-                gpio_test_send_read_command();
+            case 'w':
+                gpio_test_write(this_gpio);
+                break;
+            case 'r':
+                gpio_test_read(this_gpio);
                 break;
             default:
                 gpio_test_display_incorrect_command();
@@ -159,232 +171,15 @@ void gpio_test_handler(void)
 }
 
 /**
- * @brief   Handler for used to test sending data of various sizes
- *          to the selected device.
- *
- * @details User can choose to send data of 1byte, 4bytes, or an amount specified by the user.
- */
-void gpio_test_send_write_command(void)
-{
-    char command = 0;
-
-    while(quit_gpio_test == 0)
-    {
-        UART_polled_tx_string(&g_uart, (const uint8_t *)"You have entered the \"Send Write Command\" tool\n\r\n\r");
-        gpio_test_display_write_command_instructions();
-        command = get_single_char_from_user();
-        switch(command)
-        {
-            case 'h':
-                gpio_test_display_write_command_instructions();
-                break;
-            case 'd':
-                gpio_test_display_devices();
-                break;
-            case 'q':
-                quit_gpio_test = 1;
-                break;
-            case '0':
-                gpio_test_change_selected_device();
-                break;
-            case '1':
-                gpio_test_display_selected_device();
-                break;
-            case '2':
-                gpio_test_write_single_byte();
-                break;
-                break;
-            default:
-                gpio_test_display_incorrect_command();
-                break;
-        }
-    }
-
-    quit_gpio_test = 0;
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rWELCOME TO THE gpio TEST!\n\r");
-}
-
-/**
- * @brief   Handler for used to test reading data of various sizes
- *          from the selected device.
- *
- * @details User can choose to read data of 1byte, 4bytes, or an amount specified by the user.
- */
-void gpio_test_send_read_command(void)
-{
-    char command = 0;
-
-    while(quit_gpio_test == 0)
-    {
-        UART_polled_tx_string(&g_uart, (const uint8_t *)"You have entered the \"Send Write Command\" tool\n\r\n\r");
-        gpio_test_display_write_command_instructions();
-        command = get_single_char_from_user();
-        switch(command)
-        {
-            case 'h':
-                gpio_test_display_read_command_instructions();
-                break;
-            case 'd':
-                gpio_test_display_devices();
-                break;
-            case 'q':
-                quit_gpio_test = 1;
-                break;
-            case '0':
-                gpio_test_change_selected_device();
-                break;
-            case '1':
-                gpio_test_display_selected_device();
-                break;
-            case '2':
-                gpio_test_read_single_byte();
-                break;
-            case '3':
-                gpio_test_read_quad_byte();
-                break;
-            case '4':
-                gpio_test_read_custom_byte();
-                break;
-            default:
-                gpio_test_display_incorrect_command();
-                break;
-        }
-    }
-
-    quit_gpio_test = 0;
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rWELCOME TO THE gpio TEST!\n\r");
-}
-
-/**
- * @brief   Displays the user commands for the program
- */
-void gpio_test_display_write_command_instructions(void)
-{
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\tCOMMANDS:\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- 0\t change selected device\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- 1\t display selected device\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- 2\t write a single byte\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- 3\t write 4 bytes\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- 4\t write custom number of bytes\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- h\t display these commands\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- d\t display gpio device IDs\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- q\t exit \"Send Write Command\" tool\n\r");
-}
-
-/**
- * @brief   Tests just sending one byte of data determined by the user's input
- */
-void gpio_test_write_single_byte(void)
-{
-    uint8_t writeData[1] = {0};
-    uint8_t response = 0;
-    uint8_t sendData = 0;
-    char hexStr[5];
-
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"You have entered the \"Send Single Byte\" tool\n\r\n\r");
-
-    while(sendData == 0)
-    {
-        UART_polled_tx_string(&g_uart, (const uint8_t *)"\tEnter Write Command:");
-        gpio_command_byte = (uint8_t)(get_bytes_from_user(1));
-
-        UART_polled_tx_string(&g_uart, (const uint8_t *)"\tEnter Value to write:");
-        writeData[0] = (uint8_t)(get_bytes_from_user(1));
-
-        UART_polled_tx_string(&g_uart, (const uint8_t *)"\tSend write command \"");
-        int_to_single_byte_string(gpio_command_byte, hexStr);
-        UART_polled_tx_string(&g_uart, (const uint8_t *)hexStr);
-        UART_polled_tx_string(&g_uart, (const uint8_t *)"\" and value \"");
-        int_to_single_byte_string(writeData[0], hexStr);
-        UART_polled_tx_string(&g_uart, (const uint8_t *)hexStr);
-        UART_polled_tx_string(&g_uart, (const uint8_t *)"\"?");
-        if(get_yes_no_from_user() == 1)
-            sendData = 1;
-    }
-    gpio_test_write(selected_dev, writeData, 1, &response);
-
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\r\tData has been sent!\n\r");
-
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\tResponse was \"");
-    int_to_single_byte_string(response, hexStr);
-    UART_polled_tx_string(&g_uart, (const uint8_t *)hexStr);
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\"\n\r");
-}
-
-/**
- * @brief   Displays the commands that a user can select to test
- *          reading from the selected gpio device
- */
-void gpio_test_display_read_command_instructions(void)
-{
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\tCOMMANDS:\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- 0\t change selected device\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- 1\t display selected device\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- 2\t read a single byte\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- 3\t read 4 bytes\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- 4\t read custom number of bytes\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- h\t display these commands\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- d\t display gpio device IDs\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- q\t exit \"Send Write Command\" tool\n\r");
-}
-
-/**
- * @brief   Tests reading a single byte from the selected gpio device
- */
-void gpio_test_read_single_byte(void)
-{
-    uint8_t readData[1] = {0};
-    uint8_t sendData = 0;
-    char hexStr[5];
-
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"You have entered the \"Read Single Byte\" tool\n\r\n\r");
-
-    while(sendData == 0)
-    {
-        UART_polled_tx_string(&g_uart, (const uint8_t *)"\tEnter Read Command:");
-        gpio_command_byte = (uint8_t)(get_bytes_from_user(1));
-
-        UART_polled_tx_string(&g_uart, (const uint8_t *)"\tSend read command \"");
-        int_to_single_byte_string(gpio_command_byte, hexStr);
-        UART_polled_tx_string(&g_uart, (const uint8_t *)hexStr);
-        UART_polled_tx_string(&g_uart, (const uint8_t *)"\"?");
-        if(get_yes_no_from_user() == 1)
-            sendData = 1;
-    }
-
-    gpio_test_read(selected_dev, &gpio_command_byte, readData, 1);
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\r\tData has been read!\n\r");
-
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\tRead Data is \"");
-    int_to_single_byte_string(readData[0], hexStr);
-    UART_polled_tx_string(&g_uart, (const uint8_t *)hexStr);
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\"\n\r");
-}
-
-/**
  * @brief   Displays the gpio_TEST_PROG top-level commands
  */
 void gpio_test_display_commands(void)
 {
     UART_polled_tx_string(&g_uart, (const uint8_t *)"\tCOMMANDS:\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- 0\t change selected device\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- 1\t display selected device\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- 2\t send write command\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- 3\t send read command\n\r");
+    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- w\t write to GPIO\n\r");
+    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- r\t read from GPIO\n\r");
     UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- h\t display these commands\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- d\t display gpio device IDs\n\r");
     UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- q\t exit gpio Test Program\n\r");
-}
-
-/**
- * @brief   Displays available gpio devices that the user can select
- */
-void gpio_test_display_devices(void)
-{
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\tGPIO DEVICE IDs:\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t-(0) GPIO\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t-(1) SW\n\r");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t-(2) LED\n\r");
 }
 
 /**
@@ -394,4 +189,3 @@ void gpio_test_display_incorrect_command(void)
 {
     UART_polled_tx_string(&g_uart, (const uint8_t *)"ERROR! Invalid Command!\n\r");
 }
-

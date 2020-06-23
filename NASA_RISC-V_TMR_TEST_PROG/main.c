@@ -8,7 +8,8 @@
 #include "spi_test_prog.h"
 #include "user_handler.h"
 #include "lcd_test.h"
-#include "uart_test_files/uart_test_routine.h"
+#include "uart_test_routine.h"
+
 
 /**
  * @brief	Used to list the different kinds of tests a user can use. 
@@ -64,7 +65,7 @@ int main()
      * Initialize the CoreGPIO driver with the base address of the CoreGPIO
      * instance to use and the initial state of the outputs.
      *************************************************************************/
-    GPIO_init(&g_gpio_out, COREGPIO_OUT_BASE_ADDR, GPIO_APB_32_BITS_BUS);
+    GPIO_init(&g_gpio_out, COREGPIO_BASE_ADDR, GPIO_APB_32_BITS_BUS);
 
     /**************************************************************************
      * Configure the GPIOs.
@@ -136,7 +137,7 @@ void testProgramManager(void)
 			switch(test)
 			{
 				case GPIO_TEST:
-					gpio_test_routine();
+				    gpio_test_handler();
 					break;
 				case I2C_TEST:
 					run_i2c_test();
