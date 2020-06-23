@@ -15,7 +15,6 @@
 #include "core_uart_apb.h"
 #include "user_handler.h"
 
-//gpio_instance_t this_gpio;
 
 
 /**
@@ -24,41 +23,50 @@
  *
  * @details Used to initialize and configure the GPIO
  */
-void gpio_test_init(gpio_instance_t *this_gpio)
+void gpio_test_init()
 {
-    GPIO_init(this_gpio , COREGPIO_BASE_ADDR, GPIO_APB_32_BITS_BUS);
-    GPIO_config(this_gpio, GPIO_0, GPIO_INPUT_MODE);
-    GPIO_config(this_gpio, GPIO_1, GPIO_OUTPUT_MODE);
-    GPIO_config(this_gpio, GPIO_2, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_5, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_3, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_4, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_6, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_7, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_8, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_9, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_10, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_11, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_12, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_13, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_14, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_15, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_16, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_17, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_18, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_19, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_20, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_21, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_22, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_23, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_24, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_25, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_26, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_27, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_28, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_29, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_30, GPIO_INOUT_MODE);
-//    GPIO_config(this_gpio, GPIO_31, GPIO_INOUT_MODE);
+    // it seems GPIO_init() is done in main.c
+//    GPIO_init(&g_gpio , COREGPIO_BASE_ADDR, GPIO_APB_32_BITS_BUS);
+
+    // These will be LEDs on the PCB. These first 4 gpio pins are set as outputs..
+//    GPIO_config(&g_gpio, GPIO_0, GPIO_OUTPUT_MODE);
+//    GPIO_config(&g_gpio, GPIO_1, GPIO_OUTPUT_MODE);
+//    GPIO_config(&g_gpio, GPIO_2, GPIO_OUTPUT_MODE);
+//    GPIO_config(&g_gpio, GPIO_3, GPIO_OUTPUT_MODE);
+    GPIO_config(&g_gpio, GPIO_4, GPIO_OUTPUT_MODE);
+    GPIO_config(&g_gpio, GPIO_5, GPIO_OUTPUT_MODE);
+    GPIO_config(&g_gpio, GPIO_6, GPIO_OUTPUT_MODE);
+    GPIO_config(&g_gpio, GPIO_7, GPIO_OUTPUT_MODE);
+    GPIO_config(&g_gpio, GPIO_8, GPIO_OUTPUT_MODE);
+
+    // These will be inputs for the switches
+    GPIO_config(&g_gpio, GPIO_9, GPIO_INPUT_MODE);
+    GPIO_config(&g_gpio, GPIO_10, GPIO_INPUT_MODE);
+    GPIO_config(&g_gpio, GPIO_11, GPIO_INPUT_MODE);
+    GPIO_config(&g_gpio, GPIO_12, GPIO_INPUT_MODE);
+    GPIO_config(&g_gpio, GPIO_13, GPIO_INPUT_MODE);
+    GPIO_config(&g_gpio, GPIO_14, GPIO_INPUT_MODE);
+    GPIO_config(&g_gpio, GPIO_15, GPIO_INPUT_MODE);
+    GPIO_config(&g_gpio, GPIO_16, GPIO_INPUT_MODE);
+    GPIO_config(&g_gpio, GPIO_17, GPIO_INPUT_MODE);
+
+    // These will be GPIO on the PCB
+    GPIO_config(&g_gpio, GPIO_18, GPIO_INOUT_MODE);
+    GPIO_config(&g_gpio, GPIO_19, GPIO_INOUT_MODE);
+    GPIO_config(&g_gpio, GPIO_20, GPIO_INOUT_MODE);
+    GPIO_config(&g_gpio, GPIO_21, GPIO_INOUT_MODE);
+    GPIO_config(&g_gpio, GPIO_22, GPIO_INOUT_MODE);
+    GPIO_config(&g_gpio, GPIO_23, GPIO_INOUT_MODE);
+    GPIO_config(&g_gpio, GPIO_24, GPIO_INOUT_MODE);
+    GPIO_config(&g_gpio, GPIO_25, GPIO_INOUT_MODE);
+    GPIO_config(&g_gpio, GPIO_26, GPIO_INOUT_MODE);
+    GPIO_config(&g_gpio, GPIO_27, GPIO_INOUT_MODE);
+
+    //These four are reserved for the LCD and it's switch.
+//    GPIO_config(&g_gpio, GPIO_28, GPIO_INOUT_MODE);
+//    GPIO_config(&g_gpio, GPIO_29, GPIO_INOUT_MODE);
+//    GPIO_config(&g_gpio, GPIO_30, GPIO_INOUT_MODE);
+//    GPIO_config(&g_gpio, GPIO_31, GPIO_INOUT_MODE);
 }
 
 /**
@@ -68,14 +76,14 @@ void gpio_test_init(gpio_instance_t *this_gpio)
  *
  * @code
  *
- * @param this_gpio gpio_instance_t holds the information about the GPIO module.
+ * @param g_gpio gpio_instance_t holds the information about the GPIO module.
  *
  * @return void
  */
-void gpio_test_read(gpio_instance_t *this_gpio)
+void gpio_test_read()
 {
     uint32_t gpio_inputs;
-    gpio_inputs = GPIO_get_inputs(this_gpio);
+    gpio_inputs = GPIO_get_inputs(&g_gpio);
     UART_polled_tx_string(&g_uart, (const uint8_t *)"Inputs are:");
     UART_polled_tx_string(&g_uart, (const uint8_t *)gpio_inputs);
 
@@ -84,43 +92,54 @@ void gpio_test_read(gpio_instance_t *this_gpio)
 /**
  * @brief   Writes to the GPIO outputs
  *
- * @details Writes 1 to GPIO_1 of this_gpio.
+ * @details Writes 1 to GPIO_1 of g_gpio.
  *
  * @code
 
  * @endcode
  *
- * @param this_gpio gpio_instance_t holds the information about the GPIO module.
+ * @param g_gpio gpio_instance_t holds the information about the GPIO module.
  */
-void gpio_test_write_1_high(gpio_instance_t *this_gpio)
+void gpio_test_write_1_high()
 {
     UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rWriting 1 to GPIO_1\n\r");
     uint32_t gpio_outputs;
-    gpio_outputs = GPIO_get_outputs(this_gpio);
+    gpio_outputs = GPIO_get_outputs(&g_gpio);
     gpio_outputs = gpio_outputs | GPIO_1_MASK;
-    GPIO_set_outputs(this_gpio, gpio_outputs);
+    GPIO_set_outputs(&g_gpio, gpio_outputs);
 }
 
-void gpio_test_write_1_low(gpio_instance_t *this_gpio)
+void gpio_test_write_1_low()
 {
     UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rWriting 0 to GPIO_1\n\r");
     uint32_t gpio_outputs;
-    gpio_outputs = GPIO_get_outputs(this_gpio);
+    gpio_outputs = GPIO_get_outputs(&g_gpio);
     gpio_outputs = gpio_outputs | GPIO_1_MASK;
-    GPIO_set_outputs(this_gpio, gpio_outputs);
+    GPIO_set_outputs(&g_gpio, gpio_outputs);
 }
 
-void gpio_test_write(gpio_instance_t *this_gpio)
+void gpio_test_write()
 {
-//    uint32_t pin;
-//    uint32_t val;
-//    uint8_t dec_place = 2;
-//    UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\r Which pin would you like to set?\n\r");
-//    pin = get_dec_from_user(dec_place);
-//    UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\r What value to write to it?/n/r");
-//    val = get_dec_from_user(1);
-//
-//    GPIO_set_output(this_gpio, pin, val);
+    uint32_t pin;
+    uint32_t val;
+    uint8_t dec_place = 2;
+    UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\r Which pin would you like to set?\n\r");
+    pin = get_dec_from_user(dec_place);
+    if (((pin < 28) & (pin > 17)) | (pin < 9))
+    {
+        UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\r What value to write to it?/n/r");
+        val = get_dec_from_user(1);
+        if (val < 2)
+        {
+            GPIO_set_output(&g_gpio, pin, val);
+        }
+        else
+            UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\r You can't write that.\n\r");
+    }
+    else
+    {
+        UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\r You can't write to that pin.\n\r");
+    }
 }
 
 /**
@@ -130,11 +149,10 @@ void gpio_test_write(gpio_instance_t *this_gpio)
 void gpio_test_handler(void)
 {
     char command = 0;
-    gpio_instance_t *this_gpio;
 
     UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rWELCOME TO THE GPIO TEST!\n\r");
     gpio_test_display_commands();
-    gpio_test_init(this_gpio);
+    gpio_test_init();
 
     while(quit_gpio_test == 0)
     {
@@ -149,16 +167,16 @@ void gpio_test_handler(void)
                 quit_gpio_test = 1;
                 break;
             case '1':
-                gpio_test_write_1_high(this_gpio);
+                gpio_test_write_1_high();
                 break;
             case '2':
-                gpio_test_write_1_low(this_gpio);
+                gpio_test_write_1_low();
                 break;
             case 'w':
-                gpio_test_write(this_gpio);
+                gpio_test_write();
                 break;
             case 'r':
-                gpio_test_read(this_gpio);
+                gpio_test_read();
                 break;
             default:
                 gpio_test_display_incorrect_command();

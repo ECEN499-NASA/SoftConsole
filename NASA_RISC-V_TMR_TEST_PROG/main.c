@@ -42,7 +42,7 @@ UART_instance_t g_uart;
 /*-----------------------------------------------------------------------------
  * GPIO instance data.
  */
-gpio_instance_t g_gpio_out;
+gpio_instance_t g_gpio;
 
 
 // PROTOTYPES
@@ -65,23 +65,23 @@ int main()
      * Initialize the CoreGPIO driver with the base address of the CoreGPIO
      * instance to use and the initial state of the outputs.
      *************************************************************************/
-    GPIO_init(&g_gpio_out, COREGPIO_BASE_ADDR, GPIO_APB_32_BITS_BUS);
+    GPIO_init(&g_gpio, COREGPIO_BASE_ADDR, GPIO_APB_32_BITS_BUS);
 
     /**************************************************************************
      * Configure the GPIOs.
      *************************************************************************/
-    GPIO_config( &g_gpio_out, GPIO_0, GPIO_OUTPUT_MODE );
-    GPIO_config( &g_gpio_out, GPIO_1, GPIO_OUTPUT_MODE );
-    GPIO_config( &g_gpio_out, GPIO_2, GPIO_OUTPUT_MODE );
-    GPIO_config( &g_gpio_out, GPIO_3, GPIO_OUTPUT_MODE );
+    GPIO_config( &g_gpio, GPIO_0, GPIO_OUTPUT_MODE );
+    GPIO_config( &g_gpio, GPIO_1, GPIO_OUTPUT_MODE );
+    GPIO_config( &g_gpio, GPIO_2, GPIO_OUTPUT_MODE );
+    GPIO_config( &g_gpio, GPIO_3, GPIO_OUTPUT_MODE );
 
     /**************************************************************************
      * Set the GPIO outputs.
      *************************************************************************/
-    GPIO_set_output( &g_gpio_out, GPIO_0,1 );
-    GPIO_set_output( &g_gpio_out, GPIO_1,0 );
-    GPIO_set_output( &g_gpio_out, GPIO_2,1 );
-    GPIO_set_output( &g_gpio_out, GPIO_3,0 );
+    GPIO_set_output( &g_gpio, GPIO_0,1 );
+    GPIO_set_output( &g_gpio, GPIO_1,0 );
+    GPIO_set_output( &g_gpio, GPIO_2,1 );
+    GPIO_set_output( &g_gpio, GPIO_3,0 );
 
 
     /**************************************************************************
