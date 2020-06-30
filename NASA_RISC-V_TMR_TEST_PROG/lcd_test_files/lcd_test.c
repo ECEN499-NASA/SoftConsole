@@ -36,30 +36,12 @@ void lcd_command(uint8_t command)
  */
 void lcd_write(int message)
 {
-    uint8_t response;
+    uint8_t writeData[1] = {message};
+    uint8_t response = 0;
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rSelect LCD Screen\n\r");
 	spi_test_change_selected_device();
-	//The RS pin on the LCD (FMC E3) needs to be set to 1
     GPIO_set_output(&g_gpio,RS,1);
-    //This looks like it's sending data. Don't we have a function to do that???
-	spi_test_write(LCD_SCREEN, message, 8, response); //what is the data size of message?
-//    for(int serialcounter = 1; serialcounter <= 8; serialcounter++)
-//	{
-//		if((message&0x80)==0x80)
-//		{
-//			//SerialInput pin set to 1
-//
-//		}
-//		else
-//		{
-//			//SerialInput pin set to 0
-//
-//		}
-//		message = (message<<1);
-//		//SerialClock pin to 0
-//		//SerialClock pin to 1
-//		//SerialClock pin to 0
-//	}
+    spi_test_write(&lcd_screen_dev, message, 1, response);
 }
 
 /**
@@ -106,6 +88,7 @@ void lcd_init(void)
  */
 void lcd_test(char* message)
 {
+    lcd_init();
    // "Hello           "
    char row1[16] = {0x48, 0x65, 0x6C, 0x6C, 0x6F, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0};
    // "World!          "
