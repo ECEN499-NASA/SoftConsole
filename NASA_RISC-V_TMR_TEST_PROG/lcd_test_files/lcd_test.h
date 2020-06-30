@@ -10,6 +10,9 @@
 #ifndef LCD_TEST_H
 #define LCD_TEST_H
 
+/** @brief   gpio instance from main. LCD screen uses 28 thru 31 **/
+extern gpio_instance_t g_gpio;
+
 
 /** @brief   Initial setup of the LCD Screen */
 void lcd_init(void);
