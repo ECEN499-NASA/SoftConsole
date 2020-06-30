@@ -17,6 +17,7 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+GPIO_test_files \
 drivers/CoreGPIO \
 drivers/CoreI2C \
 drivers/CoreSPI \

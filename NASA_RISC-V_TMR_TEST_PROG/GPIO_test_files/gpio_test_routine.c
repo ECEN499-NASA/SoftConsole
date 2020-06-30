@@ -63,10 +63,10 @@ void gpio_test_init()
     GPIO_config(&g_gpio, GPIO_27, GPIO_INOUT_MODE);
 
     //These four are reserved for the LCD and it's switch.
-//    GPIO_config(&g_gpio, GPIO_28, GPIO_INOUT_MODE);
-//    GPIO_config(&g_gpio, GPIO_29, GPIO_INOUT_MODE);
-//    GPIO_config(&g_gpio, GPIO_30, GPIO_INOUT_MODE);
-//    GPIO_config(&g_gpio, GPIO_31, GPIO_INOUT_MODE);
+    GPIO_config(&g_gpio, GPIO_28, GPIO_INOUT_MODE); //RS
+    GPIO_config(&g_gpio, GPIO_29, GPIO_INOUT_MODE); //RST
+    GPIO_config(&g_gpio, GPIO_30, GPIO_INOUT_MODE);
+    GPIO_config(&g_gpio, GPIO_31, GPIO_INOUT_MODE);
 }
 
 /**
@@ -196,6 +196,8 @@ void gpio_test_display_commands(void)
     UART_polled_tx_string(&g_uart, (const uint8_t *)"\tCOMMANDS:\n\r");
     UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- w\t write to GPIO\n\r");
     UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- r\t read from GPIO\n\r");
+    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- 1\t write GPIO1 high\n\r");
+    UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- 2\t write GPIO1 low\n\r");
     UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- h\t display these commands\n\r");
     UART_polled_tx_string(&g_uart, (const uint8_t *)"\t- q\t exit gpio Test Program\n\r");
 }
