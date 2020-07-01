@@ -86,11 +86,11 @@ void lcd_init(void)
  * @warning Needs to be finished.
  *
  */
-void lcd_test(unsigned char* message, int length, bool line1)
+void lcd_test(unsigned char* message, int length, int line)
 {
    lcd_init();
    
-   if (line1)
+   if (line == 0)
    {
       for (col = 0; col < length; col = col + 1)
       {
@@ -100,7 +100,7 @@ void lcd_test(unsigned char* message, int length, bool line1)
       }
    }
    
-   else
+   else if (line == 1)
    {
       for (col = 0; col < length; col = col + 1)
       {
