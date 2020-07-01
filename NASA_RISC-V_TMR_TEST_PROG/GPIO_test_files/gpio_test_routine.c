@@ -84,8 +84,21 @@ void gpio_test_read()
 {
     uint32_t gpio_inputs;
     gpio_inputs = GPIO_get_inputs(&g_gpio);
-    UART_polled_tx_string(&g_uart, (const uint8_t *)"Inputs are:");
-    UART_polled_tx_string(&g_uart, (const uint8_t *)gpio_inputs);
+    // Turn the input into a string
+    char str[32];
+    int i;
+    for(i=31; i>=0; i--)
+    {
+        uint8_t bit = 0x01 & gpio_inputs;
+        if(bit)
+            str[i] = '1';
+        else
+            str[i] = '0';
+        gpio_inputs = gpio_inputs >> 1;
+    }
+
+    UART_polled_tx_string(&g_uart, (const uint8_t *)"Inputs are: ");
+    UART_polled_tx_string(&g_uart, (const uint8_t *) str);
 
 }
 
