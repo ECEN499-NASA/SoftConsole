@@ -86,10 +86,30 @@ void lcd_init(void)
  * @warning Needs to be finished.
  *
  */
-void lcd_test(char* message)
+void lcd_test(unsigned char* message, int length, bool line1)
 {
-    lcd_init();
-   // "Hello           "
+   lcd_init();
+   
+   if (line1)
+   {
+      for (col = 0; col < length; col = col + 1)
+      {
+         // Set the DDRAM address
+         lcd_command(0x80 | col);
+         lcd_write(*(message++));
+      }
+   }
+   
+   else
+   {
+      for (col = 0; col < length; col = col + 1)
+      {
+         lcd_command(0xC0 | col);
+         lcd_write(*(message++));
+      }
+   }
+   
+   /* "Hello           "
    char row1[16] = {0x48, 0x65, 0x6C, 0x6C, 0x6F, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0};
    // "World!          "
    char row2[16] = {0x57, 0x6F, 0x72, 0x6C, 0x64, 0x21, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0};
@@ -109,4 +129,5 @@ void lcd_test(char* message)
       lcd_command(0xC0 | col);
       lcd_write(row2[col]);
    }
+    */
 }

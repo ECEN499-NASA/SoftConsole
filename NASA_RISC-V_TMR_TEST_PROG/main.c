@@ -158,7 +158,10 @@ void testProgramManager(void)
 					displayTestUnavailable();
 					break;
 				case LCD_SCREEN_TEST:
-					lcd_test();
+               unsigned char line1[] = "Hello";
+               unsigned char line2[] = "Moon!";
+					lcd_test(&line1[0], 5, 0);
+               lcd_test(&line2[0], 5, 1);
 					break;
 				case CPU_TEST:
 					displayTestUnavailable();
