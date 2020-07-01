@@ -24,7 +24,7 @@ void lcd_command(uint8_t command);
 void lcd_write(int message);
 
 /** @brief   Display "Hello World" on the LCD */
-void lcd_test(char* message, int length, int line);
+void lcd_test(unsigned char* message, int length, int line);
 
 
 #endif /*LCD_TEST_H*/
