@@ -82,6 +82,7 @@
  *      BAUD_VALUE = (CLOCK / (16 * BAUD_RATE)) - 1
  *****************************************************************************/
 #define BAUD_VALUE_115200               (SYS_CLK_FREQ / (16 * 115200)) - 1
+#define BAUD_VALUE_1000000				(SYS_CLK_FREQ / (16 * 1000000)) - 1
 
 /***************************************************************************//**
  * User edit section- Edit sections below if required
