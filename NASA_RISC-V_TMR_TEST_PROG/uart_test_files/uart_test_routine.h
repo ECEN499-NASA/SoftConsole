@@ -11,6 +11,7 @@
 #define UART_TEST_ROUTINE_H_
 
 #include "core_uart_apb.h"
+#include "uart_addresses.h"
 
 /**
  * @brief	Instance data for our  CoreUART device
@@ -28,6 +29,7 @@ UART_instance_t g_core_uart;
 
 #define BAUD_VALUE_57600    25
 
+int run_uart_test(void);
 static void uart_display_greeting(void);
 static void select_mode_uart(void);
 uint8_t uart_get_data(void);
@@ -42,5 +44,6 @@ extern UART_instance_t g_uart;
  * @brief	Counts of data sent by master and received by slave.
  */
 static uint8_t tx_length=0x00;
+static uint8_t rx_length=0x00;
 
 #endif  /* UART_TEST_ROUTINE_H */

@@ -27,4 +27,5 @@ void lcd_write(int message);
 void lcd_test(unsigned char* message, int length, int line);
 
 
+
 #endif /*LCD_TEST_H*/

@@ -41,7 +41,7 @@ void lcd_write(int message)
 	UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rSelect LCD Screen\n\r");
 	spi_test_change_selected_device();
     GPIO_set_output(&g_gpio,RS,1);
-    spi_test_write(&lcd_screen_dev, message, 1, response);
+    spi_test_write(&lcd_screen_dev, writeData, 1, &response);
 }
 
 /**
@@ -60,13 +60,17 @@ void lcd_init(void)
 	//LCD Rst to 0
 	GPIO_set_output(&g_gpio,RST,0);
 
-	nanosleep((const struct timespec[]){{0, 2000000L}}, NULL);
+	int i;
+	//nanosleep((const struct timespec[]){{0, 2000000L}}, NULL);
+	for(i = 0; i < 166000; i++);
 	//LCD Rst to 1
     GPIO_set_output(&g_gpio,RST,1);
 
-    nanosleep((const struct timespec[]){{0, 20000000L}}, NULL);
+    //nanosleep((const struct timespec[]){{0, 20000000L}}, NULL);
+    for(i = 0; i < 166000; i++);
 	lcd_command(0x30);
-	nanosleep((const struct timespec[]){{0, 2000000L}}, NULL);
+	//nanosleep((const struct timespec[]){{0, 2000000L}}, NULL);
+	for(i = 0; i < 166000; i++);
 	lcd_command(0x30);
 	lcd_command(0x30);
 	lcd_command(0x39);
@@ -77,7 +81,8 @@ void lcd_init(void)
 	lcd_command(0x0C);
 	lcd_command(0x06);
 	lcd_command(0x01);
-	nanosleep((const struct timespec[]){{0, 10000000L}}, NULL);
+	//nanosleep((const struct timespec[]){{0, 10000000L}}, NULL);
+	for(i = 0; i < 83000; i++);
 }
 
 /**

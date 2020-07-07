@@ -22,8 +22,6 @@ c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unkno
                               c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-malloc.o) (_impure_ptr)
 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-lock.o)
                               c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-mlock.o) (__retarget_lock_acquire_recursive)
-c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libgloss.a(nanosleep.o)
-                              ./lcd_test_files/lcd_test.o (nanosleep)
 
 Allocating common symbols
 Common symbol       size              file
@@ -68,6 +66,7 @@ Discarded input sections
  .group         0x0000000000000000        0xc ./user_handler_files/user_handler.o
  .group         0x0000000000000000        0xc ./user_handler_files/user_handler.o
  .group         0x0000000000000000        0xc ./user_handler_files/user_handler.o
+ .group         0x0000000000000000        0xc ./user_handler_files/user_handler.o
  .text          0x0000000000000000        0x0 ./user_handler_files/user_handler.o
  .data          0x0000000000000000        0x0 ./user_handler_files/user_handler.o
  .bss           0x0000000000000000        0x0 ./user_handler_files/user_handler.o
@@ -75,6 +74,9 @@ Discarded input sections
  .bss.tx_buf    0x0000000000000000       0x20 ./user_handler_files/user_handler.o
  .sbss.tx_length
                 0x0000000000000000        0x1 ./user_handler_files/user_handler.o
+ .sbss.rx_length
+                0x0000000000000000        0x1 ./user_handler_files/user_handler.o
+ .group         0x0000000000000000        0xc ./uart_test_files/uart_test_routine.o
  .group         0x0000000000000000        0xc ./uart_test_files/uart_test_routine.o
  .group         0x0000000000000000        0xc ./uart_test_files/uart_test_routine.o
  .group         0x0000000000000000        0xc ./uart_test_files/uart_test_routine.o
@@ -103,7 +105,9 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./uart_test_files/uart_test_routine.o
  .debug_macro   0x0000000000000000      0x1df ./uart_test_files/uart_test_routine.o
  .debug_macro   0x0000000000000000       0x40 ./uart_test_files/uart_test_routine.o
+ .debug_macro   0x0000000000000000       0xfa ./uart_test_files/uart_test_routine.o
  .debug_macro   0x0000000000000000       0x16 ./uart_test_files/uart_test_routine.o
+ .group         0x0000000000000000        0xc ./spi_test_files/spi_test_prog.o
  .group         0x0000000000000000        0xc ./spi_test_files/spi_test_prog.o
  .group         0x0000000000000000        0xc ./spi_test_files/spi_test_prog.o
  .group         0x0000000000000000        0xc ./spi_test_files/spi_test_prog.o
@@ -138,6 +142,8 @@ Discarded input sections
  .bss.tx_buf    0x0000000000000000       0x20 ./spi_test_files/spi_test_prog.o
  .sbss.tx_length
                 0x0000000000000000        0x1 ./spi_test_files/spi_test_prog.o
+ .sbss.rx_length
+                0x0000000000000000        0x1 ./spi_test_files/spi_test_prog.o
  .debug_macro   0x0000000000000000      0x742 ./spi_test_files/spi_test_prog.o
  .debug_macro   0x0000000000000000       0x22 ./spi_test_files/spi_test_prog.o
  .debug_macro   0x0000000000000000       0x8e ./spi_test_files/spi_test_prog.o
@@ -146,11 +152,13 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./spi_test_files/spi_test_prog.o
  .debug_macro   0x0000000000000000      0x1df ./spi_test_files/spi_test_prog.o
  .debug_macro   0x0000000000000000       0x40 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x0000000000000000       0xfa ./spi_test_files/spi_test_prog.o
  .debug_macro   0x0000000000000000       0x16 ./spi_test_files/spi_test_prog.o
- .debug_macro   0x0000000000000000       0x52 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x0000000000000000       0x58 ./spi_test_files/spi_test_prog.o
  .text          0x0000000000000000        0x0 ./riscv_hal/entry.o
  .data          0x0000000000000000        0x0 ./riscv_hal/entry.o
  .bss           0x0000000000000000        0x0 ./riscv_hal/entry.o
+ .group         0x0000000000000000        0xc ./riscv_hal/init.o
  .group         0x0000000000000000        0xc ./riscv_hal/init.o
  .group         0x0000000000000000        0xc ./riscv_hal/init.o
  .group         0x0000000000000000        0xc ./riscv_hal/init.o
@@ -195,6 +203,8 @@ Discarded input sections
  .bss.tx_buf    0x0000000000000000       0x20 ./riscv_hal/init.o
  .sbss.tx_length
                 0x0000000000000000        0x1 ./riscv_hal/init.o
+ .sbss.rx_length
+                0x0000000000000000        0x1 ./riscv_hal/init.o
  .debug_macro   0x0000000000000000      0x742 ./riscv_hal/init.o
  .debug_macro   0x0000000000000000       0x22 ./riscv_hal/init.o
  .debug_macro   0x0000000000000000       0x8e ./riscv_hal/init.o
@@ -203,6 +213,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./riscv_hal/init.o
  .debug_macro   0x0000000000000000      0x1df ./riscv_hal/init.o
  .debug_macro   0x0000000000000000       0x40 ./riscv_hal/init.o
+ .debug_macro   0x0000000000000000       0xfa ./riscv_hal/init.o
  .debug_macro   0x0000000000000000       0x16 ./riscv_hal/init.o
  .debug_macro   0x0000000000000000       0x19 ./riscv_hal/init.o
  .debug_macro   0x0000000000000000       0x58 ./riscv_hal/init.o
@@ -258,12 +269,15 @@ Discarded input sections
  .group         0x0000000000000000        0xc ./riscv_hal/riscv_hal.o
  .group         0x0000000000000000        0xc ./riscv_hal/riscv_hal.o
  .group         0x0000000000000000        0xc ./riscv_hal/riscv_hal.o
+ .group         0x0000000000000000        0xc ./riscv_hal/riscv_hal.o
  .text          0x0000000000000000        0x0 ./riscv_hal/riscv_hal.o
  .data          0x0000000000000000        0x0 ./riscv_hal/riscv_hal.o
  .bss           0x0000000000000000        0x0 ./riscv_hal/riscv_hal.o
  .bss.rx_buf    0x0000000000000000       0x20 ./riscv_hal/riscv_hal.o
  .bss.tx_buf    0x0000000000000000       0x20 ./riscv_hal/riscv_hal.o
  .sbss.tx_length
+                0x0000000000000000        0x1 ./riscv_hal/riscv_hal.o
+ .sbss.rx_length
                 0x0000000000000000        0x1 ./riscv_hal/riscv_hal.o
  .debug_macro   0x0000000000000000      0x742 ./riscv_hal/riscv_hal.o
  .debug_macro   0x0000000000000000       0x22 ./riscv_hal/riscv_hal.o
@@ -273,6 +287,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./riscv_hal/riscv_hal.o
  .debug_macro   0x0000000000000000      0x1df ./riscv_hal/riscv_hal.o
  .debug_macro   0x0000000000000000       0x40 ./riscv_hal/riscv_hal.o
+ .debug_macro   0x0000000000000000       0xfa ./riscv_hal/riscv_hal.o
  .debug_macro   0x0000000000000000       0x16 ./riscv_hal/riscv_hal.o
  .debug_macro   0x0000000000000000       0x19 ./riscv_hal/riscv_hal.o
  .debug_macro   0x0000000000000000       0x58 ./riscv_hal/riscv_hal.o
@@ -335,12 +350,15 @@ Discarded input sections
  .group         0x0000000000000000        0xc ./riscv_hal/riscv_hal_stubs.o
  .group         0x0000000000000000        0xc ./riscv_hal/riscv_hal_stubs.o
  .group         0x0000000000000000        0xc ./riscv_hal/riscv_hal_stubs.o
+ .group         0x0000000000000000        0xc ./riscv_hal/riscv_hal_stubs.o
  .text          0x0000000000000000        0x0 ./riscv_hal/riscv_hal_stubs.o
  .data          0x0000000000000000        0x0 ./riscv_hal/riscv_hal_stubs.o
  .bss           0x0000000000000000        0x0 ./riscv_hal/riscv_hal_stubs.o
  .bss.rx_buf    0x0000000000000000       0x20 ./riscv_hal/riscv_hal_stubs.o
  .bss.tx_buf    0x0000000000000000       0x20 ./riscv_hal/riscv_hal_stubs.o
  .sbss.tx_length
+                0x0000000000000000        0x1 ./riscv_hal/riscv_hal_stubs.o
+ .sbss.rx_length
                 0x0000000000000000        0x1 ./riscv_hal/riscv_hal_stubs.o
  .text.SysTick_Handler
                 0x0000000000000000       0x1c ./riscv_hal/riscv_hal_stubs.o
@@ -356,6 +374,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./riscv_hal/riscv_hal_stubs.o
  .debug_macro   0x0000000000000000      0x1df ./riscv_hal/riscv_hal_stubs.o
  .debug_macro   0x0000000000000000       0x40 ./riscv_hal/riscv_hal_stubs.o
+ .debug_macro   0x0000000000000000       0xfa ./riscv_hal/riscv_hal_stubs.o
  .debug_macro   0x0000000000000000       0x16 ./riscv_hal/riscv_hal_stubs.o
  .debug_macro   0x0000000000000000       0x58 ./riscv_hal/riscv_hal_stubs.o
  .debug_macro   0x0000000000000000       0x19 ./riscv_hal/riscv_hal_stubs.o
@@ -426,12 +445,15 @@ Discarded input sections
  .group         0x0000000000000000        0xc ./riscv_hal/syscall.o
  .group         0x0000000000000000        0xc ./riscv_hal/syscall.o
  .group         0x0000000000000000        0xc ./riscv_hal/syscall.o
+ .group         0x0000000000000000        0xc ./riscv_hal/syscall.o
  .text          0x0000000000000000        0x0 ./riscv_hal/syscall.o
  .data          0x0000000000000000        0x0 ./riscv_hal/syscall.o
  .bss           0x0000000000000000        0x0 ./riscv_hal/syscall.o
  .bss.rx_buf    0x0000000000000000       0x20 ./riscv_hal/syscall.o
  .bss.tx_buf    0x0000000000000000       0x20 ./riscv_hal/syscall.o
  .sbss.tx_length
+                0x0000000000000000        0x1 ./riscv_hal/syscall.o
+ .sbss.rx_length
                 0x0000000000000000        0x1 ./riscv_hal/syscall.o
  .sbss.__env    0x0000000000000000        0x4 ./riscv_hal/syscall.o
  .sdata.environ
@@ -465,6 +487,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./riscv_hal/syscall.o
  .debug_macro   0x0000000000000000      0x1df ./riscv_hal/syscall.o
  .debug_macro   0x0000000000000000       0x40 ./riscv_hal/syscall.o
+ .debug_macro   0x0000000000000000       0xfa ./riscv_hal/syscall.o
  .debug_macro   0x0000000000000000       0x16 ./riscv_hal/syscall.o
  .debug_macro   0x0000000000000000       0x19 ./riscv_hal/syscall.o
  .debug_macro   0x0000000000000000       0x58 ./riscv_hal/syscall.o
@@ -535,12 +558,15 @@ Discarded input sections
  .group         0x0000000000000000        0xc ./lcd_test_files/lcd_test.o
  .group         0x0000000000000000        0xc ./lcd_test_files/lcd_test.o
  .group         0x0000000000000000        0xc ./lcd_test_files/lcd_test.o
+ .group         0x0000000000000000        0xc ./lcd_test_files/lcd_test.o
  .text          0x0000000000000000        0x0 ./lcd_test_files/lcd_test.o
  .data          0x0000000000000000        0x0 ./lcd_test_files/lcd_test.o
  .bss           0x0000000000000000        0x0 ./lcd_test_files/lcd_test.o
  .bss.rx_buf    0x0000000000000000       0x20 ./lcd_test_files/lcd_test.o
  .bss.tx_buf    0x0000000000000000       0x20 ./lcd_test_files/lcd_test.o
  .sbss.tx_length
+                0x0000000000000000        0x1 ./lcd_test_files/lcd_test.o
+ .sbss.rx_length
                 0x0000000000000000        0x1 ./lcd_test_files/lcd_test.o
  .debug_macro   0x0000000000000000      0x742 ./lcd_test_files/lcd_test.o
  .debug_macro   0x0000000000000000       0x22 ./lcd_test_files/lcd_test.o
@@ -550,6 +576,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./lcd_test_files/lcd_test.o
  .debug_macro   0x0000000000000000      0x1df ./lcd_test_files/lcd_test.o
  .debug_macro   0x0000000000000000       0x40 ./lcd_test_files/lcd_test.o
+ .debug_macro   0x0000000000000000       0xfa ./lcd_test_files/lcd_test.o
  .debug_macro   0x0000000000000000       0x16 ./lcd_test_files/lcd_test.o
  .debug_macro   0x0000000000000000       0x58 ./lcd_test_files/lcd_test.o
  .debug_macro   0x0000000000000000       0x19 ./lcd_test_files/lcd_test.o
@@ -579,7 +606,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x16 ./lcd_test_files/lcd_test.o
  .debug_macro   0x0000000000000000       0x16 ./lcd_test_files/lcd_test.o
  .debug_macro   0x0000000000000000       0x29 ./lcd_test_files/lcd_test.o
- .debug_macro   0x0000000000000000       0x52 ./lcd_test_files/lcd_test.o
+ .debug_macro   0x0000000000000000       0x58 ./lcd_test_files/lcd_test.o
+ .group         0x0000000000000000        0xc ./i2c_test_files/i2c_test_routine.o
  .group         0x0000000000000000        0xc ./i2c_test_files/i2c_test_routine.o
  .group         0x0000000000000000        0xc ./i2c_test_files/i2c_test_routine.o
  .group         0x0000000000000000        0xc ./i2c_test_files/i2c_test_routine.o
@@ -604,6 +632,8 @@ Discarded input sections
  .bss.tx_buf    0x0000000000000000       0x20 ./i2c_test_files/i2c_test_routine.o
  .sbss.tx_length
                 0x0000000000000000        0x1 ./i2c_test_files/i2c_test_routine.o
+ .sbss.rx_length
+                0x0000000000000000        0x1 ./i2c_test_files/i2c_test_routine.o
  .bss.g_slave_rx_buffer
                 0x0000000000000000       0x20 ./i2c_test_files/i2c_test_routine.o
  .data.g_slave_tx_buffer
@@ -622,12 +652,14 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./i2c_test_files/i2c_test_routine.o
  .debug_macro   0x0000000000000000      0x1df ./i2c_test_files/i2c_test_routine.o
  .debug_macro   0x0000000000000000       0x40 ./i2c_test_files/i2c_test_routine.o
+ .debug_macro   0x0000000000000000       0xfa ./i2c_test_files/i2c_test_routine.o
  .debug_macro   0x0000000000000000       0x16 ./i2c_test_files/i2c_test_routine.o
  .debug_macro   0x0000000000000000       0x64 ./i2c_test_files/i2c_test_routine.o
- .debug_macro   0x0000000000000000       0x52 ./i2c_test_files/i2c_test_routine.o
+ .debug_macro   0x0000000000000000       0x58 ./i2c_test_files/i2c_test_routine.o
  .debug_macro   0x0000000000000000      0x2dc ./i2c_test_files/i2c_test_routine.o
  .debug_macro   0x0000000000000000       0x28 ./i2c_test_files/i2c_test_routine.o
  .debug_macro   0x0000000000000000       0x10 ./i2c_test_files/i2c_test_routine.o
+ .group         0x0000000000000000        0xc ./hal/hal_irq.o
  .group         0x0000000000000000        0xc ./hal/hal_irq.o
  .group         0x0000000000000000        0xc ./hal/hal_irq.o
  .group         0x0000000000000000        0xc ./hal/hal_irq.o
@@ -648,6 +680,8 @@ Discarded input sections
  .bss.tx_buf    0x0000000000000000       0x20 ./hal/hal_irq.o
  .sbss.tx_length
                 0x0000000000000000        0x1 ./hal/hal_irq.o
+ .sbss.rx_length
+                0x0000000000000000        0x1 ./hal/hal_irq.o
  .debug_macro   0x0000000000000000      0x742 ./hal/hal_irq.o
  .debug_macro   0x0000000000000000       0x22 ./hal/hal_irq.o
  .debug_macro   0x0000000000000000       0x8e ./hal/hal_irq.o
@@ -656,6 +690,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./hal/hal_irq.o
  .debug_macro   0x0000000000000000      0x1df ./hal/hal_irq.o
  .debug_macro   0x0000000000000000       0x40 ./hal/hal_irq.o
+ .debug_macro   0x0000000000000000       0xfa ./hal/hal_irq.o
  .debug_macro   0x0000000000000000       0x16 ./hal/hal_irq.o
  .debug_macro   0x0000000000000000       0x64 ./hal/hal_irq.o
  .debug_macro   0x0000000000000000      0x2dc ./hal/hal_irq.o
@@ -675,12 +710,15 @@ Discarded input sections
  .group         0x0000000000000000        0xc ./drivers/CoreUARTapb/core_uart_apb.o
  .group         0x0000000000000000        0xc ./drivers/CoreUARTapb/core_uart_apb.o
  .group         0x0000000000000000        0xc ./drivers/CoreUARTapb/core_uart_apb.o
+ .group         0x0000000000000000        0xc ./drivers/CoreUARTapb/core_uart_apb.o
  .text          0x0000000000000000        0x0 ./drivers/CoreUARTapb/core_uart_apb.o
  .data          0x0000000000000000        0x0 ./drivers/CoreUARTapb/core_uart_apb.o
  .bss           0x0000000000000000        0x0 ./drivers/CoreUARTapb/core_uart_apb.o
  .bss.rx_buf    0x0000000000000000       0x20 ./drivers/CoreUARTapb/core_uart_apb.o
  .bss.tx_buf    0x0000000000000000       0x20 ./drivers/CoreUARTapb/core_uart_apb.o
  .sbss.tx_length
+                0x0000000000000000        0x1 ./drivers/CoreUARTapb/core_uart_apb.o
+ .sbss.rx_length
                 0x0000000000000000        0x1 ./drivers/CoreUARTapb/core_uart_apb.o
  .text.UART_fill_tx_fifo
                 0x0000000000000000       0xe8 ./drivers/CoreUARTapb/core_uart_apb.o
@@ -692,8 +730,10 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./drivers/CoreUARTapb/core_uart_apb.o
  .debug_macro   0x0000000000000000      0x1df ./drivers/CoreUARTapb/core_uart_apb.o
  .debug_macro   0x0000000000000000       0x40 ./drivers/CoreUARTapb/core_uart_apb.o
+ .debug_macro   0x0000000000000000       0xfa ./drivers/CoreUARTapb/core_uart_apb.o
  .debug_macro   0x0000000000000000       0x16 ./drivers/CoreUARTapb/core_uart_apb.o
  .debug_macro   0x0000000000000000       0x64 ./drivers/CoreUARTapb/core_uart_apb.o
+ .group         0x0000000000000000        0xc ./drivers/CoreTimer/core_timer.o
  .group         0x0000000000000000        0xc ./drivers/CoreTimer/core_timer.o
  .group         0x0000000000000000        0xc ./drivers/CoreTimer/core_timer.o
  .group         0x0000000000000000        0xc ./drivers/CoreTimer/core_timer.o
@@ -714,6 +754,8 @@ Discarded input sections
  .bss.tx_buf    0x0000000000000000       0x20 ./drivers/CoreTimer/core_timer.o
  .sbss.tx_length
                 0x0000000000000000        0x1 ./drivers/CoreTimer/core_timer.o
+ .sbss.rx_length
+                0x0000000000000000        0x1 ./drivers/CoreTimer/core_timer.o
  .text.TMR_init
                 0x0000000000000000      0x114 ./drivers/CoreTimer/core_timer.o
  .text.TMR_start
@@ -728,12 +770,12 @@ Discarded input sections
                 0x0000000000000000       0x4c ./drivers/CoreTimer/core_timer.o
  .text.TMR_reload
                 0x0000000000000000       0x44 ./drivers/CoreTimer/core_timer.o
- .debug_info    0x0000000000000000      0x2d1 ./drivers/CoreTimer/core_timer.o
+ .debug_info    0x0000000000000000      0x2e3 ./drivers/CoreTimer/core_timer.o
  .debug_abbrev  0x0000000000000000      0x124 ./drivers/CoreTimer/core_timer.o
  .debug_aranges
                 0x0000000000000000       0x50 ./drivers/CoreTimer/core_timer.o
  .debug_ranges  0x0000000000000000       0x40 ./drivers/CoreTimer/core_timer.o
- .debug_macro   0x0000000000000000       0xcd ./drivers/CoreTimer/core_timer.o
+ .debug_macro   0x0000000000000000       0xd6 ./drivers/CoreTimer/core_timer.o
  .debug_macro   0x0000000000000000      0x742 ./drivers/CoreTimer/core_timer.o
  .debug_macro   0x0000000000000000       0x22 ./drivers/CoreTimer/core_timer.o
  .debug_macro   0x0000000000000000       0x8e ./drivers/CoreTimer/core_timer.o
@@ -742,17 +784,24 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./drivers/CoreTimer/core_timer.o
  .debug_macro   0x0000000000000000      0x1df ./drivers/CoreTimer/core_timer.o
  .debug_macro   0x0000000000000000       0x40 ./drivers/CoreTimer/core_timer.o
+ .debug_macro   0x0000000000000000       0xfa ./drivers/CoreTimer/core_timer.o
  .debug_macro   0x0000000000000000       0x16 ./drivers/CoreTimer/core_timer.o
  .debug_macro   0x0000000000000000       0x4c ./drivers/CoreTimer/core_timer.o
  .debug_macro   0x0000000000000000       0xd6 ./drivers/CoreTimer/core_timer.o
  .debug_macro   0x0000000000000000       0x64 ./drivers/CoreTimer/core_timer.o
  .debug_macro   0x0000000000000000       0x16 ./drivers/CoreTimer/core_timer.o
+<<<<<<< HEAD
+ .debug_line    0x0000000000000000      0x4e6 ./drivers/CoreTimer/core_timer.o
+ .debug_str     0x0000000000000000     0x44e1 ./drivers/CoreTimer/core_timer.o
+=======
  .debug_line    0x0000000000000000      0x523 ./drivers/CoreTimer/core_timer.o
  .debug_str     0x0000000000000000     0x41e7 ./drivers/CoreTimer/core_timer.o
+>>>>>>> 31de474f4a344c3936efd6f8dcf9ce225af0c869
  .comment       0x0000000000000000       0x44 ./drivers/CoreTimer/core_timer.o
  .debug_frame   0x0000000000000000      0x10c ./drivers/CoreTimer/core_timer.o
  .riscv.attributes
                 0x0000000000000000       0x1f ./drivers/CoreTimer/core_timer.o
+ .group         0x0000000000000000        0xc ./drivers/CoreSPI/core_spi.o
  .group         0x0000000000000000        0xc ./drivers/CoreSPI/core_spi.o
  .group         0x0000000000000000        0xc ./drivers/CoreSPI/core_spi.o
  .group         0x0000000000000000        0xc ./drivers/CoreSPI/core_spi.o
@@ -786,6 +835,8 @@ Discarded input sections
  .bss.tx_buf    0x0000000000000000       0x20 ./drivers/CoreSPI/core_spi.o
  .sbss.tx_length
                 0x0000000000000000        0x1 ./drivers/CoreSPI/core_spi.o
+ .sbss.rx_length
+                0x0000000000000000        0x1 ./drivers/CoreSPI/core_spi.o
  .text.SPI_configure_slave_mode
                 0x0000000000000000       0xc4 ./drivers/CoreSPI/core_spi.o
  .text.SPI_transfer_frame
@@ -817,6 +868,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./drivers/CoreSPI/core_spi.o
  .debug_macro   0x0000000000000000      0x1df ./drivers/CoreSPI/core_spi.o
  .debug_macro   0x0000000000000000       0x40 ./drivers/CoreSPI/core_spi.o
+ .debug_macro   0x0000000000000000       0xfa ./drivers/CoreSPI/core_spi.o
  .debug_macro   0x0000000000000000       0x16 ./drivers/CoreSPI/core_spi.o
  .debug_macro   0x0000000000000000       0x12 ./drivers/CoreSPI/core_spi.o
  .debug_macro   0x0000000000000000       0x64 ./drivers/CoreSPI/core_spi.o
@@ -860,12 +912,15 @@ Discarded input sections
  .group         0x0000000000000000        0xc ./drivers/CoreI2C/core_i2c.o
  .group         0x0000000000000000        0xc ./drivers/CoreI2C/core_i2c.o
  .group         0x0000000000000000        0xc ./drivers/CoreI2C/core_i2c.o
+ .group         0x0000000000000000        0xc ./drivers/CoreI2C/core_i2c.o
  .text          0x0000000000000000        0x0 ./drivers/CoreI2C/core_i2c.o
  .data          0x0000000000000000        0x0 ./drivers/CoreI2C/core_i2c.o
  .bss           0x0000000000000000        0x0 ./drivers/CoreI2C/core_i2c.o
  .bss.rx_buf    0x0000000000000000       0x20 ./drivers/CoreI2C/core_i2c.o
  .bss.tx_buf    0x0000000000000000       0x20 ./drivers/CoreI2C/core_i2c.o
  .sbss.tx_length
+                0x0000000000000000        0x1 ./drivers/CoreI2C/core_i2c.o
+ .sbss.rx_length
                 0x0000000000000000        0x1 ./drivers/CoreI2C/core_i2c.o
  .text.I2C_channel_init
                 0x0000000000000000      0x16c ./drivers/CoreI2C/core_i2c.o
@@ -925,6 +980,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./drivers/CoreI2C/core_i2c.o
  .debug_macro   0x0000000000000000      0x1df ./drivers/CoreI2C/core_i2c.o
  .debug_macro   0x0000000000000000       0x40 ./drivers/CoreI2C/core_i2c.o
+ .debug_macro   0x0000000000000000       0xfa ./drivers/CoreI2C/core_i2c.o
  .debug_macro   0x0000000000000000       0x16 ./drivers/CoreI2C/core_i2c.o
  .debug_macro   0x0000000000000000       0x64 ./drivers/CoreI2C/core_i2c.o
  .debug_macro   0x0000000000000000       0x16 ./drivers/CoreI2C/core_i2c.o
@@ -953,12 +1009,15 @@ Discarded input sections
  .group         0x0000000000000000        0xc ./drivers/CoreI2C/i2c_interrupt.o
  .group         0x0000000000000000        0xc ./drivers/CoreI2C/i2c_interrupt.o
  .group         0x0000000000000000        0xc ./drivers/CoreI2C/i2c_interrupt.o
+ .group         0x0000000000000000        0xc ./drivers/CoreI2C/i2c_interrupt.o
  .text          0x0000000000000000        0x0 ./drivers/CoreI2C/i2c_interrupt.o
  .data          0x0000000000000000        0x0 ./drivers/CoreI2C/i2c_interrupt.o
  .bss           0x0000000000000000        0x0 ./drivers/CoreI2C/i2c_interrupt.o
  .bss.rx_buf    0x0000000000000000       0x20 ./drivers/CoreI2C/i2c_interrupt.o
  .bss.tx_buf    0x0000000000000000       0x20 ./drivers/CoreI2C/i2c_interrupt.o
  .sbss.tx_length
+                0x0000000000000000        0x1 ./drivers/CoreI2C/i2c_interrupt.o
+ .sbss.rx_length
                 0x0000000000000000        0x1 ./drivers/CoreI2C/i2c_interrupt.o
  .debug_macro   0x0000000000000000      0x742 ./drivers/CoreI2C/i2c_interrupt.o
  .debug_macro   0x0000000000000000       0x22 ./drivers/CoreI2C/i2c_interrupt.o
@@ -968,10 +1027,12 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./drivers/CoreI2C/i2c_interrupt.o
  .debug_macro   0x0000000000000000      0x1df ./drivers/CoreI2C/i2c_interrupt.o
  .debug_macro   0x0000000000000000       0x40 ./drivers/CoreI2C/i2c_interrupt.o
+ .debug_macro   0x0000000000000000       0xfa ./drivers/CoreI2C/i2c_interrupt.o
  .debug_macro   0x0000000000000000       0x16 ./drivers/CoreI2C/i2c_interrupt.o
  .debug_macro   0x0000000000000000       0x64 ./drivers/CoreI2C/i2c_interrupt.o
  .debug_macro   0x0000000000000000       0x16 ./drivers/CoreI2C/i2c_interrupt.o
  .debug_macro   0x0000000000000000       0x35 ./drivers/CoreI2C/i2c_interrupt.o
+ .group         0x0000000000000000        0xc ./drivers/CoreGPIO/core_gpio.o
  .group         0x0000000000000000        0xc ./drivers/CoreGPIO/core_gpio.o
  .group         0x0000000000000000        0xc ./drivers/CoreGPIO/core_gpio.o
  .group         0x0000000000000000        0xc ./drivers/CoreGPIO/core_gpio.o
@@ -991,6 +1052,8 @@ Discarded input sections
  .bss.rx_buf    0x0000000000000000       0x20 ./drivers/CoreGPIO/core_gpio.o
  .bss.tx_buf    0x0000000000000000       0x20 ./drivers/CoreGPIO/core_gpio.o
  .sbss.tx_length
+                0x0000000000000000        0x1 ./drivers/CoreGPIO/core_gpio.o
+ .sbss.rx_length
                 0x0000000000000000        0x1 ./drivers/CoreGPIO/core_gpio.o
  .text.GPIO_drive_inout
                 0x0000000000000000      0x16c ./drivers/CoreGPIO/core_gpio.o
@@ -1012,10 +1075,12 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./drivers/CoreGPIO/core_gpio.o
  .debug_macro   0x0000000000000000      0x1df ./drivers/CoreGPIO/core_gpio.o
  .debug_macro   0x0000000000000000       0x40 ./drivers/CoreGPIO/core_gpio.o
+ .debug_macro   0x0000000000000000       0xfa ./drivers/CoreGPIO/core_gpio.o
  .debug_macro   0x0000000000000000       0x16 ./drivers/CoreGPIO/core_gpio.o
  .debug_macro   0x0000000000000000      0x11c ./drivers/CoreGPIO/core_gpio.o
  .debug_macro   0x0000000000000000       0x64 ./drivers/CoreGPIO/core_gpio.o
  .debug_macro   0x0000000000000000       0x16 ./drivers/CoreGPIO/core_gpio.o
+ .group         0x0000000000000000        0xc ./GPIO_test_files/gpio_test_routine.o
  .group         0x0000000000000000        0xc ./GPIO_test_files/gpio_test_routine.o
  .group         0x0000000000000000        0xc ./GPIO_test_files/gpio_test_routine.o
  .group         0x0000000000000000        0xc ./GPIO_test_files/gpio_test_routine.o
@@ -1039,6 +1104,8 @@ Discarded input sections
  .bss.tx_buf    0x0000000000000000       0x20 ./GPIO_test_files/gpio_test_routine.o
  .sbss.tx_length
                 0x0000000000000000        0x1 ./GPIO_test_files/gpio_test_routine.o
+ .sbss.rx_length
+                0x0000000000000000        0x1 ./GPIO_test_files/gpio_test_routine.o
  .debug_macro   0x0000000000000000      0x742 ./GPIO_test_files/gpio_test_routine.o
  .debug_macro   0x0000000000000000       0x22 ./GPIO_test_files/gpio_test_routine.o
  .debug_macro   0x0000000000000000       0x8e ./GPIO_test_files/gpio_test_routine.o
@@ -1047,14 +1114,16 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x6a ./GPIO_test_files/gpio_test_routine.o
  .debug_macro   0x0000000000000000      0x1df ./GPIO_test_files/gpio_test_routine.o
  .debug_macro   0x0000000000000000       0x40 ./GPIO_test_files/gpio_test_routine.o
+ .debug_macro   0x0000000000000000       0xfa ./GPIO_test_files/gpio_test_routine.o
  .debug_macro   0x0000000000000000       0x16 ./GPIO_test_files/gpio_test_routine.o
  .debug_macro   0x0000000000000000      0x11c ./GPIO_test_files/gpio_test_routine.o
  .debug_macro   0x0000000000000000       0x64 ./GPIO_test_files/gpio_test_routine.o
- .debug_macro   0x0000000000000000       0x52 ./GPIO_test_files/gpio_test_routine.o
+ .debug_macro   0x0000000000000000       0x58 ./GPIO_test_files/gpio_test_routine.o
  .debug_macro   0x0000000000000000      0x2dc ./GPIO_test_files/gpio_test_routine.o
  .debug_macro   0x0000000000000000       0x28 ./GPIO_test_files/gpio_test_routine.o
  .debug_macro   0x0000000000000000       0x10 ./GPIO_test_files/gpio_test_routine.o
  .debug_macro   0x0000000000000000       0x52 ./GPIO_test_files/gpio_test_routine.o
+ .group         0x0000000000000000        0xc ./main.o
  .group         0x0000000000000000        0xc ./main.o
  .group         0x0000000000000000        0xc ./main.o
  .group         0x0000000000000000        0xc ./main.o
@@ -1105,6 +1174,8 @@ Discarded input sections
  .bss.tx_buf    0x0000000000000000       0x20 ./main.o
  .sbss.tx_length
                 0x0000000000000000        0x1 ./main.o
+ .sbss.rx_length
+                0x0000000000000000        0x1 ./main.o
  .debug_macro   0x0000000000000000      0x742 ./main.o
  .debug_macro   0x0000000000000000       0x22 ./main.o
  .debug_macro   0x0000000000000000       0x8e ./main.o
@@ -1117,7 +1188,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x10 ./main.o
  .debug_macro   0x0000000000000000       0x40 ./main.o
  .debug_macro   0x0000000000000000      0x11c ./main.o
- .debug_macro   0x0000000000000000       0x52 ./main.o
+ .debug_macro   0x0000000000000000       0x58 ./main.o
  .debug_macro   0x0000000000000000       0x3c ./main.o
  .debug_macro   0x0000000000000000       0x22 ./main.o
  .debug_macro   0x0000000000000000       0x58 ./main.o
@@ -1137,6 +1208,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x16 ./main.o
  .debug_macro   0x0000000000000000       0x29 ./main.o
  .debug_macro   0x0000000000000000       0x19 ./main.o
+ .debug_macro   0x0000000000000000       0xfa ./main.o
+ .debug_macro   0x0000000000000000       0x16 ./main.o
  .text          0x0000000000000000        0x0 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-malloc.o)
  .data          0x0000000000000000        0x0 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-malloc.o)
  .bss           0x0000000000000000        0x0 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-malloc.o)
@@ -1200,9 +1273,6 @@ Discarded input sections
                 0x0000000000000000        0x8 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-lock.o)
  .text.__retarget_lock_release
                 0x0000000000000000        0x4 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-lock.o)
- .text          0x0000000000000000        0x0 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libgloss.a(nanosleep.o)
- .data          0x0000000000000000        0x0 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libgloss.a(nanosleep.o)
- .bss           0x0000000000000000        0x0 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libgloss.a(nanosleep.o)
 
 Memory Configuration
 
@@ -1243,7 +1313,11 @@ LOAD c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-
                 0x0000000000000800                STACK_SIZE = 0x800
                 0x0000000000000800                HEAP_SIZE = 0x800
 
+<<<<<<< HEAD
+.text           0x0000000080000000     0xa180
+=======
 .text           0x0000000080000000     0xa2b0
+>>>>>>> 31de474f4a344c3936efd6f8dcf9ce225af0c869
  *(SORT_NONE(.text.entry))
  .text.entry    0x0000000080000000      0x160 ./riscv_hal/entry.o
                 0x0000000080000000                _start
@@ -1296,347 +1370,413 @@ LOAD c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-
                 0x0000000080001060                int_to_single_byte_string
  .text.PLIC_init
                 0x0000000080001108       0xd0 ./uart_test_files/uart_test_routine.o
- .text.PLIC_EnableIRQ
-                0x00000000800011d8       0xb4 ./uart_test_files/uart_test_routine.o
- .text.PLIC_SetPriority
-                0x000000008000128c       0x3c ./uart_test_files/uart_test_routine.o
  .text.run_uart_test
-                0x00000000800012c8      0x34c ./uart_test_files/uart_test_routine.o
-                0x00000000800012c8                run_uart_test
+                0x00000000800011d8      0x430 ./uart_test_files/uart_test_routine.o
+                0x00000000800011d8                run_uart_test
  .text.uart_display_greeting
-                0x0000000080001614       0xc4 ./uart_test_files/uart_test_routine.o
+                0x0000000080001608       0xb4 ./uart_test_files/uart_test_routine.o
  .text.select_mode_uart
-                0x00000000800016d8       0x74 ./uart_test_files/uart_test_routine.o
+                0x00000000800016bc       0x74 ./uart_test_files/uart_test_routine.o
  .text.uart_get_data
-                0x000000008000174c       0xe8 ./uart_test_files/uart_test_routine.o
-                0x000000008000174c                uart_get_data
+                0x0000000080001730       0xe8 ./uart_test_files/uart_test_routine.o
+                0x0000000080001730                uart_get_data
  .text.spi_test_init
-                0x0000000080001834       0x60 ./spi_test_files/spi_test_prog.o
-                0x0000000080001834                spi_test_init
+                0x0000000080001818       0x60 ./spi_test_files/spi_test_prog.o
+                0x0000000080001818                spi_test_init
  .text.spi_test_read
-                0x0000000080001894       0x98 ./spi_test_files/spi_test_prog.o
-                0x0000000080001894                spi_test_read
+                0x0000000080001878       0x98 ./spi_test_files/spi_test_prog.o
+                0x0000000080001878                spi_test_read
  .text.spi_test_write
-                0x000000008000192c       0x98 ./spi_test_files/spi_test_prog.o
-                0x000000008000192c                spi_test_write
+                0x0000000080001910       0x98 ./spi_test_files/spi_test_prog.o
+                0x0000000080001910                spi_test_write
  .text.spi_test_handler
-                0x00000000800019c4       0xe4 ./spi_test_files/spi_test_prog.o
-                0x00000000800019c4                spi_test_handler
+                0x00000000800019a8       0xe4 ./spi_test_files/spi_test_prog.o
+                0x00000000800019a8                spi_test_handler
  .text.spi_test_send_write_command
-                0x0000000080001aa8       0xdc ./spi_test_files/spi_test_prog.o
-                0x0000000080001aa8                spi_test_send_write_command
+                0x0000000080001a8c       0xdc ./spi_test_files/spi_test_prog.o
+                0x0000000080001a8c                spi_test_send_write_command
  .text.spi_test_send_read_command
-                0x0000000080001b84       0xdc ./spi_test_files/spi_test_prog.o
-                0x0000000080001b84                spi_test_send_read_command
+                0x0000000080001b68       0xdc ./spi_test_files/spi_test_prog.o
+                0x0000000080001b68                spi_test_send_read_command
  .text.spi_test_display_write_command_instructions
-                0x0000000080001c60       0xb4 ./spi_test_files/spi_test_prog.o
-                0x0000000080001c60                spi_test_display_write_command_instructions
+                0x0000000080001c44       0xb4 ./spi_test_files/spi_test_prog.o
+                0x0000000080001c44                spi_test_display_write_command_instructions
  .text.spi_test_write_single_byte
-                0x0000000080001d14      0x198 ./spi_test_files/spi_test_prog.o
-                0x0000000080001d14                spi_test_write_single_byte
+                0x0000000080001cf8      0x198 ./spi_test_files/spi_test_prog.o
+                0x0000000080001cf8                spi_test_write_single_byte
  .text.spi_test_write_quad_byte
-                0x0000000080001eac      0x25c ./spi_test_files/spi_test_prog.o
-                0x0000000080001eac                spi_test_write_quad_byte
+                0x0000000080001e90      0x25c ./spi_test_files/spi_test_prog.o
+                0x0000000080001e90                spi_test_write_quad_byte
  .text.spi_test_write_custom_byte
-                0x0000000080002108      0x29c ./spi_test_files/spi_test_prog.o
-                0x0000000080002108                spi_test_write_custom_byte
+                0x00000000800020ec      0x29c ./spi_test_files/spi_test_prog.o
+                0x00000000800020ec                spi_test_write_custom_byte
  .text.spi_test_display_read_command_instructions
-                0x00000000800023a4       0xb4 ./spi_test_files/spi_test_prog.o
-                0x00000000800023a4                spi_test_display_read_command_instructions
+                0x0000000080002388       0xb4 ./spi_test_files/spi_test_prog.o
+                0x0000000080002388                spi_test_display_read_command_instructions
  .text.spi_test_read_single_byte
-                0x0000000080002458      0x13c ./spi_test_files/spi_test_prog.o
-                0x0000000080002458                spi_test_read_single_byte
+                0x000000008000243c      0x13c ./spi_test_files/spi_test_prog.o
+                0x000000008000243c                spi_test_read_single_byte
  .text.spi_test_read_quad_byte
-                0x0000000080002594      0x17c ./spi_test_files/spi_test_prog.o
-                0x0000000080002594                spi_test_read_quad_byte
+                0x0000000080002578      0x17c ./spi_test_files/spi_test_prog.o
+                0x0000000080002578                spi_test_read_quad_byte
  .text.spi_test_read_custom_byte
-                0x0000000080002710      0x1cc ./spi_test_files/spi_test_prog.o
-                0x0000000080002710                spi_test_read_custom_byte
+                0x00000000800026f4      0x1cc ./spi_test_files/spi_test_prog.o
+                0x00000000800026f4                spi_test_read_custom_byte
  .text.spi_test_display_commands
-                0x00000000800028dc       0xa4 ./spi_test_files/spi_test_prog.o
-                0x00000000800028dc                spi_test_display_commands
+                0x00000000800028c0       0xa4 ./spi_test_files/spi_test_prog.o
+                0x00000000800028c0                spi_test_display_commands
  .text.spi_test_display_devices
-                0x0000000080002980       0x94 ./spi_test_files/spi_test_prog.o
-                0x0000000080002980                spi_test_display_devices
+                0x0000000080002964       0x94 ./spi_test_files/spi_test_prog.o
+                0x0000000080002964                spi_test_display_devices
  .text.spi_test_display_selected_device
-                0x0000000080002a14       0xe4 ./spi_test_files/spi_test_prog.o
-                0x0000000080002a14                spi_test_display_selected_device
+                0x00000000800029f8       0xe4 ./spi_test_files/spi_test_prog.o
+                0x00000000800029f8                spi_test_display_selected_device
  .text.spi_test_change_selected_device
-                0x0000000080002af8      0x258 ./spi_test_files/spi_test_prog.o
-                0x0000000080002af8                spi_test_change_selected_device
+                0x0000000080002adc      0x258 ./spi_test_files/spi_test_prog.o
+                0x0000000080002adc                spi_test_change_selected_device
  .text.spi_test_display_incorrect_command
-                0x0000000080002d50       0x34 ./spi_test_files/spi_test_prog.o
-                0x0000000080002d50                spi_test_display_incorrect_command
+                0x0000000080002d34       0x34 ./spi_test_files/spi_test_prog.o
+                0x0000000080002d34                spi_test_display_incorrect_command
  .text.copy_section
-                0x0000000080002d84       0x60 ./riscv_hal/init.o
+                0x0000000080002d68       0x60 ./riscv_hal/init.o
  .text.zero_section
-                0x0000000080002de4       0x50 ./riscv_hal/init.o
- .text._init    0x0000000080002e34       0x90 ./riscv_hal/init.o
-                0x0000000080002e34                _init
- .text._fini    0x0000000080002ec4       0x1c ./riscv_hal/init.o
-                0x0000000080002ec4                _fini
+                0x0000000080002dc8       0x50 ./riscv_hal/init.o
+ .text._init    0x0000000080002e18       0x90 ./riscv_hal/init.o
+                0x0000000080002e18                _init
+ .text._fini    0x0000000080002ea8       0x1c ./riscv_hal/init.o
+                0x0000000080002ea8                _fini
  .text.PLIC_DisableIRQ
-                0x0000000080002ee0       0xb8 ./riscv_hal/riscv_hal.o
+                0x0000000080002ec4       0xb8 ./riscv_hal/riscv_hal.o
  .text.PLIC_ClaimIRQ
-                0x0000000080002f98       0x44 ./riscv_hal/riscv_hal.o
+                0x0000000080002f7c       0x44 ./riscv_hal/riscv_hal.o
  .text.PLIC_CompleteIRQ
-                0x0000000080002fdc       0x4c ./riscv_hal/riscv_hal.o
+                0x0000000080002fc0       0x4c ./riscv_hal/riscv_hal.o
  .text.__disable_irq
-                0x0000000080003028       0x30 ./riscv_hal/riscv_hal.o
-                0x0000000080003028                __disable_irq
+                0x000000008000300c       0x30 ./riscv_hal/riscv_hal.o
+                0x000000008000300c                __disable_irq
  .text.__enable_irq
-                0x0000000080003058       0x24 ./riscv_hal/riscv_hal.o
-                0x0000000080003058                __enable_irq
+                0x000000008000303c       0x24 ./riscv_hal/riscv_hal.o
+                0x000000008000303c                __enable_irq
  .text.SysTick_Config
-                0x000000008000307c       0xe8 ./riscv_hal/riscv_hal.o
-                0x000000008000307c                SysTick_Config
+                0x0000000080003060       0xe8 ./riscv_hal/riscv_hal.o
+                0x0000000080003060                SysTick_Config
  .text.handle_m_timer_interrupt
-                0x0000000080003164       0xa8 ./riscv_hal/riscv_hal.o
+                0x0000000080003148       0xa8 ./riscv_hal/riscv_hal.o
  .text.handle_m_ext_interrupt
-                0x000000008000320c       0x70 ./riscv_hal/riscv_hal.o
+                0x00000000800031f0       0x70 ./riscv_hal/riscv_hal.o
  .text.handle_m_soft_interrupt
-                0x000000008000327c       0x30 ./riscv_hal/riscv_hal.o
+                0x0000000080003260       0x30 ./riscv_hal/riscv_hal.o
  .text.handle_trap
-                0x00000000800032ac       0xfc ./riscv_hal/riscv_hal.o
-                0x00000000800032ac                handle_trap
+                0x0000000080003290       0xfc ./riscv_hal/riscv_hal.o
+                0x0000000080003290                handle_trap
  .text.Software_IRQHandler
-                0x00000000800033a8       0x18 ./riscv_hal/riscv_hal_stubs.o
-                0x00000000800033a8                Software_IRQHandler
+                0x000000008000338c       0x18 ./riscv_hal/riscv_hal_stubs.o
+                0x000000008000338c                Software_IRQHandler
  .text.Invalid_IRQHandler
-                0x00000000800033c0       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x00000000800033c0                Invalid_IRQHandler
+                0x00000000800033a4       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x00000000800033a4                Invalid_IRQHandler
  .text.External_1_IRQHandler
-                0x00000000800033e0       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x00000000800033e0                External_1_IRQHandler
+                0x00000000800033c4       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x00000000800033c4                External_1_IRQHandler
  .text.External_2_IRQHandler
-                0x0000000080003400       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003400                External_2_IRQHandler
+                0x00000000800033e4       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x00000000800033e4                External_2_IRQHandler
  .text.External_3_IRQHandler
-                0x0000000080003420       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003420                External_3_IRQHandler
+                0x0000000080003404       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003404                External_3_IRQHandler
  .text.External_4_IRQHandler
-                0x0000000080003440       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003440                External_4_IRQHandler
+                0x0000000080003424       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003424                External_4_IRQHandler
  .text.External_7_IRQHandler
-                0x0000000080003460       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003460                External_7_IRQHandler
+                0x0000000080003444       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003444                External_7_IRQHandler
  .text.External_8_IRQHandler
-                0x0000000080003480       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003480                External_8_IRQHandler
+                0x0000000080003464       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003464                External_8_IRQHandler
  .text.External_9_IRQHandler
-                0x00000000800034a0       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x00000000800034a0                External_9_IRQHandler
+                0x0000000080003484       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003484                External_9_IRQHandler
  .text.External_10_IRQHandler
-                0x00000000800034c0       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x00000000800034c0                External_10_IRQHandler
+                0x00000000800034a4       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x00000000800034a4                External_10_IRQHandler
  .text.External_11_IRQHandler
-                0x00000000800034e0       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x00000000800034e0                External_11_IRQHandler
+                0x00000000800034c4       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x00000000800034c4                External_11_IRQHandler
  .text.External_12_IRQHandler
-                0x0000000080003500       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003500                External_12_IRQHandler
+                0x00000000800034e4       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x00000000800034e4                External_12_IRQHandler
  .text.External_13_IRQHandler
-                0x0000000080003520       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003520                External_13_IRQHandler
+                0x0000000080003504       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003504                External_13_IRQHandler
  .text.External_14_IRQHandler
-                0x0000000080003540       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003540                External_14_IRQHandler
+                0x0000000080003524       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003524                External_14_IRQHandler
  .text.External_15_IRQHandler
-                0x0000000080003560       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003560                External_15_IRQHandler
+                0x0000000080003544       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003544                External_15_IRQHandler
  .text.External_16_IRQHandler
-                0x0000000080003580       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003580                External_16_IRQHandler
+                0x0000000080003564       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003564                External_16_IRQHandler
  .text.External_17_IRQHandler
-                0x00000000800035a0       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x00000000800035a0                External_17_IRQHandler
+                0x0000000080003584       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003584                External_17_IRQHandler
  .text.External_18_IRQHandler
-                0x00000000800035c0       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x00000000800035c0                External_18_IRQHandler
+                0x00000000800035a4       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x00000000800035a4                External_18_IRQHandler
  .text.External_19_IRQHandler
-                0x00000000800035e0       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x00000000800035e0                External_19_IRQHandler
+                0x00000000800035c4       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x00000000800035c4                External_19_IRQHandler
  .text.External_20_IRQHandler
-                0x0000000080003600       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003600                External_20_IRQHandler
+                0x00000000800035e4       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x00000000800035e4                External_20_IRQHandler
  .text.External_21_IRQHandler
-                0x0000000080003620       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003620                External_21_IRQHandler
+                0x0000000080003604       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003604                External_21_IRQHandler
  .text.External_22_IRQHandler
-                0x0000000080003640       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003640                External_22_IRQHandler
+                0x0000000080003624       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003624                External_22_IRQHandler
  .text.External_23_IRQHandler
-                0x0000000080003660       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003660                External_23_IRQHandler
+                0x0000000080003644       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003644                External_23_IRQHandler
  .text.External_24_IRQHandler
-                0x0000000080003680       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003680                External_24_IRQHandler
+                0x0000000080003664       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003664                External_24_IRQHandler
  .text.External_25_IRQHandler
-                0x00000000800036a0       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x00000000800036a0                External_25_IRQHandler
+                0x0000000080003684       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003684                External_25_IRQHandler
  .text.External_26_IRQHandler
-                0x00000000800036c0       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x00000000800036c0                External_26_IRQHandler
+                0x00000000800036a4       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x00000000800036a4                External_26_IRQHandler
  .text.External_27_IRQHandler
-                0x00000000800036e0       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x00000000800036e0                External_27_IRQHandler
+                0x00000000800036c4       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x00000000800036c4                External_27_IRQHandler
  .text.External_28_IRQHandler
-                0x0000000080003700       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003700                External_28_IRQHandler
+                0x00000000800036e4       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x00000000800036e4                External_28_IRQHandler
  .text.External_29_IRQHandler
-                0x0000000080003720       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003720                External_29_IRQHandler
+                0x0000000080003704       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003704                External_29_IRQHandler
  .text.External_30_IRQHandler
-                0x0000000080003740       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003740                External_30_IRQHandler
+                0x0000000080003724       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003724                External_30_IRQHandler
  .text.External_31_IRQHandler
-                0x0000000080003760       0x20 ./riscv_hal/riscv_hal_stubs.o
-                0x0000000080003760                External_31_IRQHandler
- .text._exit    0x0000000080003780       0x14 ./riscv_hal/syscall.o
-                0x0000000080003780                _exit
- .text._sbrk    0x0000000080003794       0x74 ./riscv_hal/syscall.o
-                0x0000000080003794                _sbrk
+                0x0000000080003744       0x20 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000080003744                External_31_IRQHandler
+ .text._exit    0x0000000080003764       0x14 ./riscv_hal/syscall.o
+                0x0000000080003764                _exit
+ .text._sbrk    0x0000000080003778       0x74 ./riscv_hal/syscall.o
+                0x0000000080003778                _sbrk
  .text.lcd_command
-                0x0000000080003808       0x64 ./lcd_test_files/lcd_test.o
-                0x0000000080003808                lcd_command
+                0x00000000800037ec       0x64 ./lcd_test_files/lcd_test.o
+                0x00000000800037ec                lcd_command
  .text.lcd_write
-                0x000000008000386c       0x78 ./lcd_test_files/lcd_test.o
-                0x000000008000386c                lcd_write
+                0x0000000080003850       0x78 ./lcd_test_files/lcd_test.o
+                0x0000000080003850                lcd_write
  .text.lcd_init
-                0x00000000800038e4      0x15c ./lcd_test_files/lcd_test.o
-                0x00000000800038e4                lcd_init
+                0x00000000800038c8      0x144 ./lcd_test_files/lcd_test.o
+                0x00000000800038c8                lcd_init
  .text.lcd_test
-                0x0000000080003a40      0x104 ./lcd_test_files/lcd_test.o
-                0x0000000080003a40                lcd_test
+                0x0000000080003a0c      0x104 ./lcd_test_files/lcd_test.o
+                0x0000000080003a0c                lcd_test
  .text.PLIC_init
-                0x0000000080003b44       0xd0 ./i2c_test_files/i2c_test_routine.o
+                0x0000000080003b10       0xd0 ./i2c_test_files/i2c_test_routine.o
  .text.PLIC_EnableIRQ
-                0x0000000080003c14       0xb4 ./i2c_test_files/i2c_test_routine.o
+                0x0000000080003be0       0xb4 ./i2c_test_files/i2c_test_routine.o
  .text.PLIC_SetPriority
-                0x0000000080003cc8       0x3c ./i2c_test_files/i2c_test_routine.o
+                0x0000000080003c94       0x3c ./i2c_test_files/i2c_test_routine.o
  .text.run_i2c_test
-                0x0000000080003d04      0x220 ./i2c_test_files/i2c_test_routine.o
-                0x0000000080003d04                run_i2c_test
+                0x0000000080003cd0      0x220 ./i2c_test_files/i2c_test_routine.o
+                0x0000000080003cd0                run_i2c_test
  .text.do_write_transaction
-                0x0000000080003f24       0x78 ./i2c_test_files/i2c_test_routine.o
-                0x0000000080003f24                do_write_transaction
+                0x0000000080003ef0       0x78 ./i2c_test_files/i2c_test_routine.o
+                0x0000000080003ef0                do_write_transaction
  .text.display_greeting
-                0x0000000080003f9c       0xd4 ./i2c_test_files/i2c_test_routine.o
+                0x0000000080003f68       0xd4 ./i2c_test_files/i2c_test_routine.o
  .text.select_mode_i2c
-                0x0000000080004070       0x84 ./i2c_test_files/i2c_test_routine.o
+                0x000000008000403c       0x84 ./i2c_test_files/i2c_test_routine.o
  .text.get_data
-                0x00000000800040f4       0xe8 ./i2c_test_files/i2c_test_routine.o
-                0x00000000800040f4                get_data
+                0x00000000800040c0       0xe8 ./i2c_test_files/i2c_test_routine.o
+                0x00000000800040c0                get_data
  .text.press_any_key_to_continue
-                0x00000000800041dc       0xbc ./i2c_test_files/i2c_test_routine.o
-                0x00000000800041dc                press_any_key_to_continue
+                0x00000000800041a8       0xbc ./i2c_test_files/i2c_test_routine.o
+                0x00000000800041a8                press_any_key_to_continue
  .text.SysTick_Handler
-                0x0000000080004298       0x30 ./i2c_test_files/i2c_test_routine.o
-                0x0000000080004298                SysTick_Handler
+                0x0000000080004264       0x30 ./i2c_test_files/i2c_test_routine.o
+                0x0000000080004264                SysTick_Handler
  .text.External_5_IRQHandler
-                0x00000000800042c8       0x30 ./i2c_test_files/i2c_test_routine.o
-                0x00000000800042c8                External_5_IRQHandler
+                0x0000000080004294       0x30 ./i2c_test_files/i2c_test_routine.o
+                0x0000000080004294                External_5_IRQHandler
  .text.External_6_IRQHandler
-                0x00000000800042f8       0x20 ./i2c_test_files/i2c_test_routine.o
-                0x00000000800042f8                External_6_IRQHandler
+                0x00000000800042c4       0x20 ./i2c_test_files/i2c_test_routine.o
+                0x00000000800042c4                External_6_IRQHandler
  .text.HAL_enable_interrupts
-                0x0000000080004318       0x28 ./hal/hal_irq.o
-                0x0000000080004318                HAL_enable_interrupts
+                0x00000000800042e4       0x28 ./hal/hal_irq.o
+                0x00000000800042e4                HAL_enable_interrupts
  .text.HAL_disable_interrupts
-                0x0000000080004340       0x3c ./hal/hal_irq.o
-                0x0000000080004340                HAL_disable_interrupts
+                0x000000008000430c       0x3c ./hal/hal_irq.o
+                0x000000008000430c                HAL_disable_interrupts
  .text.HAL_restore_interrupts
-                0x000000008000437c       0x28 ./hal/hal_irq.o
-                0x000000008000437c                HAL_restore_interrupts
- .text          0x00000000800043a4       0xd8 ./hal/hw_reg_access.o
-                0x00000000800043a4                HW_set_32bit_reg
-                0x00000000800043ac                HW_get_32bit_reg
-                0x00000000800043b4                HW_set_32bit_reg_field
-                0x00000000800043dc                HW_get_32bit_reg_field
-                0x00000000800043ec                HW_set_16bit_reg
-                0x00000000800043f4                HW_get_16bit_reg
-                0x00000000800043fc                HW_set_16bit_reg_field
-                0x0000000080004424                HW_get_16bit_reg_field
-                0x0000000080004434                HW_set_8bit_reg
-                0x000000008000443c                HW_get_8bit_reg
-                0x0000000080004444                HW_set_8bit_reg_field
-                0x000000008000446c                HW_get_8bit_reg_field
+                0x0000000080004348       0x28 ./hal/hal_irq.o
+                0x0000000080004348                HAL_restore_interrupts
+ .text          0x0000000080004370       0xd8 ./hal/hw_reg_access.o
+                0x0000000080004370                HW_set_32bit_reg
+                0x0000000080004378                HW_get_32bit_reg
+                0x0000000080004380                HW_set_32bit_reg_field
+                0x00000000800043a8                HW_get_32bit_reg_field
+                0x00000000800043b8                HW_set_16bit_reg
+                0x00000000800043c0                HW_get_16bit_reg
+                0x00000000800043c8                HW_set_16bit_reg_field
+                0x00000000800043f0                HW_get_16bit_reg_field
+                0x0000000080004400                HW_set_8bit_reg
+                0x0000000080004408                HW_get_8bit_reg
+                0x0000000080004410                HW_set_8bit_reg_field
+                0x0000000080004438                HW_get_8bit_reg_field
  .text.UART_init
-                0x000000008000447c      0x118 ./drivers/CoreUARTapb/core_uart_apb.o
-                0x000000008000447c                UART_init
+                0x0000000080004448      0x118 ./drivers/CoreUARTapb/core_uart_apb.o
+                0x0000000080004448                UART_init
  .text.UART_send
-                0x0000000080004594       0xb4 ./drivers/CoreUARTapb/core_uart_apb.o
-                0x0000000080004594                UART_send
+                0x0000000080004560       0xb4 ./drivers/CoreUARTapb/core_uart_apb.o
+                0x0000000080004560                UART_send
  .text.UART_get_rx
-                0x0000000080004648      0x130 ./drivers/CoreUARTapb/core_uart_apb.o
-                0x0000000080004648                UART_get_rx
+                0x0000000080004614      0x130 ./drivers/CoreUARTapb/core_uart_apb.o
+                0x0000000080004614                UART_get_rx
  .text.UART_polled_tx_string
-                0x0000000080004778       0xb0 ./drivers/CoreUARTapb/core_uart_apb.o
-                0x0000000080004778                UART_polled_tx_string
+                0x0000000080004744       0xb0 ./drivers/CoreUARTapb/core_uart_apb.o
+                0x0000000080004744                UART_polled_tx_string
  .text.UART_get_rx_status
-                0x0000000080004828       0x54 ./drivers/CoreUARTapb/core_uart_apb.o
-                0x0000000080004828                UART_get_rx_status
+                0x00000000800047f4       0x54 ./drivers/CoreUARTapb/core_uart_apb.o
+                0x00000000800047f4                UART_get_rx_status
  .text.SPI_init
-                0x000000008000487c      0x120 ./drivers/CoreSPI/core_spi.o
-                0x000000008000487c                SPI_init
+                0x0000000080004848      0x120 ./drivers/CoreSPI/core_spi.o
+                0x0000000080004848                SPI_init
  .text.SPI_configure_master_mode
-                0x000000008000499c       0xb0 ./drivers/CoreSPI/core_spi.o
-                0x000000008000499c                SPI_configure_master_mode
+                0x0000000080004968       0xb0 ./drivers/CoreSPI/core_spi.o
+                0x0000000080004968                SPI_configure_master_mode
  .text.SPI_set_slave_select
-                0x0000000080004a4c       0xe0 ./drivers/CoreSPI/core_spi.o
-                0x0000000080004a4c                SPI_set_slave_select
+                0x0000000080004a18       0xe0 ./drivers/CoreSPI/core_spi.o
+                0x0000000080004a18                SPI_set_slave_select
  .text.SPI_clear_slave_select
-                0x0000000080004b2c       0xe4 ./drivers/CoreSPI/core_spi.o
-                0x0000000080004b2c                SPI_clear_slave_select
+                0x0000000080004af8       0xe4 ./drivers/CoreSPI/core_spi.o
+                0x0000000080004af8                SPI_clear_slave_select
  .text.SPI_transfer_block
-                0x0000000080004c10      0x5c4 ./drivers/CoreSPI/core_spi.o
-                0x0000000080004c10                SPI_transfer_block
+                0x0000000080004bdc      0x5c4 ./drivers/CoreSPI/core_spi.o
+                0x0000000080004bdc                SPI_transfer_block
  .text.recover_from_rx_overflow
-                0x00000000800051d4       0x90 ./drivers/CoreSPI/core_spi.o
+                0x00000000800051a0       0x90 ./drivers/CoreSPI/core_spi.o
  .text.I2C_init
-                0x0000000080005264      0x168 ./drivers/CoreI2C/core_i2c.o
-                0x0000000080005264                I2C_init
+                0x0000000080005230      0x168 ./drivers/CoreI2C/core_i2c.o
+                0x0000000080005230                I2C_init
  .text.I2C_write
-                0x00000000800053cc      0x160 ./drivers/CoreI2C/core_i2c.o
-                0x00000000800053cc                I2C_write
+                0x0000000080005398      0x160 ./drivers/CoreI2C/core_i2c.o
+                0x0000000080005398                I2C_write
  .text.I2C_wait_complete
-                0x000000008000552c       0x64 ./drivers/CoreI2C/core_i2c.o
-                0x000000008000552c                I2C_wait_complete
+                0x00000000800054f8       0x64 ./drivers/CoreI2C/core_i2c.o
+                0x00000000800054f8                I2C_wait_complete
  .text.I2C_system_tick
-                0x0000000080005590       0x98 ./drivers/CoreI2C/core_i2c.o
-                0x0000000080005590                I2C_system_tick
+                0x000000008000555c       0x98 ./drivers/CoreI2C/core_i2c.o
+                0x000000008000555c                I2C_system_tick
  .text.enable_slave_if_required
-                0x0000000080005628       0x50 ./drivers/CoreI2C/core_i2c.o
- .text.I2C_isr  0x0000000080005678      0xa00 ./drivers/CoreI2C/core_i2c.o
-                0x0000000080005678                I2C_isr
+                0x00000000800055f4       0x50 ./drivers/CoreI2C/core_i2c.o
+ .text.I2C_isr  0x0000000080005644      0xa00 ./drivers/CoreI2C/core_i2c.o
+                0x0000000080005644                I2C_isr
  .text.I2C_enable_irq
-                0x0000000080006078       0x20 ./drivers/CoreI2C/i2c_interrupt.o
-                0x0000000080006078                I2C_enable_irq
+                0x0000000080006044       0x20 ./drivers/CoreI2C/i2c_interrupt.o
+                0x0000000080006044                I2C_enable_irq
  .text.I2C_disable_irq
-                0x0000000080006098       0x20 ./drivers/CoreI2C/i2c_interrupt.o
-                0x0000000080006098                I2C_disable_irq
+                0x0000000080006064       0x20 ./drivers/CoreI2C/i2c_interrupt.o
+                0x0000000080006064                I2C_disable_irq
  .text.GPIO_init
-                0x00000000800060b8      0x170 ./drivers/CoreGPIO/core_gpio.o
-                0x00000000800060b8                GPIO_init
+                0x0000000080006084      0x170 ./drivers/CoreGPIO/core_gpio.o
+                0x0000000080006084                GPIO_init
  .text.GPIO_config
-                0x0000000080006228       0x68 ./drivers/CoreGPIO/core_gpio.o
-                0x0000000080006228                GPIO_config
+                0x00000000800061f4       0x68 ./drivers/CoreGPIO/core_gpio.o
+                0x00000000800061f4                GPIO_config
  .text.GPIO_set_outputs
-                0x0000000080006290      0x148 ./drivers/CoreGPIO/core_gpio.o
-                0x0000000080006290                GPIO_set_outputs
+                0x000000008000625c      0x148 ./drivers/CoreGPIO/core_gpio.o
+                0x000000008000625c                GPIO_set_outputs
  .text.GPIO_get_inputs
-                0x00000000800063d8      0x174 ./drivers/CoreGPIO/core_gpio.o
-                0x00000000800063d8                GPIO_get_inputs
+                0x00000000800063a4      0x174 ./drivers/CoreGPIO/core_gpio.o
+                0x00000000800063a4                GPIO_get_inputs
  .text.GPIO_get_outputs
-                0x000000008000654c      0x174 ./drivers/CoreGPIO/core_gpio.o
-                0x000000008000654c                GPIO_get_outputs
+                0x0000000080006518      0x174 ./drivers/CoreGPIO/core_gpio.o
+                0x0000000080006518                GPIO_get_outputs
  .text.GPIO_set_output
-                0x00000000800066c0      0x238 ./drivers/CoreGPIO/core_gpio.o
-                0x00000000800066c0                GPIO_set_output
+                0x000000008000668c      0x238 ./drivers/CoreGPIO/core_gpio.o
+                0x000000008000668c                GPIO_set_output
  .text.gpio_test_init
-                0x00000000800068f8      0x1e4 ./GPIO_test_files/gpio_test_routine.o
-                0x00000000800068f8                gpio_test_init
+                0x00000000800068c4      0x1e4 ./GPIO_test_files/gpio_test_routine.o
+                0x00000000800068c4                gpio_test_init
  .text.gpio_test_read
+<<<<<<< HEAD
+                0x0000000080006aa8       0x50 ./GPIO_test_files/gpio_test_routine.o
+                0x0000000080006aa8                gpio_test_read
+ .text.gpio_test_write_1_high
+                0x0000000080006af8       0x58 ./GPIO_test_files/gpio_test_routine.o
+                0x0000000080006af8                gpio_test_write_1_high
+ .text.gpio_test_write_1_low
+                0x0000000080006b50       0x58 ./GPIO_test_files/gpio_test_routine.o
+                0x0000000080006b50                gpio_test_write_1_low
+ .text.gpio_test_write
+                0x0000000080006ba8       0xf0 ./GPIO_test_files/gpio_test_routine.o
+                0x0000000080006ba8                gpio_test_write
+ .text.gpio_test_handler
+                0x0000000080006c98       0xf8 ./GPIO_test_files/gpio_test_routine.o
+                0x0000000080006c98                gpio_test_handler
+ .text.gpio_test_display_commands
+                0x0000000080006d90       0x94 ./GPIO_test_files/gpio_test_routine.o
+                0x0000000080006d90                gpio_test_display_commands
+ .text.gpio_test_display_incorrect_command
+                0x0000000080006e24       0x34 ./GPIO_test_files/gpio_test_routine.o
+                0x0000000080006e24                gpio_test_display_incorrect_command
+ .text.main     0x0000000080006e58       0xcc ./main.o
+                0x0000000080006e58                main
+ .text.testProgramManager
+                0x0000000080006f24      0x16c ./main.o
+                0x0000000080006f24                testProgramManager
+ .text.displayIncorrectCommand
+                0x0000000080007090       0x34 ./main.o
+                0x0000000080007090                displayIncorrectCommand
+ .text.displayTestList
+                0x00000000800070c4       0xd4 ./main.o
+                0x00000000800070c4                displayTestList
+ .text.displayTestUnavailable
+                0x0000000080007198       0x34 ./main.o
+                0x0000000080007198                displayTestUnavailable
+ .text.displayCommandsList
+                0x00000000800071cc       0x54 ./main.o
+                0x00000000800071cc                displayCommandsList
+ .text.malloc   0x0000000080007220       0x10 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-malloc.o)
+                0x0000000080007220                malloc
+ .text.free     0x0000000080007230       0x10 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-malloc.o)
+                0x0000000080007230                free
+ .text._malloc_r
+                0x0000000080007240      0x7cc c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-mallocr.o)
+                0x0000000080007240                _malloc_r
+ .text          0x0000000080007a0c       0xdc c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-memset.o)
+                0x0000000080007a0c                memset
+ .text.__malloc_lock
+                0x0000000080007ae8        0x8 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-mlock.o)
+                0x0000000080007ae8                __malloc_lock
+ .text.__malloc_unlock
+                0x0000000080007af0        0x8 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-mlock.o)
+                0x0000000080007af0                __malloc_unlock
+ .text._sbrk_r  0x0000000080007af8       0x54 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-sbrkr.o)
+                0x0000000080007af8                _sbrk_r
+ .text._malloc_trim_r
+                0x0000000080007b4c      0x12c c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-freer.o)
+                0x0000000080007b4c                _malloc_trim_r
+ .text._free_r  0x0000000080007c78      0x318 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-freer.o)
+                0x0000000080007c78                _free_r
+ .text.__retarget_lock_acquire_recursive
+                0x0000000080007f90        0x4 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-lock.o)
+                0x0000000080007f90                __retarget_lock_acquire_recursive
+ .text.__retarget_lock_release_recursive
+                0x0000000080007f94        0x4 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-lock.o)
+                0x0000000080007f94                __retarget_lock_release_recursive
+ *(.plt)
+                0x0000000080007fa0                . = ALIGN (0x10)
+ *fill*         0x0000000080007f98        0x8 
+=======
                 0x0000000080006adc       0xc0 ./GPIO_test_files/gpio_test_routine.o
                 0x0000000080006adc                gpio_test_read
  .text.gpio_test_write_1_high
@@ -1708,6 +1848,7 @@ LOAD c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-
  *(.plt)
                 0x0000000080008080                . = ALIGN (0x10)
  *fill*         0x0000000080008074        0xc 
+>>>>>>> 31de474f4a344c3936efd6f8dcf9ce225af0c869
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT_BY_NAME(.ctors.*))
@@ -1717,6 +1858,44 @@ LOAD c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-
  *(SORT_BY_NAME(.dtors.*))
  *crtend.o(.dtors)
  *(.rodata .rodata.* .gnu.linkonce.r.*)
+<<<<<<< HEAD
+ .rodata        0x0000000080007fa0      0x29e ./user_handler_files/user_handler.o
+ *fill*         0x000000008000823e        0x2 
+ .rodata.get_string_from_user
+                0x0000000080008240       0x64 ./user_handler_files/user_handler.o
+ .rodata.get_dec_from_user
+                0x00000000800082a4       0x64 ./user_handler_files/user_handler.o
+ .rodata.get_bytes_from_user
+                0x0000000080008308      0x174 ./user_handler_files/user_handler.o
+ .rodata        0x000000008000847c      0x4c9 ./uart_test_files/uart_test_routine.o
+ *fill*         0x0000000080008945        0x3 
+ .rodata        0x0000000080008948      0x782 ./spi_test_files/spi_test_prog.o
+ *fill*         0x00000000800090ca        0x2 
+ .rodata.spi_test_handler
+                0x00000000800090cc      0x108 ./spi_test_files/spi_test_prog.o
+ .rodata.spi_test_send_write_command
+                0x00000000800091d4      0x108 ./spi_test_files/spi_test_prog.o
+ .rodata.spi_test_send_read_command
+                0x00000000800092dc      0x108 ./spi_test_files/spi_test_prog.o
+ .rodata.spi_test_display_selected_device
+                0x00000000800093e4       0x18 ./spi_test_files/spi_test_prog.o
+ .rodata.spi_test_change_selected_device
+                0x00000000800093fc       0x18 ./spi_test_files/spi_test_prog.o
+ .rodata        0x0000000080009414        0x6 ./riscv_hal/init.o
+ *fill*         0x000000008000941a        0x2 
+ .rodata        0x000000008000941c       0x16 ./lcd_test_files/lcd_test.o
+ *fill*         0x0000000080009432        0x2 
+ .rodata        0x0000000080009434      0x61d ./i2c_test_files/i2c_test_routine.o
+ *fill*         0x0000000080009a51        0x3 
+ .rodata.I2C_isr
+                0x0000000080009a54      0x364 ./drivers/CoreI2C/core_i2c.o
+ .rodata        0x0000000080009db8      0x1f6 ./GPIO_test_files/gpio_test_routine.o
+ *fill*         0x0000000080009fae        0x2 
+ .rodata        0x0000000080009fb0      0x19a ./main.o
+ *fill*         0x000000008000a14a        0x2 
+ .rodata.testProgramManager
+                0x000000008000a14c       0x28 ./main.o
+=======
  .rodata        0x0000000080008080      0x29e ./user_handler_files/user_handler.o
  *fill*         0x000000008000831e        0x2 
  .rodata.get_string_from_user
@@ -1753,6 +1932,7 @@ LOAD c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-
  *fill*         0x000000008000a27a        0x2 
  .rodata.testProgramManager
                 0x000000008000a27c       0x28 ./main.o
+>>>>>>> 31de474f4a344c3936efd6f8dcf9ce225af0c869
  *(.gcc_except_table)
  *(.eh_frame_hdr)
  *(.eh_frame)
@@ -1769,6 +1949,163 @@ LOAD c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-
  *(.fini_array)
  *(SORT_BY_NAME(.fini_array.*))
                 [!provide]                        PROVIDE (__fini_array_end = .)
+<<<<<<< HEAD
+                0x000000008000a180                . = ALIGN (0x10)
+ *fill*         0x000000008000a174        0xc 
+
+.rela.dyn       0x000000008000a180        0x0
+ .rela.text.user_handler_unit_test_handler
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.user_handler_invalid_command
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.user_handler_display_instructions
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.user_handler_test_yes_no
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.user_handler_test_string
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.user_handler_test_decimal
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.user_handler_test_bytes
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.get_single_char_from_user
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.get_yes_no_from_user
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.get_string_from_user
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.get_dec_from_user
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.get_bytes_from_user
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.run_uart_test
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.uart_display_greeting
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.select_mode_uart
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.uart_get_data
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.sdata.fram_dev
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.sdata.external_spi_0
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.sdata.external_spi_1
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.sdata.adc_dev
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.sdata.lcd_screen_dev
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.sdata.accelerometer_dev
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.spi_test_init
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.spi_test_handler
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.spi_test_send_write_command
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.spi_test_send_read_command
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.spi_test_display_write_command_instructions
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.spi_test_write_single_byte
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.spi_test_write_quad_byte
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.spi_test_write_custom_byte
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.spi_test_display_read_command_instructions
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.spi_test_read_single_byte
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.spi_test_read_quad_byte
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.spi_test_read_custom_byte
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.spi_test_display_commands
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.spi_test_display_devices
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.spi_test_display_selected_device
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.spi_test_change_selected_device
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.spi_test_display_incorrect_command
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.entry
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text._init
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.data.ext_irq_handler_table
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.handle_m_soft_interrupt
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.sdata.curbrk.3742
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text._sbrk
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.lcd_command
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.lcd_write
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.lcd_init
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.run_i2c_test
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.do_write_transaction
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.display_greeting
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.select_mode_i2c
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.get_data
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.press_any_key_to_continue
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.SysTick_Handler
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.External_5_IRQHandler
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.gpio_test_init
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.gpio_test_read
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.gpio_test_write_1_high
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.gpio_test_write_1_low
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.gpio_test_write
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.gpio_test_handler
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.gpio_test_display_commands
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.gpio_test_display_incorrect_command
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.main
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.testProgramManager
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.displayIncorrectCommand
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.displayTestList
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.displayTestUnavailable
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.displayCommandsList
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.__malloc_lock
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text.__malloc_unlock
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+ .rela.text._sbrk_r
+                0x000000008000a180        0x0 ./user_handler_files/user_handler.o
+
+.sdata          0x000000008000a180       0x40
+                0x000000008000a180                __sdata_load = LOADADDR (.sdata)
+                0x000000008000a180                __sdata_start = .
+                0x000000008000a980                PROVIDE (__global_pointer$ = (. + 0x800))
+=======
                 0x000000008000a2b0                . = ALIGN (0x10)
  *fill*         0x000000008000a2a4        0xc 
 
@@ -1924,6 +2261,7 @@ LOAD c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-
                 0x000000008000a2b0                __sdata_load = LOADADDR (.sdata)
                 0x000000008000a2b0                __sdata_start = .
                 0x000000008000aab0                PROVIDE (__global_pointer$ = (. + 0x800))
+>>>>>>> 31de474f4a344c3936efd6f8dcf9ce225af0c869
  *(.srodata.cst16)
  *(.srodata.cst8)
  *(.srodata.cst4)
@@ -1931,6 +2269,42 @@ LOAD c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-
  *(.srodata*)
  *(.sdata .sdata.* .gnu.linkonce.s.*)
  .sdata.fram_dev
+<<<<<<< HEAD
+                0x000000008000a180        0x8 ./spi_test_files/spi_test_prog.o
+                0x000000008000a180                fram_dev
+ .sdata.external_spi_0
+                0x000000008000a188        0x8 ./spi_test_files/spi_test_prog.o
+                0x000000008000a188                external_spi_0
+ .sdata.external_spi_1
+                0x000000008000a190        0x8 ./spi_test_files/spi_test_prog.o
+                0x000000008000a190                external_spi_1
+ .sdata.adc_dev
+                0x000000008000a198        0x8 ./spi_test_files/spi_test_prog.o
+                0x000000008000a198                adc_dev
+ .sdata.lcd_screen_dev
+                0x000000008000a1a0        0x8 ./spi_test_files/spi_test_prog.o
+                0x000000008000a1a0                lcd_screen_dev
+ .sdata.accelerometer_dev
+                0x000000008000a1a8        0x8 ./spi_test_files/spi_test_prog.o
+                0x000000008000a1a8                accelerometer_dev
+ .sdata.curbrk.3742
+                0x000000008000a1b0        0x4 ./riscv_hal/syscall.o
+ .sdata.__malloc_sbrk_base
+                0x000000008000a1b4        0x4 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-mallocr.o)
+                0x000000008000a1b4                __malloc_sbrk_base
+ .sdata.__malloc_trim_threshold
+                0x000000008000a1b8        0x4 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-mallocr.o)
+                0x000000008000a1b8                __malloc_trim_threshold
+ .sdata._impure_ptr
+                0x000000008000a1bc        0x4 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-impure.o)
+                0x000000008000a1bc                _impure_ptr
+                0x000000008000a1c0                . = ALIGN (0x10)
+                0x000000008000a1c0                __sdata_end = .
+
+.data           0x000000008000a1c0      0x8b0
+                0x000000008000a1c0                __data_load = LOADADDR (.data)
+                0x000000008000a1c0                __data_start = .
+=======
                 0x000000008000a2b0        0x8 ./spi_test_files/spi_test_prog.o
                 0x000000008000a2b0                fram_dev
  .sdata.external_spi_0
@@ -1965,11 +2339,153 @@ LOAD c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-
 .data           0x000000008000a2f0      0x8b0
                 0x000000008000a2f0                __data_load = LOADADDR (.data)
                 0x000000008000a2f0                __data_start = .
+>>>>>>> 31de474f4a344c3936efd6f8dcf9ce225af0c869
  *(.got.plt)
  *(.got)
  *(.shdata)
  *(.data .data.* .gnu.linkonce.d.*)
  .data.ext_irq_handler_table
+<<<<<<< HEAD
+                0x000000008000a1c0       0x80 ./riscv_hal/riscv_hal.o
+                0x000000008000a1c0                ext_irq_handler_table
+ .data.__malloc_av_
+                0x000000008000a240      0x408 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-mallocr.o)
+                0x000000008000a240                __malloc_av_
+ .data.impure_data
+                0x000000008000a648      0x428 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-impure.o)
+                0x000000008000aa70                . = ALIGN (0x10)
+                0x000000008000aa70                __data_end = .
+
+.sbss           0x000000008000aa70       0x20
+                0x000000008000aa70                __sbss_start = .
+ *(.sbss .sbss.* .gnu.linkonce.sb.*)
+ .sbss.tx_length
+                0x000000008000aa70        0x1 ./uart_test_files/uart_test_routine.o
+ .sbss.rx_length
+                0x000000008000aa71        0x1 ./uart_test_files/uart_test_routine.o
+ *fill*         0x000000008000aa72        0x6 
+ .sbss.g_systick_increment
+                0x000000008000aa78        0x8 ./riscv_hal/riscv_hal.o
+ .sbss.g_tx_length
+                0x000000008000aa80        0x1 ./i2c_test_files/i2c_test_routine.o
+ *fill*         0x000000008000aa81        0x3 
+ .sbss.__malloc_max_sbrked_mem
+                0x000000008000aa84        0x4 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-mallocr.o)
+                0x000000008000aa84                __malloc_max_sbrked_mem
+ .sbss.__malloc_max_total_mem
+                0x000000008000aa88        0x4 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-mallocr.o)
+                0x000000008000aa88                __malloc_max_total_mem
+ .sbss.__malloc_top_pad
+                0x000000008000aa8c        0x4 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-mallocr.o)
+                0x000000008000aa8c                __malloc_top_pad
+ *(.scommon)
+                0x000000008000aa90                . = ALIGN (0x10)
+                0x000000008000aa90                __sbss_end = .
+
+.bss            0x000000008000aa90      0x1c0
+                0x000000008000aa90                __bss_start = .
+ *(.shbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss.rx_buf    0x000000008000aa90       0x20 ./uart_test_files/uart_test_routine.o
+ .bss.tx_buf    0x000000008000aab0       0x20 ./uart_test_files/uart_test_routine.o
+ .bss.g_master_rx_buf
+                0x000000008000aad0       0x20 ./i2c_test_files/i2c_test_routine.o
+ .bss.g_master_tx_buf
+                0x000000008000aaf0       0x20 ./i2c_test_files/i2c_test_routine.o
+ .bss.__malloc_current_mallinfo
+                0x000000008000ab10       0x28 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-mallocr.o)
+                0x000000008000ab10                __malloc_current_mallinfo
+ *(COMMON)
+ COMMON         0x000000008000ab38        0x8 ./user_handler_files/user_handler.o
+                0x000000008000ab38                g_core_uart
+ COMMON         0x000000008000ab40       0x5c ./spi_test_files/spi_test_prog.o
+                0x000000008000ab40                selected_dev
+                0x000000008000ab44                quit_spi_test
+                0x000000008000ab48                riscv_spi
+                0x000000008000ab94                spi_command_byte
+                0x000000008000ab98                selected_dev_id
+ COMMON         0x000000008000ab9c        0x4 ./riscv_hal/syscall.o
+                0x000000008000ab9c                errno
+ COMMON         0x000000008000aba0        0x1 ./lcd_test_files/lcd_test.o
+                0x000000008000aba0                quit_gpio_test
+ *fill*         0x000000008000aba1        0x3 
+ COMMON         0x000000008000aba4       0x6c ./i2c_test_files/i2c_test_routine.o
+                0x000000008000aba4                g_core_i2c
+ COMMON         0x000000008000ac10       0x10 ./main.o
+                0x000000008000ac10                g_gpio
+                0x000000008000ac18                g_uart
+ COMMON         0x000000008000ac20       0x21 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-lock.o)
+                0x000000008000ac20                __lock___atexit_recursive_mutex
+                0x000000008000ac24                __lock___arc4random_mutex
+                0x000000008000ac28                __lock___env_recursive_mutex
+                0x000000008000ac2c                __lock___sinit_recursive_mutex
+                0x000000008000ac30                __lock___malloc_recursive_mutex
+                0x000000008000ac34                __lock___at_quick_exit_mutex
+                0x000000008000ac38                __lock___dd_hash_mutex
+                0x000000008000ac3c                __lock___tz_mutex
+                0x000000008000ac40                __lock___sfp_recursive_mutex
+                0x000000008000ac50                . = ALIGN (0x10)
+ *fill*         0x000000008000ac41        0xf 
+                0x000000008000ac50                __bss_end = .
+                0x000000008000ac50                _end = .
+
+.heap           0x000000008000ac50      0x800
+                0x000000008000ac50                __heap_start = .
+                0x000000008000b450                . = (. + HEAP_SIZE)
+ *fill*         0x000000008000ac50      0x800 
+                0x000000008000b450                __heap_end = .
+                0x000000008000b450                . = ALIGN (0x10)
+                0x000000008000b450                _heap_end = __heap_end
+
+.stack          0x000000008000b450      0x800
+                0x000000008000b450                __stack_bottom = .
+                0x000000008000bc50                . = (. + STACK_SIZE)
+ *fill*         0x000000008000b450      0x800 
+                0x000000008000bc50                __stack_top = .
+OUTPUT(NASA_RISC-V_TMR_TEST_PROG.elf elf32-littleriscv)
+
+.debug_info     0x0000000000000000     0xbba3
+ .debug_info    0x0000000000000000      0x616 ./user_handler_files/user_handler.o
+ .debug_info    0x0000000000000616      0x4f3 ./uart_test_files/uart_test_routine.o
+ .debug_info    0x0000000000000b09     0x1262 ./spi_test_files/spi_test_prog.o
+ .debug_info    0x0000000000001d6b       0x26 ./riscv_hal/entry.o
+ .debug_info    0x0000000000001d91      0xbd5 ./riscv_hal/init.o
+ .debug_info    0x0000000000002966     0x117a ./riscv_hal/riscv_hal.o
+ .debug_info    0x0000000000003ae0      0x480 ./riscv_hal/riscv_hal_stubs.o
+ .debug_info    0x0000000000003f60     0x1234 ./riscv_hal/syscall.o
+ .debug_info    0x0000000000005194      0xf56 ./lcd_test_files/lcd_test.o
+ .debug_info    0x00000000000060ea      0xb0a ./i2c_test_files/i2c_test_routine.o
+ .debug_info    0x0000000000006bf4      0x1c1 ./hal/hal_irq.o
+ .debug_info    0x0000000000006db5       0x26 ./hal/hw_reg_access.o
+ .debug_info    0x0000000000006ddb      0x3c3 ./drivers/CoreUARTapb/core_uart_apb.o
+ .debug_info    0x000000000000719e     0x115e ./drivers/CoreSPI/core_spi.o
+ .debug_info    0x00000000000082fc     0x168c ./drivers/CoreI2C/core_i2c.o
+ .debug_info    0x0000000000009988      0x42c ./drivers/CoreI2C/i2c_interrupt.o
+ .debug_info    0x0000000000009db4      0x6e8 ./drivers/CoreGPIO/core_gpio.o
+ .debug_info    0x000000000000a49c      0x3c7 ./GPIO_test_files/gpio_test_routine.o
+ .debug_info    0x000000000000a863     0x1340 ./main.o
+
+.debug_abbrev   0x0000000000000000     0x24df
+ .debug_abbrev  0x0000000000000000      0x1c7 ./user_handler_files/user_handler.o
+ .debug_abbrev  0x00000000000001c7      0x194 ./uart_test_files/uart_test_routine.o
+ .debug_abbrev  0x000000000000035b      0x2cd ./spi_test_files/spi_test_prog.o
+ .debug_abbrev  0x0000000000000628       0x14 ./riscv_hal/entry.o
+ .debug_abbrev  0x000000000000063c      0x27b ./riscv_hal/init.o
+ .debug_abbrev  0x00000000000008b7      0x330 ./riscv_hal/riscv_hal.o
+ .debug_abbrev  0x0000000000000be7       0xfe ./riscv_hal/riscv_hal_stubs.o
+ .debug_abbrev  0x0000000000000ce5      0x2f8 ./riscv_hal/syscall.o
+ .debug_abbrev  0x0000000000000fdd      0x297 ./lcd_test_files/lcd_test.o
+ .debug_abbrev  0x0000000000001274      0x2fb ./i2c_test_files/i2c_test_routine.o
+ .debug_abbrev  0x000000000000156f      0x124 ./hal/hal_irq.o
+ .debug_abbrev  0x0000000000001693       0x14 ./hal/hw_reg_access.o
+ .debug_abbrev  0x00000000000016a7      0x15a ./drivers/CoreUARTapb/core_uart_apb.o
+ .debug_abbrev  0x0000000000001801      0x2c7 ./drivers/CoreSPI/core_spi.o
+ .debug_abbrev  0x0000000000001ac8      0x312 ./drivers/CoreI2C/core_i2c.o
+ .debug_abbrev  0x0000000000001dda      0x17c ./drivers/CoreI2C/i2c_interrupt.o
+ .debug_abbrev  0x0000000000001f56      0x1c3 ./drivers/CoreGPIO/core_gpio.o
+ .debug_abbrev  0x0000000000002119      0x11b ./GPIO_test_files/gpio_test_routine.o
+ .debug_abbrev  0x0000000000002234      0x2ab ./main.o
+=======
                 0x000000008000a2f0       0x80 ./riscv_hal/riscv_hal.o
                 0x000000008000a2f0                ext_irq_handler_table
  .data.__malloc_av_
@@ -2107,159 +2623,222 @@ OUTPUT(NASA_RISC-V_TMR_TEST_PROG.elf elf32-littleriscv)
  .debug_abbrev  0x0000000000001fac      0x1c3 ./drivers/CoreGPIO/core_gpio.o
  .debug_abbrev  0x000000000000216f      0x124 ./GPIO_test_files/gpio_test_routine.o
  .debug_abbrev  0x0000000000002293      0x2c5 ./main.o
+>>>>>>> 31de474f4a344c3936efd6f8dcf9ce225af0c869
 
-.debug_aranges  0x0000000000000000      0x898
+.debug_aranges  0x0000000000000000      0x888
  .debug_aranges
                 0x0000000000000000       0x90 ./user_handler_files/user_handler.o
  .debug_aranges
-                0x0000000000000090       0x58 ./uart_test_files/uart_test_routine.o
+                0x0000000000000090       0x48 ./uart_test_files/uart_test_routine.o
  .debug_aranges
-                0x00000000000000e8       0xb0 ./spi_test_files/spi_test_prog.o
+                0x00000000000000d8       0xb0 ./spi_test_files/spi_test_prog.o
  .debug_aranges
-                0x0000000000000198       0x20 ./riscv_hal/entry.o
+                0x0000000000000188       0x20 ./riscv_hal/entry.o
  .debug_aranges
-                0x00000000000001b8       0x38 ./riscv_hal/init.o
+                0x00000000000001a8       0x38 ./riscv_hal/init.o
  .debug_aranges
-                0x00000000000001f0       0x68 ./riscv_hal/riscv_hal.o
+                0x00000000000001e0       0x68 ./riscv_hal/riscv_hal.o
  .debug_aranges
-                0x0000000000000258      0x128 ./riscv_hal/riscv_hal_stubs.o
+                0x0000000000000248      0x128 ./riscv_hal/riscv_hal_stubs.o
  .debug_aranges
-                0x0000000000000380       0xc0 ./riscv_hal/syscall.o
+                0x0000000000000370       0xc0 ./riscv_hal/syscall.o
  .debug_aranges
-                0x0000000000000440       0x38 ./lcd_test_files/lcd_test.o
+                0x0000000000000430       0x38 ./lcd_test_files/lcd_test.o
  .debug_aranges
-                0x0000000000000478       0x90 ./i2c_test_files/i2c_test_routine.o
+                0x0000000000000468       0x90 ./i2c_test_files/i2c_test_routine.o
  .debug_aranges
-                0x0000000000000508       0x30 ./hal/hal_irq.o
+                0x00000000000004f8       0x30 ./hal/hal_irq.o
  .debug_aranges
-                0x0000000000000538       0x20 ./hal/hw_reg_access.o
+                0x0000000000000528       0x20 ./hal/hw_reg_access.o
  .debug_aranges
-                0x0000000000000558       0x48 ./drivers/CoreUARTapb/core_uart_apb.o
+                0x0000000000000548       0x48 ./drivers/CoreUARTapb/core_uart_apb.o
  .debug_aranges
-                0x00000000000005a0       0xa8 ./drivers/CoreSPI/core_spi.o
+                0x0000000000000590       0xa8 ./drivers/CoreSPI/core_spi.o
  .debug_aranges
-                0x0000000000000648      0x110 ./drivers/CoreI2C/core_i2c.o
+                0x0000000000000638      0x110 ./drivers/CoreI2C/core_i2c.o
  .debug_aranges
-                0x0000000000000758       0x28 ./drivers/CoreI2C/i2c_interrupt.o
+                0x0000000000000748       0x28 ./drivers/CoreI2C/i2c_interrupt.o
  .debug_aranges
-                0x0000000000000780       0x78 ./drivers/CoreGPIO/core_gpio.o
+                0x0000000000000770       0x78 ./drivers/CoreGPIO/core_gpio.o
  .debug_aranges
-                0x00000000000007f8       0x58 ./GPIO_test_files/gpio_test_routine.o
+                0x00000000000007e8       0x58 ./GPIO_test_files/gpio_test_routine.o
  .debug_aranges
-                0x0000000000000850       0x48 ./main.o
+                0x0000000000000840       0x48 ./main.o
 
-.debug_ranges   0x0000000000000000      0x748
+.debug_ranges   0x0000000000000000      0x738
  .debug_ranges  0x0000000000000000       0x80 ./user_handler_files/user_handler.o
- .debug_ranges  0x0000000000000080       0x48 ./uart_test_files/uart_test_routine.o
- .debug_ranges  0x00000000000000c8       0xa0 ./spi_test_files/spi_test_prog.o
- .debug_ranges  0x0000000000000168       0x28 ./riscv_hal/init.o
- .debug_ranges  0x0000000000000190       0x58 ./riscv_hal/riscv_hal.o
- .debug_ranges  0x00000000000001e8      0x118 ./riscv_hal/riscv_hal_stubs.o
- .debug_ranges  0x0000000000000300       0xb0 ./riscv_hal/syscall.o
- .debug_ranges  0x00000000000003b0       0x28 ./lcd_test_files/lcd_test.o
- .debug_ranges  0x00000000000003d8       0x80 ./i2c_test_files/i2c_test_routine.o
- .debug_ranges  0x0000000000000458       0x20 ./hal/hal_irq.o
- .debug_ranges  0x0000000000000478       0x38 ./drivers/CoreUARTapb/core_uart_apb.o
- .debug_ranges  0x00000000000004b0       0x98 ./drivers/CoreSPI/core_spi.o
- .debug_ranges  0x0000000000000548      0x100 ./drivers/CoreI2C/core_i2c.o
- .debug_ranges  0x0000000000000648       0x18 ./drivers/CoreI2C/i2c_interrupt.o
- .debug_ranges  0x0000000000000660       0x68 ./drivers/CoreGPIO/core_gpio.o
- .debug_ranges  0x00000000000006c8       0x48 ./GPIO_test_files/gpio_test_routine.o
- .debug_ranges  0x0000000000000710       0x38 ./main.o
+ .debug_ranges  0x0000000000000080       0x38 ./uart_test_files/uart_test_routine.o
+ .debug_ranges  0x00000000000000b8       0xa0 ./spi_test_files/spi_test_prog.o
+ .debug_ranges  0x0000000000000158       0x28 ./riscv_hal/init.o
+ .debug_ranges  0x0000000000000180       0x58 ./riscv_hal/riscv_hal.o
+ .debug_ranges  0x00000000000001d8      0x118 ./riscv_hal/riscv_hal_stubs.o
+ .debug_ranges  0x00000000000002f0       0xb0 ./riscv_hal/syscall.o
+ .debug_ranges  0x00000000000003a0       0x28 ./lcd_test_files/lcd_test.o
+ .debug_ranges  0x00000000000003c8       0x80 ./i2c_test_files/i2c_test_routine.o
+ .debug_ranges  0x0000000000000448       0x20 ./hal/hal_irq.o
+ .debug_ranges  0x0000000000000468       0x38 ./drivers/CoreUARTapb/core_uart_apb.o
+ .debug_ranges  0x00000000000004a0       0x98 ./drivers/CoreSPI/core_spi.o
+ .debug_ranges  0x0000000000000538      0x100 ./drivers/CoreI2C/core_i2c.o
+ .debug_ranges  0x0000000000000638       0x18 ./drivers/CoreI2C/i2c_interrupt.o
+ .debug_ranges  0x0000000000000650       0x68 ./drivers/CoreGPIO/core_gpio.o
+ .debug_ranges  0x00000000000006b8       0x48 ./GPIO_test_files/gpio_test_routine.o
+ .debug_ranges  0x0000000000000700       0x38 ./main.o
 
-.debug_macro    0x0000000000000000     0x4cac
- .debug_macro   0x0000000000000000       0x95 ./user_handler_files/user_handler.o
- .debug_macro   0x0000000000000095      0x742 ./user_handler_files/user_handler.o
- .debug_macro   0x00000000000007d7       0x22 ./user_handler_files/user_handler.o
- .debug_macro   0x00000000000007f9       0x8e ./user_handler_files/user_handler.o
- .debug_macro   0x0000000000000887       0x51 ./user_handler_files/user_handler.o
- .debug_macro   0x00000000000008d8       0xef ./user_handler_files/user_handler.o
- .debug_macro   0x00000000000009c7       0x6a ./user_handler_files/user_handler.o
- .debug_macro   0x0000000000000a31      0x1df ./user_handler_files/user_handler.o
- .debug_macro   0x0000000000000c10       0x40 ./user_handler_files/user_handler.o
- .debug_macro   0x0000000000000c50       0x16 ./user_handler_files/user_handler.o
- .debug_macro   0x0000000000000c66       0xef ./uart_test_files/uart_test_routine.o
- .debug_macro   0x0000000000000d55       0x64 ./uart_test_files/uart_test_routine.o
- .debug_macro   0x0000000000000db9       0x52 ./uart_test_files/uart_test_routine.o
- .debug_macro   0x0000000000000e0b      0x2dc ./uart_test_files/uart_test_routine.o
- .debug_macro   0x00000000000010e7       0x28 ./uart_test_files/uart_test_routine.o
- .debug_macro   0x000000000000110f       0x10 ./uart_test_files/uart_test_routine.o
- .debug_macro   0x000000000000111f       0x4c ./uart_test_files/uart_test_routine.o
- .debug_macro   0x000000000000116b      0x1b8 ./spi_test_files/spi_test_prog.o
- .debug_macro   0x0000000000001323       0x58 ./spi_test_files/spi_test_prog.o
- .debug_macro   0x000000000000137b       0x19 ./spi_test_files/spi_test_prog.o
- .debug_macro   0x0000000000001394       0x34 ./spi_test_files/spi_test_prog.o
- .debug_macro   0x00000000000013c8       0x34 ./spi_test_files/spi_test_prog.o
- .debug_macro   0x00000000000013fc      0x174 ./spi_test_files/spi_test_prog.o
- .debug_macro   0x0000000000001570       0x58 ./spi_test_files/spi_test_prog.o
- .debug_macro   0x00000000000015c8       0x1f ./spi_test_files/spi_test_prog.o
- .debug_macro   0x00000000000015e7       0x43 ./spi_test_files/spi_test_prog.o
- .debug_macro   0x000000000000162a       0x20 ./spi_test_files/spi_test_prog.o
- .debug_macro   0x000000000000164a      0x18e ./spi_test_files/spi_test_prog.o
- .debug_macro   0x00000000000017d8      0x330 ./spi_test_files/spi_test_prog.o
- .debug_macro   0x0000000000001b08       0x10 ./spi_test_files/spi_test_prog.o
- .debug_macro   0x0000000000001b18       0x35 ./spi_test_files/spi_test_prog.o
- .debug_macro   0x0000000000001b4d       0x16 ./spi_test_files/spi_test_prog.o
- .debug_macro   0x0000000000001b63       0x16 ./spi_test_files/spi_test_prog.o
- .debug_macro   0x0000000000001b79       0x29 ./spi_test_files/spi_test_prog.o
- .debug_macro   0x0000000000001ba2       0x12 ./spi_test_files/spi_test_prog.o
- .debug_macro   0x0000000000001bb4      0x203 ./riscv_hal/init.o
- .debug_macro   0x0000000000001db7      0x10e ./riscv_hal/init.o
- .debug_macro   0x0000000000001ec5       0x8d ./riscv_hal/init.o
- .debug_macro   0x0000000000001f52       0x16 ./riscv_hal/init.o
- .debug_macro   0x0000000000001f68       0x10 ./riscv_hal/init.o
- .debug_macro   0x0000000000001f78       0x1c ./riscv_hal/init.o
- .debug_macro   0x0000000000001f94       0x52 ./riscv_hal/init.o
- .debug_macro   0x0000000000001fe6       0x40 ./riscv_hal/init.o
- .debug_macro   0x0000000000002026       0x10 ./riscv_hal/init.o
- .debug_macro   0x0000000000002036       0x40 ./riscv_hal/init.o
- .debug_macro   0x0000000000002076       0xd7 ./riscv_hal/init.o
- .debug_macro   0x000000000000214d       0x1c ./riscv_hal/init.o
- .debug_macro   0x0000000000002169       0x3d ./riscv_hal/init.o
- .debug_macro   0x00000000000021a6      0x51a ./riscv_hal/init.o
- .debug_macro   0x00000000000026c0      0x233 ./riscv_hal/riscv_hal.o
- .debug_macro   0x00000000000028f3      0x1b5 ./riscv_hal/riscv_hal_stubs.o
- .debug_macro   0x0000000000002aa8       0x10 ./riscv_hal/riscv_hal_stubs.o
- .debug_macro   0x0000000000002ab8       0xcf ./riscv_hal/riscv_hal_stubs.o
- .debug_macro   0x0000000000002b87       0xbe ./riscv_hal/riscv_hal_stubs.o
- .debug_macro   0x0000000000002c45      0x2c2 ./riscv_hal/syscall.o
- .debug_macro   0x0000000000002f07       0x10 ./riscv_hal/syscall.o
- .debug_macro   0x0000000000002f17      0x241 ./riscv_hal/syscall.o
- .debug_macro   0x0000000000003158       0x16 ./riscv_hal/syscall.o
- .debug_macro   0x000000000000316e       0x10 ./riscv_hal/syscall.o
- .debug_macro   0x000000000000317e       0x10 ./riscv_hal/syscall.o
- .debug_macro   0x000000000000318e       0x35 ./riscv_hal/syscall.o
- .debug_macro   0x00000000000031c3      0x122 ./riscv_hal/syscall.o
- .debug_macro   0x00000000000032e5       0x1c ./riscv_hal/syscall.o
- .debug_macro   0x0000000000003301       0x10 ./riscv_hal/syscall.o
- .debug_macro   0x0000000000003311       0x10 ./riscv_hal/syscall.o
- .debug_macro   0x0000000000003321       0x16 ./riscv_hal/syscall.o
- .debug_macro   0x0000000000003337      0x15a ./riscv_hal/syscall.o
- .debug_macro   0x0000000000003491       0x16 ./riscv_hal/syscall.o
- .debug_macro   0x00000000000034a7      0x28e ./lcd_test_files/lcd_test.o
- .debug_macro   0x0000000000003735       0x10 ./lcd_test_files/lcd_test.o
- .debug_macro   0x0000000000003745      0x11c ./lcd_test_files/lcd_test.o
- .debug_macro   0x0000000000003861       0x19 ./lcd_test_files/lcd_test.o
- .debug_macro   0x000000000000387a      0x105 ./i2c_test_files/i2c_test_routine.o
- .debug_macro   0x000000000000397f       0x35 ./i2c_test_files/i2c_test_routine.o
- .debug_macro   0x00000000000039b4       0x22 ./i2c_test_files/i2c_test_routine.o
- .debug_macro   0x00000000000039d6       0x52 ./i2c_test_files/i2c_test_routine.o
- .debug_macro   0x0000000000003a28       0xcf ./hal/hal_irq.o
- .debug_macro   0x0000000000003af7       0xf4 ./drivers/CoreUARTapb/core_uart_apb.o
- .debug_macro   0x0000000000003beb      0x106 ./drivers/CoreUARTapb/core_uart_apb.o
- .debug_macro   0x0000000000003cf1       0x16 ./drivers/CoreUARTapb/core_uart_apb.o
- .debug_macro   0x0000000000003d07      0x1d2 ./drivers/CoreSPI/core_spi.o
- .debug_macro   0x0000000000003ed9      0x3ec ./drivers/CoreSPI/core_spi.o
- .debug_macro   0x00000000000042c5      0x28b ./drivers/CoreI2C/core_i2c.o
- .debug_macro   0x0000000000004550      0x1c1 ./drivers/CoreI2C/core_i2c.o
- .debug_macro   0x0000000000004711       0x3c ./drivers/CoreI2C/core_i2c.o
- .debug_macro   0x000000000000474d       0xc6 ./drivers/CoreI2C/i2c_interrupt.o
- .debug_macro   0x0000000000004813       0xf1 ./drivers/CoreGPIO/core_gpio.o
- .debug_macro   0x0000000000004904       0x64 ./drivers/CoreGPIO/core_gpio.o
- .debug_macro   0x0000000000004968      0x108 ./GPIO_test_files/gpio_test_routine.o
- .debug_macro   0x0000000000004a70      0x220 ./main.o
- .debug_macro   0x0000000000004c90       0x1c ./main.o
+.debug_macro    0x0000000000000000     0x4e2f
+ .debug_macro   0x0000000000000000       0x9e ./user_handler_files/user_handler.o
+ .debug_macro   0x000000000000009e      0x742 ./user_handler_files/user_handler.o
+ .debug_macro   0x00000000000007e0       0x22 ./user_handler_files/user_handler.o
+ .debug_macro   0x0000000000000802       0x8e ./user_handler_files/user_handler.o
+ .debug_macro   0x0000000000000890       0x51 ./user_handler_files/user_handler.o
+ .debug_macro   0x00000000000008e1       0xef ./user_handler_files/user_handler.o
+ .debug_macro   0x00000000000009d0       0x6a ./user_handler_files/user_handler.o
+ .debug_macro   0x0000000000000a3a      0x1df ./user_handler_files/user_handler.o
+ .debug_macro   0x0000000000000c19       0x40 ./user_handler_files/user_handler.o
+ .debug_macro   0x0000000000000c59       0xfa ./user_handler_files/user_handler.o
+ .debug_macro   0x0000000000000d53       0x16 ./user_handler_files/user_handler.o
+ .debug_macro   0x0000000000000d69       0xf8 ./uart_test_files/uart_test_routine.o
+ .debug_macro   0x0000000000000e61       0x64 ./uart_test_files/uart_test_routine.o
+ .debug_macro   0x0000000000000ec5       0x58 ./uart_test_files/uart_test_routine.o
+ .debug_macro   0x0000000000000f1d      0x2dc ./uart_test_files/uart_test_routine.o
+ .debug_macro   0x00000000000011f9       0x28 ./uart_test_files/uart_test_routine.o
+ .debug_macro   0x0000000000001221       0x10 ./uart_test_files/uart_test_routine.o
+ .debug_macro   0x0000000000001231       0x4c ./uart_test_files/uart_test_routine.o
+ .debug_macro   0x000000000000127d      0x1c1 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x000000000000143e       0x58 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x0000000000001496       0x19 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x00000000000014af       0x34 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x00000000000014e3       0x34 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x0000000000001517      0x174 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x000000000000168b       0x58 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x00000000000016e3       0x1f ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x0000000000001702       0x43 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x0000000000001745       0x20 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x0000000000001765      0x18e ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x00000000000018f3      0x330 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x0000000000001c23       0x10 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x0000000000001c33       0x35 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x0000000000001c68       0x16 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x0000000000001c7e       0x16 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x0000000000001c94       0x29 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x0000000000001cbd       0x12 ./spi_test_files/spi_test_prog.o
+ .debug_macro   0x0000000000001ccf      0x20c ./riscv_hal/init.o
+ .debug_macro   0x0000000000001edb      0x10e ./riscv_hal/init.o
+ .debug_macro   0x0000000000001fe9       0x8d ./riscv_hal/init.o
+ .debug_macro   0x0000000000002076       0x16 ./riscv_hal/init.o
+ .debug_macro   0x000000000000208c       0x10 ./riscv_hal/init.o
+ .debug_macro   0x000000000000209c       0x1c ./riscv_hal/init.o
+ .debug_macro   0x00000000000020b8       0x52 ./riscv_hal/init.o
+ .debug_macro   0x000000000000210a       0x40 ./riscv_hal/init.o
+ .debug_macro   0x000000000000214a       0x10 ./riscv_hal/init.o
+ .debug_macro   0x000000000000215a       0x40 ./riscv_hal/init.o
+ .debug_macro   0x000000000000219a       0xd7 ./riscv_hal/init.o
+ .debug_macro   0x0000000000002271       0x1c ./riscv_hal/init.o
+ .debug_macro   0x000000000000228d       0x3d ./riscv_hal/init.o
+ .debug_macro   0x00000000000022ca      0x51a ./riscv_hal/init.o
+ .debug_macro   0x00000000000027e4      0x23c ./riscv_hal/riscv_hal.o
+ .debug_macro   0x0000000000002a20      0x1be ./riscv_hal/riscv_hal_stubs.o
+ .debug_macro   0x0000000000002bde       0x10 ./riscv_hal/riscv_hal_stubs.o
+ .debug_macro   0x0000000000002bee       0xcf ./riscv_hal/riscv_hal_stubs.o
+ .debug_macro   0x0000000000002cbd       0xbe ./riscv_hal/riscv_hal_stubs.o
+ .debug_macro   0x0000000000002d7b      0x2cb ./riscv_hal/syscall.o
+ .debug_macro   0x0000000000003046       0x10 ./riscv_hal/syscall.o
+ .debug_macro   0x0000000000003056      0x241 ./riscv_hal/syscall.o
+ .debug_macro   0x0000000000003297       0x16 ./riscv_hal/syscall.o
+ .debug_macro   0x00000000000032ad       0x10 ./riscv_hal/syscall.o
+ .debug_macro   0x00000000000032bd       0x10 ./riscv_hal/syscall.o
+ .debug_macro   0x00000000000032cd       0x35 ./riscv_hal/syscall.o
+ .debug_macro   0x0000000000003302      0x122 ./riscv_hal/syscall.o
+ .debug_macro   0x0000000000003424       0x1c ./riscv_hal/syscall.o
+ .debug_macro   0x0000000000003440       0x10 ./riscv_hal/syscall.o
+ .debug_macro   0x0000000000003450       0x10 ./riscv_hal/syscall.o
+ .debug_macro   0x0000000000003460       0x16 ./riscv_hal/syscall.o
+ .debug_macro   0x0000000000003476      0x15a ./riscv_hal/syscall.o
+ .debug_macro   0x00000000000035d0       0x16 ./riscv_hal/syscall.o
+ .debug_macro   0x00000000000035e6      0x297 ./lcd_test_files/lcd_test.o
+ .debug_macro   0x000000000000387d       0x10 ./lcd_test_files/lcd_test.o
+ .debug_macro   0x000000000000388d      0x11c ./lcd_test_files/lcd_test.o
+ .debug_macro   0x00000000000039a9       0x19 ./lcd_test_files/lcd_test.o
+ .debug_macro   0x00000000000039c2      0x10e ./i2c_test_files/i2c_test_routine.o
+ .debug_macro   0x0000000000003ad0       0x35 ./i2c_test_files/i2c_test_routine.o
+ .debug_macro   0x0000000000003b05       0x22 ./i2c_test_files/i2c_test_routine.o
+ .debug_macro   0x0000000000003b27       0x52 ./i2c_test_files/i2c_test_routine.o
+ .debug_macro   0x0000000000003b79       0xd8 ./hal/hal_irq.o
+ .debug_macro   0x0000000000003c51       0xfd ./drivers/CoreUARTapb/core_uart_apb.o
+ .debug_macro   0x0000000000003d4e      0x106 ./drivers/CoreUARTapb/core_uart_apb.o
+ .debug_macro   0x0000000000003e54       0x16 ./drivers/CoreUARTapb/core_uart_apb.o
+ .debug_macro   0x0000000000003e6a      0x1db ./drivers/CoreSPI/core_spi.o
+ .debug_macro   0x0000000000004045      0x3ec ./drivers/CoreSPI/core_spi.o
+ .debug_macro   0x0000000000004431      0x294 ./drivers/CoreI2C/core_i2c.o
+ .debug_macro   0x00000000000046c5      0x1c1 ./drivers/CoreI2C/core_i2c.o
+ .debug_macro   0x0000000000004886       0x3c ./drivers/CoreI2C/core_i2c.o
+ .debug_macro   0x00000000000048c2       0xcf ./drivers/CoreI2C/i2c_interrupt.o
+ .debug_macro   0x0000000000004991       0xfa ./drivers/CoreGPIO/core_gpio.o
+ .debug_macro   0x0000000000004a8b       0x64 ./drivers/CoreGPIO/core_gpio.o
+ .debug_macro   0x0000000000004aef      0x111 ./GPIO_test_files/gpio_test_routine.o
+ .debug_macro   0x0000000000004c00      0x22f ./main.o
 
+<<<<<<< HEAD
+.debug_line     0x0000000000000000     0xbc89
+ .debug_line    0x0000000000000000      0xf47 ./user_handler_files/user_handler.o
+ .debug_line    0x0000000000000f47      0xa0d ./uart_test_files/uart_test_routine.o
+ .debug_line    0x0000000000001954     0x13a5 ./spi_test_files/spi_test_prog.o
+ .debug_line    0x0000000000002cf9      0x237 ./riscv_hal/entry.o
+ .debug_line    0x0000000000002f30      0x56f ./riscv_hal/init.o
+ .debug_line    0x000000000000349f      0x87d ./riscv_hal/riscv_hal.o
+ .debug_line    0x0000000000003d1c      0x8db ./riscv_hal/riscv_hal_stubs.o
+ .debug_line    0x00000000000045f7      0x93f ./riscv_hal/syscall.o
+ .debug_line    0x0000000000004f36      0x9c3 ./lcd_test_files/lcd_test.o
+ .debug_line    0x00000000000058f9      0xb3b ./i2c_test_files/i2c_test_routine.o
+ .debug_line    0x0000000000006434      0x453 ./hal/hal_irq.o
+ .debug_line    0x0000000000006887      0x185 ./hal/hw_reg_access.o
+ .debug_line    0x0000000000006a0c      0x71e ./drivers/CoreUARTapb/core_uart_apb.o
+ .debug_line    0x000000000000712a     0x143c ./drivers/CoreSPI/core_spi.o
+ .debug_line    0x0000000000008566     0x14e4 ./drivers/CoreI2C/core_i2c.o
+ .debug_line    0x0000000000009a4a      0x3bd ./drivers/CoreI2C/i2c_interrupt.o
+ .debug_line    0x0000000000009e07      0xbaa ./drivers/CoreGPIO/core_gpio.o
+ .debug_line    0x000000000000a9b1      0x87c ./GPIO_test_files/gpio_test_routine.o
+ .debug_line    0x000000000000b22d      0xa5c ./main.o
+
+.debug_str      0x0000000000000000     0xf810
+ .debug_str     0x0000000000000000     0x3986 ./user_handler_files/user_handler.o
+                                       0x3b56 (size before relaxing)
+ .debug_str     0x0000000000003986     0x1b20 ./uart_test_files/uart_test_routine.o
+                                       0x53bc (size before relaxing)
+ .debug_str     0x00000000000054a6     0x3443 ./spi_test_files/spi_test_prog.o
+                                       0x7040 (size before relaxing)
+ .debug_str     0x00000000000088e9       0x21 ./riscv_hal/entry.o
+                                         0x6a (size before relaxing)
+ .debug_str     0x000000000000890a     0x1c6c ./riscv_hal/init.o
+                                       0x9336 (size before relaxing)
+ .debug_str     0x000000000000a576      0x3a6 ./riscv_hal/riscv_hal.o
+                                       0x97d2 (size before relaxing)
+ .debug_str     0x000000000000a91c      0x316 ./riscv_hal/riscv_hal_stubs.o
+                                       0x74db (size before relaxing)
+ .debug_str     0x000000000000ac32     0x1252 ./riscv_hal/syscall.o
+                                       0xa570 (size before relaxing)
+ .debug_str     0x000000000000be84      0x570 ./lcd_test_files/lcd_test.o
+                                       0x8007 (size before relaxing)
+ .debug_str     0x000000000000c3f4      0x4d8 ./i2c_test_files/i2c_test_routine.o
+                                       0x5b3f (size before relaxing)
+ .debug_str     0x000000000000c8cc       0x65 ./hal/hal_irq.o
+                                       0x4f98 (size before relaxing)
+ .debug_str     0x000000000000c931       0x17 ./hal/hw_reg_access.o
+                                         0x6c (size before relaxing)
+ .debug_str     0x000000000000c948      0x6e5 ./drivers/CoreUARTapb/core_uart_apb.o
+                                       0x46bb (size before relaxing)
+ .debug_str     0x000000000000d02d     0x134f ./drivers/CoreSPI/core_spi.o
+                                       0x84bd (size before relaxing)
+ .debug_str     0x000000000000e37c      0xd36 ./drivers/CoreI2C/core_i2c.o
+                                       0x800b (size before relaxing)
+ .debug_str     0x000000000000f0b2       0x42 ./drivers/CoreI2C/i2c_interrupt.o
+                                       0x432a (size before relaxing)
+ .debug_str     0x000000000000f0f4      0x4f6 ./drivers/CoreGPIO/core_gpio.o
+                                       0x49e9 (size before relaxing)
+ .debug_str     0x000000000000f5ea       0xf6 ./GPIO_test_files/gpio_test_routine.o
+                                       0x595a (size before relaxing)
+ .debug_str     0x000000000000f6e0      0x130 ./main.o
+                                       0x8894 (size before relaxing)
+=======
 .debug_line     0x0000000000000000     0xc19f
  .debug_line    0x0000000000000000      0xf33 ./user_handler_files/user_handler.o
  .debug_line    0x0000000000000f33      0xa32 ./uart_test_files/uart_test_routine.o
@@ -2320,6 +2899,7 @@ OUTPUT(NASA_RISC-V_TMR_TEST_PROG.elf elf32-littleriscv)
                                        0x5629 (size before relaxing)
  .debug_str     0x000000000000f41a      0x130 ./main.o
                                        0x8556 (size before relaxing)
+>>>>>>> 31de474f4a344c3936efd6f8dcf9ce225af0c869
 
 .comment        0x0000000000000000       0x43
  .comment       0x0000000000000000       0x43 ./user_handler_files/user_handler.o
@@ -2397,31 +2977,28 @@ OUTPUT(NASA_RISC-V_TMR_TEST_PROG.elf elf32-littleriscv)
                 0x0000000000000307       0x1f c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-impure.o)
  .riscv.attributes
                 0x0000000000000326       0x1f c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-lock.o)
- .riscv.attributes
-                0x0000000000000345       0x1f c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libgloss.a(nanosleep.o)
 
-.debug_frame    0x0000000000000000     0x2190
+.debug_frame    0x0000000000000000     0x2128
  .debug_frame   0x0000000000000000      0x234 ./user_handler_files/user_handler.o
- .debug_frame   0x0000000000000234      0x128 ./uart_test_files/uart_test_routine.o
- .debug_frame   0x000000000000035c      0x2e8 ./spi_test_files/spi_test_prog.o
- .debug_frame   0x0000000000000644       0x94 ./riscv_hal/init.o
- .debug_frame   0x00000000000006d8      0x164 ./riscv_hal/riscv_hal.o
- .debug_frame   0x000000000000083c      0x44c ./riscv_hal/riscv_hal_stubs.o
- .debug_frame   0x0000000000000c88      0x2ec ./riscv_hal/syscall.o
- .debug_frame   0x0000000000000f74       0xac ./lcd_test_files/lcd_test.o
- .debug_frame   0x0000000000001020      0x220 ./i2c_test_files/i2c_test_routine.o
- .debug_frame   0x0000000000001240       0x78 ./hal/hal_irq.o
- .debug_frame   0x00000000000012b8       0xf0 ./drivers/CoreUARTapb/core_uart_apb.o
- .debug_frame   0x00000000000013a8      0x2b8 ./drivers/CoreSPI/core_spi.o
- .debug_frame   0x0000000000001660      0x478 ./drivers/CoreI2C/core_i2c.o
- .debug_frame   0x0000000000001ad8       0x50 ./drivers/CoreI2C/i2c_interrupt.o
- .debug_frame   0x0000000000001b28      0x1e4 ./drivers/CoreGPIO/core_gpio.o
- .debug_frame   0x0000000000001d0c      0x13c ./GPIO_test_files/gpio_test_routine.o
- .debug_frame   0x0000000000001e48       0xe8 ./main.o
- .debug_frame   0x0000000000001f30       0x30 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-malloc.o)
- .debug_frame   0x0000000000001f60       0x58 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-mallocr.o)
- .debug_frame   0x0000000000001fb8       0x30 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-mlock.o)
- .debug_frame   0x0000000000001fe8       0x3c c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-sbrkr.o)
- .debug_frame   0x0000000000002024       0x9c c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-freer.o)
- .debug_frame   0x00000000000020c0       0xb0 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-lock.o)
- .debug_frame   0x0000000000002170       0x20 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libgloss.a(nanosleep.o)
+ .debug_frame   0x0000000000000234       0xe8 ./uart_test_files/uart_test_routine.o
+ .debug_frame   0x000000000000031c      0x2e8 ./spi_test_files/spi_test_prog.o
+ .debug_frame   0x0000000000000604       0x94 ./riscv_hal/init.o
+ .debug_frame   0x0000000000000698      0x164 ./riscv_hal/riscv_hal.o
+ .debug_frame   0x00000000000007fc      0x44c ./riscv_hal/riscv_hal_stubs.o
+ .debug_frame   0x0000000000000c48      0x2ec ./riscv_hal/syscall.o
+ .debug_frame   0x0000000000000f34       0xa4 ./lcd_test_files/lcd_test.o
+ .debug_frame   0x0000000000000fd8      0x220 ./i2c_test_files/i2c_test_routine.o
+ .debug_frame   0x00000000000011f8       0x78 ./hal/hal_irq.o
+ .debug_frame   0x0000000000001270       0xf0 ./drivers/CoreUARTapb/core_uart_apb.o
+ .debug_frame   0x0000000000001360      0x2b8 ./drivers/CoreSPI/core_spi.o
+ .debug_frame   0x0000000000001618      0x478 ./drivers/CoreI2C/core_i2c.o
+ .debug_frame   0x0000000000001a90       0x50 ./drivers/CoreI2C/i2c_interrupt.o
+ .debug_frame   0x0000000000001ae0      0x1e4 ./drivers/CoreGPIO/core_gpio.o
+ .debug_frame   0x0000000000001cc4      0x13c ./GPIO_test_files/gpio_test_routine.o
+ .debug_frame   0x0000000000001e00       0xe8 ./main.o
+ .debug_frame   0x0000000000001ee8       0x30 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-malloc.o)
+ .debug_frame   0x0000000000001f18       0x58 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-mallocr.o)
+ .debug_frame   0x0000000000001f70       0x30 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-mlock.o)
+ .debug_frame   0x0000000000001fa0       0x3c c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-sbrkr.o)
+ .debug_frame   0x0000000000001fdc       0x9c c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-freer.o)
+ .debug_frame   0x0000000000002078       0xb0 c:/microsemi/softconsole_v6.2/riscv-unknown-elf-gcc/bin/../lib/gcc/riscv64-unknown-elf/8.2.0/../../../../riscv64-unknown-elf/lib/rv32im/ilp32\libc.a(lib_a-lock.o)
