@@ -92,7 +92,6 @@ void lcd_test(unsigned char* message, int length, int line)
    
    if (line == 0)
    {
-	  int col;
       for (col = 0; col < length; col = col + 1)
       {
          // Set the DDRAM address
@@ -103,7 +102,6 @@ void lcd_test(unsigned char* message, int length, int line)
    
    else if (line == 1)
    {
-	  int col;
       for (col = 0; col < length; col = col + 1)
       {
          lcd_command(0xC0 | col);
