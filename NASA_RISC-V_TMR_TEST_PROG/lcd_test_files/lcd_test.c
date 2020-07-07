@@ -8,6 +8,7 @@
 
 #include <time.h>
 #include "core_gpio.h"
+#include "core_spi.h"
 #include "lcd_test.h"
 #include "spi_test_prog.h"
 #include "gpio_test_routine.h"
@@ -38,8 +39,8 @@ void lcd_write(int message)
 {
     uint8_t writeData[1] = {message};
     uint8_t response = 0;
-	UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rSelect LCD Screen\n\r");
-	spi_test_change_selected_device();
+//	UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rSelect LCD Screen\n\r");
+//	spi_test_change_selected_device();
     GPIO_set_output(&g_gpio,RS,1);
     spi_test_write(&lcd_screen_dev, writeData, 1, &response);
 }
@@ -52,11 +53,11 @@ void lcd_write(int message)
  */
 void lcd_init(void)
 {
+    uint8_t data;
+    uint8_t data_size;
     //initialize gpio
     gpio_test_init();
 
-	UART_polled_tx_string(&g_uart, (const uint8_t *)"\n\rSelect LCD Screen\n\r");
-	spi_test_change_selected_device();
 	//LCD Rst to 0
 	GPIO_set_output(&g_gpio,RST,0);
 
@@ -65,24 +66,39 @@ void lcd_init(void)
 	for(i = 0; i < 166000; i++);
 	//LCD Rst to 1
     GPIO_set_output(&g_gpio,RST,1);
+    //assert SS1 low to select LCD SPI
+    SPI_set_slave_select(&lcd_screen_dev->spi, &lcd_screen_dev->spi_sel);
 
     //nanosleep((const struct timespec[]){{0, 20000000L}}, NULL);
     for(i = 0; i < 166000; i++);
 	lcd_command(0x30);
+	SPI_transfer_block(&lcd_screen_dev->spi, 0x30, 1, data, data_size);
 	//nanosleep((const struct timespec[]){{0, 2000000L}}, NULL);
 	for(i = 0; i < 166000; i++);
-	lcd_command(0x30);
-	lcd_command(0x30);
-	lcd_command(0x39);
-	lcd_command(0x14);
-	lcd_command(0x56);
-	lcd_command(0x6D);
-	lcd_command(0x70);
-	lcd_command(0x0C);
-	lcd_command(0x06);
-	lcd_command(0x01);
+//	lcd_command(0x30);
+    SPI_transfer_block(&lcd_screen_dev->spi, 0x30, 1, data, data_size);
+//	lcd_command(0x30);
+    SPI_transfer_block(&lcd_screen_dev->spi, 0x30, 1, data, data_size);
+//	lcd_command(0x39);
+    SPI_transfer_block(&lcd_screen_dev->spi, 0x39, 1, data, data_size);
+//	lcd_command(0x14);
+    SPI_transfer_block(&lcd_screen_dev->spi, 0x14, 1, data, data_size);
+//	lcd_command(0x56);
+    SPI_transfer_block(&lcd_screen_dev->spi, 0x56, 1, data, data_size);
+//	lcd_command(0x6D);
+    SPI_transfer_block(&lcd_screen_dev->spi, 0x6D, 1, data, data_size);
+//	lcd_command(0x70);
+    SPI_transfer_block(&lcd_screen_dev->spi, 0x70, 1, data, data_size);
+//	lcd_command(0x0C);
+    SPI_transfer_block(&lcd_screen_dev->spi, 0x0C, 1, data, data_size);
+//	lcd_command(0x06);
+    SPI_transfer_block(&lcd_screen_dev->spi, 0x06, 1, data, data_size);
+//	lcd_command(0x01);
+    SPI_transfer_block(&lcd_screen_dev->spi, 0x01, 1, data, data_size);
 	//nanosleep((const struct timespec[]){{0, 10000000L}}, NULL);
 	for(i = 0; i < 83000; i++);
+	//set SS1 high to un-assert
+    SPI_clear_slave_select(device->spi, device->spi_sel);
 }
 
 /**
