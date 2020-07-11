@@ -9,7 +9,7 @@
 #include "user_handler.h"
 #include "lcd_test.h"
 #include "uart_test_routine.h"
-
+//#include "dhrystone.h"
 
 /**
  * @brief	Used to list the different kinds of tests a user can use. 
@@ -164,7 +164,7 @@ void testProgramManager(void)
 					lcd_test(&line2[0], 5, 1);
 					break;
 				case CPU_TEST:
-					displayTestUnavailable();
+					displayTestIncomplete();
 					break;
 				case UNIT_TEST:
 					user_handler_unit_test_handler();
@@ -210,6 +210,12 @@ void displayTestUnavailable(void)
 {
 	UART_polled_tx_string(&g_uart,
 			(const uint8_t *)"ERROR! Test Not programmed at this time...\n\r");
+}
+
+void displayTestIncomplete(void)
+{
+	UART_polled_tx_string(&g_uart,
+						  (const uint8_t *)"ERROR! Test Not completed at this time...\n\r");
 }
 
 /**
